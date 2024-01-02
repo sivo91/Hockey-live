@@ -1,6 +1,6 @@
 # Hockey Live Statistics
 
-Welcome to the Hockey Stats Hub, the ultimate resource for hockey team statistics from various prestigious tournaments including the NHL, World Cup, World Junior Cup, Olympic Games, and more!
+Welcome to the Hockey Live Statistics, the ultimate resource for hockey team statistics from various prestigious tournaments including the NHL, World Cup, World Junior Cup, Olympic Games, and more!
 
 ## About This Project
 
@@ -15,7 +15,7 @@ This project aims to provide hockey fans and analysts with comprehensive, up-to-
 
 ## How to Use
 
-1. **Clone the Repository**: `git clone [your-repo-link]`
+1. **Clone the Repository**: `git clone https://github.com/sivo91/Hockey-live.git`
 2. **Navigate to the Project**: `cd hockey-stats-hub`
 3. **Install Dependencies**: `npm install` (assuming Node.js project)
 4. **Run the Application**: `npm start`
@@ -28,14 +28,11 @@ Our data is sourced from reliable and authoritative hockey databases and officia
 
 Contributions are welcome! If you have suggestions for additional statistics, data sources, or features, please open an issue or submit a pull request.
 
-## License
-
-This project is licensed under [Your Chosen License] - see the [LICENSE.md](LICENSE.md) file for details.
 
 ## Acknowledgments
 
 - Thanks to all contributors and hockey statistics enthusiasts.
-- Special thanks to [Data Source Names] for providing accurate and up-to-date data.
+- Special thanks to hockey-live.sk for providing accurate and up-to-date data.
 
 ---
 
