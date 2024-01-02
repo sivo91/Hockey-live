@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import React, {useEffect} from 'react'
+import React, {useEffect, useRef} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchJuniors } from '@/reduxFile/wjc24Slice'
+import { fetchJuniors } from '@/reduxFile/wjcSlice'
 import Link from 'next/link';
 import { BsArrowUpSquareFill } from "react-icons/bs";
 
@@ -10,26 +10,27 @@ const Index = () => {
 
 
   const dispatch = useDispatch();
+  const year = useSelector((state) => state.year.year);
   const groupA = useSelector(state => state.wcj.data);
   const status = useSelector(state => state.wcj.status);
   const error = useSelector(state => state.wcj.error);
 
-  useEffect(() => {
-    dispatch(fetchJuniors());
-  }, [dispatch]);
+   useEffect(() => {
+    if (year) {
+      dispatch(fetchJuniors(year))
+    }
+  }, [year, dispatch]);
 
+  const closeButtonRef = useRef(null);
 
-
-
-if (status === 'failed') return <div>Error: {error}</div>;
-
-
-  const handleCloseModal = () => {
-    // Hide the modal with Bootstrap's 'hide' method
-    $('#exampleModal').modal('hide');
+  const handleCloseClick = () => {
+    if (closeButtonRef.current) {
+      closeButtonRef.current.click();
+    }
   };
 
 
+if (status === 'failed') return <div>Error: {error}</div>;
 
 
   let tableRows;
@@ -61,7 +62,7 @@ if (status === 'failed') return <div>Error: {error}</div>;
         <tr className='fw-semibold team-box' key={key}>
           <td>{i + 1}</td>
           <td className='px-2'>
-            <Link href={'/'} onClick={handleCloseModal}>
+            <Link href={'#'} onClick={handleCloseClick  }>
               {value.shortname}
             </Link>
           </td>
@@ -94,7 +95,7 @@ if (status === 'failed') return <div>Error: {error}</div>;
                     style={{width: '120px'}}
                     data-bs-target="#groupA">
               Group A
-               <img src="./WJC/wjc.png" className='mt-2' style={{width: '60px'}} alt="khl" />
+               <img src="../WJC/wjc.png" className='mt-2' style={{width: '60px'}} alt="khl" />
             </button>
 
 
@@ -102,8 +103,8 @@ if (status === 'failed') return <div>Error: {error}</div>;
                 <div className="modal-dialog">
                   <div className="modal-content">
                     <div className="modal-header">
-                      <img src="./WJC/wjc.png" alt="nhl" className='me-3' style={{width: '40px'}}/>
-                      <h1 className="modal-title fs-5 text-center" id="exampgroupA">WJC - Group A.</h1>
+                      <img src="../WJC/wjc.png" alt="nhl" className='me-3' style={{width: '40px'}}/>
+                      <h1 className="modal-title fs-5 text-center" id="exampgroupA">WJC - Group A {year}</h1>
 
                       <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -130,7 +131,7 @@ if (status === 'failed') return <div>Error: {error}</div>;
 
                     </div>
                     <div className="modal-footer">
-                      <button type="button" className="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
+                      <button type="button" ref={closeButtonRef} className="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
                     </div>
                   </div>
                 </div>

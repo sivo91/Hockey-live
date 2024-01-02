@@ -83,6 +83,13 @@ const Navbar= () => {
                       style={{textDecoration: 'none'}}>
                  Home
                </Link>
+                <br />
+                <Link href={'/stats/standings'} 
+                      className='rounded-1 my-5 text-dark fs-5 ms-3' 
+                      onClick={CloseSideBar}
+                      style={{textDecoration: 'none'}}>
+                 Standings
+               </Link>
                
                
 

@@ -1,17 +1,16 @@
 
 
 
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-
-export const fetchJuniors = createAsyncThunk(
+// Async thunk for fetching NHL standings
+export const fetchNHLStandings = createAsyncThunk(
   'nhlStandings/fetchNHLStandings',
-  async () => {
+  async (year) => {
    const options = {
     method: 'GET',
-    url: 'https://hockey-live-sk-data.p.rapidapi.com/table/WJC/2023',
+    url: `https://hockey-live-sk-data.p.rapidapi.com/table/NHL/${year}`,
     params: {
       key: process.env.NEXT_PUBLIC_API_KEY2,
       tz: 'America/New_York'
@@ -28,32 +27,30 @@ export const fetchJuniors = createAsyncThunk(
 );
 
 // Slice for NHL standings
-const juniorsCap = createSlice({
+const nhlStandingsSlice = createSlice({
   name: 'nhlStandings',
   initialState: {
     data: null,
-    status: 'idle', 
+    status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
     error: null
   },
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchJuniors.pending, (state) => {
+      .addCase(fetchNHLStandings.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchJuniors.fulfilled, (state, action) => {
+      .addCase(fetchNHLStandings.fulfilled, (state, action) => {
         state.status = 'succeeded';
         // Add any fetched data to the state
         state.data = action.payload;
       })
-      .addCase(fetchJuniors.rejected, (state, action) => {
+      .addCase(fetchNHLStandings.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
   }
 });
 
-export default juniorsCap.reducer;
-
-
+export default nhlStandingsSlice.reducer;
 

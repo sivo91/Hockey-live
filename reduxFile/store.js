@@ -2,9 +2,10 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from './userSlice'
-import nhlStandingsReducer from './nhlStandingsSlice';
-import WC20Reducer from './wjc24Slice'
+import nhlStandingsReducer from './nhlSlice';
+import WC20Reducer from './wjcSlice'
 import khlReducer from './khlSlice'
+import selectYearReducer from './selectYearSlice'
 
 
 
@@ -14,5 +15,6 @@ export const store = configureStore({
     nhlStandings: nhlStandingsReducer,
     wcj: WC20Reducer,
     khl: khlReducer,
+    year: selectYearReducer
   }
 })

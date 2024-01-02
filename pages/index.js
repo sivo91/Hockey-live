@@ -3,16 +3,16 @@ import Head from 'next/head'
 
 
 import Link from 'next/link';
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchNHLStandings } from '@/reduxFile/nhlStandingsSlice'
 import Eastern from '@/components/NHL/Eastern'
 import Western from '@/components/NHL/Western'
 import WJCgroupA from '@/components/WJC/GroupA'
 import WJCgroupB from '@/components/WJC/GroupB'
 import EasternKHL from '@/components/KHL/Eastern'
 import WesternKHL from '@/components/KHL/Western'
+import { useSelector, useDispatch } from 'react-redux';
+import { selectYear } from '@/reduxFile/selectYearSlice';
 
 
 
@@ -25,25 +25,30 @@ const WJC = 'https://hockey-live-sk-data.p.rapidapi.com/table/WJC/2023'
 
 const Home= () => {
 
+   const dispatch = useDispatch()
+    const year = useSelector((state) => state.year.year);
+    //console.log('redux year', typeof year) ok
 
-  const dispatch = useDispatch();
-  const nhl_standings = useSelector(state => state.nhlStandings.data);
-  const status = useSelector(state => state.nhlStandings.status);
-  const error = useSelector(state => state.nhlStandings.error);
-/* 
-  useEffect(() => {
-    dispatch(fetchNHLStandings());
-  }, [dispatch]);
+  const [selectedYear, setSelectedYear] = useState('');
 
-  console.log('tablesss', nhl_standings) */
- /* 
+
+   useEffect(() => {
+    console.log('useState year', selectedYear);
+    dispatch(selectYear(selectedYear))
+  }, [selectedYear, dispatch]);
+
+
+
+
 
  const [data, setData] = useState()
  const fetchGameData = useCallback(async ()=> {
   
+  //  https://hockey-live-sk-data.p.rapidapi.com/game/{id}?key={API_key}
+
  const options = {
     method: 'GET',
-    url: 'https://hockey-live-sk-data.p.rapidapi.com/table/KHL/2023',
+    url: 'https://hockey-live-sk-data.p.rapidapi.com/game/1596',
     params: {
       key: process.env.NEXT_PUBLIC_API_KEY2,
       tz: 'America/New_York'
@@ -71,7 +76,7 @@ const Home= () => {
 
     return () => clearInterval(intervalId);
   }, [fetchGameData]);
- */
+ 
 
 
  
@@ -85,6 +90,8 @@ const Home= () => {
 
 
 
+  
+
   return (
     <>
       <Head>
@@ -94,136 +101,15 @@ const Home= () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="main-container">
-
-          {/* Left Side */}
-           <div className="left-side-column">
-
-              <p className='lead ms-2 mt-2'>Select League</p>
-              <ul className="list-group">
-                {['NHL', 'KHL', 'WJC', 'WCH', 'OG'].map((league) => (
-                  <li className="list-group-item" key={league}>
-                    <input
-                      className="form-check-input me-1"
-                      type="radio"
-                      name="listGroupRadio"
-                      value={league.toLowerCase()}
-                      id={league}
-                      onChange={handleChange}
-                      checked={selectedLeague === league.toLowerCase()}
-                    />
-                    <label className="form-check-label ms-2" htmlFor={league}>
-                      {league}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-           {/* middle box */}
-          <div className="middle-column">
-             <div className="container-fluid">
-
-                  <div className="row d-flex justify-content-evenly my-5">
-                       {
-                        selectedLeague === 'nhl' && (
-                          <>
-                            <Eastern/>
-                            <Western/>
-                          </>
-                        )
-                       }
-
-                       {
-                        selectedLeague === 'wjc' && (
-                          <>
-                            <WJCgroupA />
-                            <WJCgroupB/>
-                          </>
-                        )
-                       }
-
-                       {
-                        selectedLeague === 'khl' && (
-                          <>
-                            <EasternKHL/>
-                            <WesternKHL/>
-                          </>
-                        )
-                       }
-
-                       {
-                        selectedLeague === 'wch' && (
-                          <>
-                             <p className='fs-5 fw-semibold text-center'>Coming Soon</p>
-                          </>
-                        )
-                       }
-
-                       {
-                        selectedLeague === 'og' && (
-                          <>
-                           <p className='fs-5 fw-semibold text-center'>Coming Soon</p>
-                          </>
-                        )
-                       }
-
-
-
-                      
-                       
-  
-                  </div>
-                </div>
-          </div>
-
-           {/* Right Side */}
-          <div className="side-column">  </div>
-
-        </div>
+      <div className="container-fluid">
+        <h3>main page</h3>
+      </div>
 
    
 
 
       <style>{`
 
-      .hover:hover {
-        background-color: #ffffff;
-      }
-
-      .main-container {
-          display: grid;
-          grid-template-columns: max-content 1fr max-content;
-          gap: 0; 
-        }
-
-        .side-column {
-          min-width: 300px;
-          background: #f0f0f0;
-        }
-
-        .left-side-column {
-           max-width: 200px;
-           padding-left: 30px;
-        }
-
-        .middle-column {
-          
-        }
-       
-        .team-box {
-          position: relative;
-          padding: 16px 0!important;
-   
-        }
-
-       .team-box:nth-child(even) { 
-              background-color: #f7f7f7;
-          }
-
-       .team-box:nth-child(odd) { 
-              background-color: #ffffff;
-          }
       
       `}</style>
     </>

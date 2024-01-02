@@ -36,4 +36,4 @@ Contributions are welcome! If you have suggestions for additional statistics, da
 
 ---
 
-Enjoy exploring the world of hockey statistics with Hockey Stats Hub!
+Enjoy exploring the world of hockey statistics with Hockey Live Statistics!

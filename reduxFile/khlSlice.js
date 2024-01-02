@@ -6,11 +6,11 @@ import axios from 'axios';
 
 
 export const fetchKHL = createAsyncThunk(
-  'nhlStandings/fetchNHLStandings',
-  async () => {
+  'nhl/fetchKHL',
+  async (year) => {
    const options = {
     method: 'GET',
-    url: 'https://hockey-live-sk-data.p.rapidapi.com/table/KHL/2023',
+    url: `https://hockey-live-sk-data.p.rapidapi.com/table/KHL/${year}`,
     params: {
       key: process.env.NEXT_PUBLIC_API_KEY2,
       tz: 'America/New_York'
@@ -28,7 +28,7 @@ export const fetchKHL = createAsyncThunk(
 
 // Slice for NHL standings
 const KHL = createSlice({
-  name: 'nhlStandings',
+  name: 'khl',
   initialState: {
     data: null,
     status: 'idle', 
