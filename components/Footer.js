@@ -3,7 +3,7 @@ import React from 'react'
 const Index = () => {
   return (
     <>  
-      <h3 className='text-center my-5'>Footer</h3>
+      <h3 className='text-center my-5'></h3>
     </>
   )
 }

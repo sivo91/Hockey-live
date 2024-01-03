@@ -39,9 +39,9 @@ const Index = () => {
   useEffect(() => {
     fetchGameData();
    
-    const intervalId = setInterval(fetchGameData, 5000000);
+   /*  const intervalId = setInterval(fetchGameData, 5000000);
 
-    return () => clearInterval(intervalId);
+    return () => clearInterval(intervalId); */
   }, [fetchGameData]);
  
   
@@ -49,6 +49,7 @@ const Index = () => {
  const [gamesList, setGamesList] = useState([]);
  const [playedList, setPlayedList] = useState([])
  console.log(playedList)
+
 
   useEffect(() => {
     const x = data?.games;

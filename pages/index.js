@@ -3,28 +3,27 @@ import Head from 'next/head'
 
 
 import Link from 'next/link';
-import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
-import Eastern from '@/components/NHL/Eastern'
-import Western from '@/components/NHL/Western'
-import WJCgroupA from '@/components/WJC/GroupA'
-import WJCgroupB from '@/components/WJC/GroupB'
-import EasternKHL from '@/components/KHL/Eastern'
-import WesternKHL from '@/components/KHL/Western'
-import { useSelector, useDispatch } from 'react-redux';
-import { selectYear } from '@/reduxFile/selectYearSlice';
+import React, { useState} from 'react';
+import NHL from '@/components/NHL/NHL'
+import WJC from '@/components/WJC/WJC'
+import WCH from '@/components/WCH/WCH'
 
 
-
-const NHL = 'https://hockey-live-sk-data.p.rapidapi.com/table/NHL/2023'
+/* const NHL = 'https://hockey-live-sk-data.p.rapidapi.com/table/NHL/2023'
 const KHL = 'https://hockey-live-sk-data.p.rapidapi.com/table/KHL/2023'
 const WCH = 'https://hockey-live-sk-data.p.rapidapi.com/table/WCH/2023'
-const WJC = 'https://hockey-live-sk-data.p.rapidapi.com/table/WJC/2023'
+const WJC = 'https://hockey-live-sk-data.p.rapidapi.com/table/WJC/2023' */
 
 
 
 const Home= () => {
 
+
+    const [checkedItem, setCheckedItem] = useState('NHL');
+    
+    const handleChangeA = (event) => {
+        setCheckedItem(event.target.id);
+    };
 
   return (
     <>
@@ -37,39 +36,87 @@ const Home= () => {
 
       <div className="container-fluid my-5">
 
-         <div className="row justify-content-center">
-          
-           <div className="col-11 col-md-3 border bg-light rounded-3 mx-2 p-5 text-center">
-               <h3>NHL</h3>
-               <div className="image-container" style={{ maxWidth: '200px', margin: 'auto' }}>
-                  <img src="./NHL/nhl.png" style={{ width: '30%', height: 'auto' }} alt="nhl" />
-              </div>
-           </div>  
+     
+        <div className='d-flex justify-content-around '
+             style={{width: '400px', margin: '0 auto'}}>
 
-           <div className="col-11 col-md-3 border bg-light rounded-3 mx-2 p-5 text-center">
-                <h3>WJC U20 2024</h3>
-                 <div className="image-container" style={{ maxWidth: '200px', margin: 'auto' }}>
-                  <img src="./WJC/wjc.png" style={{ width: '30%', height: 'auto' }} alt="nhl" />
-              </div>
-           </div>  
+            <div className="form-check" 
+                 style={{width: '150px'}}>
+                <input 
+                    className="form-check-input fw-semibold fs-5 hover" 
+                    type="checkbox" 
+                    id="NHL" 
+                    checked={checkedItem === 'NHL'} 
+                    onChange={handleChangeA} 
+                />
+                <label className="form-check-label fs-5 hover" htmlFor="NHL">
+                    NHL
+                </label>
+            </div>
 
-           <div className="col-11 col-md-3 border bg-light rounded-3 mx-2 p-5 text-center">
-                <h3>IIHF ICE HOCKEY WORLD CHAMPIONSHIP</h3>
-                 <div className="image-container" style={{ maxWidth: '200px', margin: 'auto' }}>
-                  <img src="./NHL/nhl.png" style={{ width: '30%', height: 'auto' }} alt="nhl" />
-              </div>
-           </div>  
-          
-        </div> 
+            <div className="form-check form" 
+                 style={{width: '150px'}}>
+                <input 
+                    className="form-check-input fw-semibold fs-5 hover" 
+                    type="checkbox" 
+                    id="WJC" 
+                    checked={checkedItem === 'WJC'} 
+                    onChange={handleChangeA} 
+                />
+                <label className="form-check-label fs-5 hover" htmlFor="WJC">
+                    WJC
+                </label>
+            </div>
+
+            <div className="form-check form" 
+                 style={{width: '150px'}}>
+                <input 
+                    className="form-check-input fw-semibold fs-5 hover" 
+                    type="checkbox" 
+                    id="WCH" 
+                    checked={checkedItem === 'WCH'} 
+                    onChange={handleChangeA} 
+                />
+                <label className="form-check-label fs-5 hover" htmlFor="WCH">
+                    WCH
+                </label>
+            </div>
+        </div>
+        <hr />
+
+
+
+        {
+          checkedItem === 'NHL' && <NHL/>
+        }
+        {
+          checkedItem === 'WJC' && <WJC/>
+        }
+        {
+          checkedItem === 'WCH' && <WCH/>
+        }
+
+
+
        
       </div>
+
+
+     
 
    
 
 
       <style>{`
 
-      
+       .selection {
+        position: relative;
+
+       }
+
+        .hover:hover {
+          cursor: pointer;
+         }
       `}</style>
     </>
   )
