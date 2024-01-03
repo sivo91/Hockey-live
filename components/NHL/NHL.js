@@ -242,7 +242,7 @@ const dispatch = useDispatch()
               position: sticky;
               top: 0;
               width: 80px;
-              height: 50vh; 
+              height: 10vh; 
               border-right: 1px solid #ccc;
               z-index: 100; 
             }
