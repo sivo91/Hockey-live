@@ -25,72 +25,6 @@ const WJC = 'https://hockey-live-sk-data.p.rapidapi.com/table/WJC/2023'
 
 const Home= () => {
 
-   const dispatch = useDispatch()
-    const year = useSelector((state) => state.year.year);
-    //console.log('redux year', typeof year) ok
-
-  const [selectedYear, setSelectedYear] = useState('');
-
-
-   useEffect(() => {
-    console.log('useState year', selectedYear);
-    dispatch(selectYear(selectedYear))
-  }, [selectedYear, dispatch]);
-
-
-
-
-
- const [data, setData] = useState()
- const fetchGameData = useCallback(async ()=> {
-  
-  //  https://hockey-live-sk-data.p.rapidapi.com/game/{id}?key={API_key}
-
- const options = {
-    method: 'GET',
-    url: 'https://hockey-live-sk-data.p.rapidapi.com/game/1596',
-    params: {
-      key: process.env.NEXT_PUBLIC_API_KEY2,
-      tz: 'America/New_York'
-    },
-    headers: {
-      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
-      'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
-    }
-  };
-
-    try {
-      const res = await axios.request(options);
-      console.log(res.data);
-      setData(res.data)
-    } catch (error) {
-      
-      console.log(error)
-    }
-  }, []);  // Dependencies array
-
-  useEffect(() => {
-    fetchGameData();
-   
-    const intervalId = setInterval(fetchGameData, 5000000);
-
-    return () => clearInterval(intervalId);
-  }, [fetchGameData]);
- 
-
-
- 
-
-
-  const [selectedLeague, setSelectedLeague] = useState('nhl');
-
-  const handleChange = (event) => {
-     setSelectedLeague(event.target.value);
-  }
-
-
-
-  
 
   return (
     <>
@@ -101,8 +35,33 @@ const Home= () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="container-fluid">
-        <h3>main page</h3>
+      <div className="container-fluid my-5">
+
+         <div className="row justify-content-center">
+          
+           <div className="col-11 col-md-3 border bg-light rounded-3 mx-2 p-5 text-center">
+               <h3>NHL</h3>
+               <div className="image-container" style={{ maxWidth: '200px', margin: 'auto' }}>
+                  <img src="./NHL/nhl.png" style={{ width: '30%', height: 'auto' }} alt="nhl" />
+              </div>
+           </div>  
+
+           <div className="col-11 col-md-3 border bg-light rounded-3 mx-2 p-5 text-center">
+                <h3>WJC U20 2024</h3>
+                 <div className="image-container" style={{ maxWidth: '200px', margin: 'auto' }}>
+                  <img src="./WJC/wjc.png" style={{ width: '30%', height: 'auto' }} alt="nhl" />
+              </div>
+           </div>  
+
+           <div className="col-11 col-md-3 border bg-light rounded-3 mx-2 p-5 text-center">
+                <h3>IIHF ICE HOCKEY WORLD CHAMPIONSHIP</h3>
+                 <div className="image-container" style={{ maxWidth: '200px', margin: 'auto' }}>
+                  <img src="./NHL/nhl.png" style={{ width: '30%', height: 'auto' }} alt="nhl" />
+              </div>
+           </div>  
+          
+        </div> 
+       
       </div>
 
    
@@ -118,9 +77,6 @@ const Home= () => {
 
 
 
-/* 
 
-d6d5dbc87cmsh5634c57b4efd5b5p1af87bjsn95fbf2d4a0c5
-*/
 
 export default Home

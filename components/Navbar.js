@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React , {useEffect, useCallback, useState } from 'react'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaRegCircleUser } from "react-icons/fa6";
 import Link from 'next/link';
@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { userLogin, userLogOut } from '@/reduxFile/userSlice';
 import { RootState } from '@/reduxFile/store'; // Import RootState
 import axios from 'axios';
+import NavbarTop from './NavbarTop'
 
 
 const Navbar= () => {
@@ -14,9 +15,6 @@ const Navbar= () => {
   const user = useSelector((state) => state.userAuth.user);
 
   const dispatch = useDispatch()
-
-
-
 
   const CloseRightSideBar = ()=> {
       setTimeout(() => {
@@ -31,8 +29,6 @@ const Navbar= () => {
         closeButton?.click();
       }, 400)
      }
-
-
 
 
      const handleLogOut = async () => {
@@ -51,13 +47,54 @@ const Navbar= () => {
 
 
 
+    
+
+ const [data, setData] = useState()
+ const fetchGameData = useCallback(async ()=> {
+  
+  //  https://hockey-live-sk-data.p.rapidapi.com/game/{id}?key={API_key}
+
+ const options = {
+    method: 'GET',
+    url: 'https://hockey-live-sk-data.p.rapidapi.com/game/1596',
+    params: {
+      key: process.env.NEXT_PUBLIC_API_KEY2,
+      tz: 'America/New_York'
+    },
+    headers: {
+      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
+      'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
+    }
+  };
+
+    try {
+      const res = await axios.request(options);
+     // console.log(res.data);
+      setData(res.data)
+    } catch (error) {
+      
+      console.log(error)
+    }
+  }, []);  // Dependencies array
+
+  useEffect(() => {
+    fetchGameData();
+   
+    const intervalId = setInterval(fetchGameData, 5000000);
+
+    return () => clearInterval(intervalId);
+  }, [fetchGameData]);
+ 
+
+
+
 
   return (
 
    <>
 
-    <nav className='border nav-top'>
-        <h1>zapasiky here</h1>
+    <nav className='m-0 p-0' style={{height: '67px'}}>
+        <NavbarTop/>
     </nav>
 
 
@@ -161,10 +198,7 @@ const Navbar= () => {
 
     <style>{`
 
-      .nav-top  {
-        position: relative;
-        height: 120px
-      }
+     
       
       .rightSide {
         position: relative;
