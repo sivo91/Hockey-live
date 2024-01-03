@@ -12,6 +12,8 @@ import { TfiStatsDown } from "react-icons/tfi";
 import { SlGraph } from "react-icons/sl";
 import { useSelector, useDispatch } from 'react-redux';
 import { selectYear } from '@/reduxFile/selectYearSlice';
+import Standings_Estearn from './Standings/Eastern'
+import Standings_Western from './Standings/Western'
 
 
 const Index = () => {
@@ -20,7 +22,7 @@ const Index = () => {
 const dispatch = useDispatch()
     const year = useSelector((state) => state.year.year);
 
-    const [selectedYear, setSelectedYear] = useState('');
+    const [selectedYear, setSelectedYear] = useState('2023');
 
 
    useEffect(() => {
@@ -34,9 +36,6 @@ const dispatch = useDispatch()
     setSelectedYear(event.target.value);
   };
 
-
-
-
  const [sectionNHL, setSectionNHL] = useState('home-page');
  console.log(sectionNHL)
 
@@ -45,29 +44,37 @@ const dispatch = useDispatch()
     setSectionNHL(section);
   };
 
+
+
   return (
     <>
  
 
-       <h3 className='text-center mt-3'>NHL Standings</h3>
+       <h3 className='text-center my-3'>NHL Standings</h3>
+
+       <select className="form-select form-select-lg mb-3" 
+               value={selectedYear} onChange={handleChangeYear}
+               style={{width: '300px', margin: '0 auto'}} aria-label="Large select example">
+              <option selected>Select Seasson</option>
+              <option value="2023">2023/2024</option>
+              <option value="2022">2022/2023</option>
+              <option value="2021">2021/2022</option>
+              <option value="2020">2020/2021</option>
+              <option value="2019">2019/2020</option>
+              <option value="2018">2018/2019</option>
+              <option value="2017">2017/2018</option>
+              <option value="2016">2016/2017</option>
+              <option value="2015">2015/2016</option>
+              <option value="2014">2014/2015</option>
+              <option value="2013">2013/2014</option>
+              <option value="2012">2012/2013</option>
+        </select>
 
       
       
        <div className="d-flex">
 
           <aside className='pt-2 text-center'>
-
-                  <form className='my-3'>
-                  <label htmlFor="years" className='me-2'>Seasson</label>
-                  <select name="years" id="years" value={selectedYear} onChange={handleChangeYear}>
-                    <option value="">Year</option>
-                    <option value="2023">23/24</option>
-                    <option value="2022">22/23</option>
-                    <option value="2021">21/22</option>
-                    <option value="2020">20/21</option>
-                    <option value="2019">19/20</option>
-                  </select>
-                </form>
 
                  <button className='btn btn-light border mt-2 custom-tooltip' 
                          data-tooltip="Home Page"
@@ -89,7 +96,7 @@ const dispatch = useDispatch()
 
                 <button className='btn btn-light border mt-2 custom-tooltip' 
                          data-tooltip="Standings"
-                        onClick={() => handleButtonClick('graph')}>
+                        onClick={() => handleButtonClick('Standings')}>
                   <SlGraph className='fs-2' />
                 </button>
 
@@ -123,9 +130,6 @@ const dispatch = useDispatch()
                   <GiIceSkate className='fs-2' />
                 </button>
 
-               
-
-
                 <button 
                   className='btn btn-light border mt-2 custom-tooltip' 
                   onClick={() => handleButtonClick('top-teams')}
@@ -134,11 +138,27 @@ const dispatch = useDispatch()
                   <TfiStatsUp className='fs-2' />
               </button>
 
-                
           </aside>
 
 
-          <section> </section>
+          <section> 
+ 
+            {
+              sectionNHL === 'Standings' && (
+                <>
+                  <div className="row justify-content-center gap-2">
+                    <div className="col-12 col-md-5 border rounded-3">
+                      <Standings_Estearn/>
+                    </div>
+                    <div className="col-12 col-md-5 border rounded-3">
+                      <Standings_Western/>
+                    </div>
+                  </div>
+                </>
+              )
+            }
+
+          </section>
         </div>
 
 
@@ -202,7 +222,7 @@ const dispatch = useDispatch()
 
             section {
               position: relative;
-              margin-left: 80px;
+              margin-left:20px;
               width: calc(100% - 80px);
               height: 100vh;
             }
