@@ -171,18 +171,19 @@ const flag = (param) => {
     <style>{`
 
       .nat-top {
-    width: 100%; /* Full width */
-    overflow-x: auto; /* Enables horizontal scrolling */
-}
+          width: 100%; 
+          overflow-x: auto; 
+          overflow-y: hidden;
+      }
 
-.nat-top ul {
-    display: flex;
-    flex-wrap: nowrap; /* Prevents wrapping of list items */
-    height: 67px; /* Your existing height */
-    padding-left: 0; /* Remove padding if it's not needed */
-    margin: 0; /* Remove margin if it's not needed */
-    list-style-type: none; /* Removes bullet points from list */
-}
+      .nat-top ul {
+          display: flex;
+          flex-wrap: nowrap; 
+          height: 67px;
+          padding-left: 0;
+          margin: 0;
+          list-style-type: none;
+      }
 
      
     `}</style>

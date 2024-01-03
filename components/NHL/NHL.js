@@ -36,7 +36,7 @@ const dispatch = useDispatch()
     setSelectedYear(event.target.value);
   };
 
- const [sectionNHL, setSectionNHL] = useState('home-page');
+ const [sectionNHL, setSectionNHL] = useState('Standings');
  console.log(sectionNHL)
 
 
@@ -50,7 +50,7 @@ const dispatch = useDispatch()
     <>
  
 
-       <h3 className='text-center my-3'>NHL Standings</h3>
+       <h3 className='text-center my-3'>NHL</h3>
 
        <select className="form-select form-select-lg mb-3" 
                value={selectedYear} onChange={handleChangeYear}
@@ -75,12 +75,6 @@ const dispatch = useDispatch()
        <div className="d-flex">
 
           <aside className='pt-2 text-center'>
-
-                 <button className='btn btn-light border mt-2 custom-tooltip' 
-                         data-tooltip="Home Page"
-                        onClick={() => handleButtonClick('home-page')}>
-                  <FaHockeyPuck className='fs-2' />
-                </button>
 
                 <button className='btn btn-light border mt-2 custom-tooltip' 
                         data-tooltip="Leading Teams"  
@@ -108,7 +102,7 @@ const dispatch = useDispatch()
 
                 <button className='btn btn-light border mt-2 custom-tooltip' 
                          data-tooltip="Players"
-                        onClick={() => handleButtonClick('playeys')}>
+                        onClick={() => handleButtonClick('players')}>
                   <HiUserGroup className='fs-2' />
                 </button>
 
@@ -142,10 +136,27 @@ const dispatch = useDispatch()
 
 
           <section> 
+
+            {
+              sectionNHL === 'top-teams' && (
+              <>
+                 <h3 className='text-center my-2'>Leading Teams</h3>
+              </>
+              )
+            }
+
+            {
+              sectionNHL === 'soft-teams' && (
+              <>
+                 <h3 className='text-center my-2'>Struggling Teams</h3>
+              </>
+              )
+            }
  
             {
               sectionNHL === 'Standings' && (
                 <>
+                  <h3 className='text-center my-2'> Standings</h3>
                   <div className="row justify-content-center gap-2">
                     <div className="col-12 col-md-5 border rounded-3">
                       <Standings_Estearn/>
@@ -155,6 +166,22 @@ const dispatch = useDispatch()
                     </div>
                   </div>
                 </>
+              )
+            }
+
+            {
+              sectionNHL === 'leaders' && (
+              <>
+                 <h3 className='text-center my-2'>Leaders</h3>
+              </>
+              )
+            }
+
+            {
+              sectionNHL === 'players' && (
+              <>
+                 <h3 className='text-center my-2'>Players</h3>
+              </>
               )
             }
 

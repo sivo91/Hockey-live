@@ -37,7 +37,7 @@ const Home= () => {
       <div className="container-fluid my-5">
 
      
-        <div className='d-flex justify-content-around '
+        <div className='d-flex justify-content-center ps-5'
              style={{width: '400px', margin: '0 auto'}}>
 
             <div className="form-check" 
