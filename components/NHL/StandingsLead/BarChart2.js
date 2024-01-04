@@ -18,7 +18,7 @@ const BarChart2 = ({ west }) => {
 let sestka = []
 
 for(let i = 0; i < west.length;i++) {
-  if( i < 6 ) {
+  if( i < 8 ) {
     sestka.push(west[i])
   } else {
     break

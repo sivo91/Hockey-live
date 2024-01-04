@@ -16,6 +16,7 @@ import Standings_Estearn from './Standings/Eastern'
 import Standings_Western from './Standings/Western'
 import Leading from './Leading'
 import Struggled from './StandingsStruggle/VerticalBarDown'
+import BarChart  from './Struggle/Struggle'
 
 
 const Index = () => {
@@ -46,6 +47,46 @@ const dispatch = useDispatch()
     setSectionNHL(section);
   };
 
+
+   const data = [
+    { letter: 'A', frequency: 0.08167 },
+    { letter: '1B', frequency: 0.01492 },
+    { letter: 'B2', frequency: 0.01492 },
+    { letter: 'B3', frequency: 0.01492 },
+    { letter: 'B4', frequency: 0.01492 },
+    { letter: 'B5', frequency: 0.01492 },
+    { letter: 'B6', frequency: 0.01492 },
+    { letter: 'B', frequency: 0.01492 },
+    { letter: '8B', frequency: 0.01492 },
+    { letter: 'B9', frequency: 0.01492 },
+    { letter: 'Ba', frequency: 0.01492 },
+    { letter: 'Bs', frequency: 0.01492 },
+    { letter: 'Bd', frequency: 0.01492 },
+    { letter: 'Bf', frequency: 0.01492 },
+    { letter: 'Bg', frequency: 0.01492 },
+    { letter: 'Bh', frequency: 0.01492 },
+    { letter: 'Bj', frequency: 0.01492 },
+    { letter: 'Bk', frequency: 0.01492 },
+    { letter: 'Bxz', frequency: 0.01492 },
+    { letter: 'Bx', frequency: 0.01492 },
+    { letter: 'Bc', frequency: 0.01492 },
+    { letter: 'Bc', frequency: 0.01492 },
+    { letter: 'Bv', frequency: 0.01492 },
+    { letter: 'Bb', frequency: 0.01492 },
+    { letter: 'Bb', frequency: 0.01492 },
+    { letter: 'Bn', frequency: 0.01492 },
+    { letter: 'Bm', frequency: 0.01492 },
+    { letter: 'Bhy', frequency: 0.01492 },
+    { letter: 'Bgt', frequency: 0.01492 },
+    { letter: 'Bdr', frequency: 0.01492 },
+    { letter: 'Bfs', frequency: 0.01492 },
+    { letter: 'Bas', frequency: 0.01492 },
+    { letter: 'Bvd', frequency: 0.01492 },
+    { letter: 'Bfe', frequency: 0.01492 },
+    { letter: 'Bag', frequency: 0.01492 },
+    { letter: 'Bed', frequency: 0.01492 },
+    // ... more data
+  ];
 
 
   return (
@@ -145,6 +186,7 @@ const dispatch = useDispatch()
                  <h3 className='text-center my-4'>Leading Teams</h3>
                  <hr />
                  <Leading/>
+                 <br /><br /><br /><br /><br />
               </>
               )
             }
@@ -154,7 +196,15 @@ const dispatch = useDispatch()
               <>
                  <h3 className='text-center my-2'>Struggling Teams</h3>
                   <hr />
-               
+                  <div className="row justify-content-center">
+                    <div className="col-12 col-5">
+                      <h3>data</h3>
+                    </div>
+                    <div className="col-12 col-5">
+                      <BarChart data={data} />
+                    </div>
+                  </div>
+
               </>
               )
             }
