@@ -234,13 +234,13 @@ const dispatch = useDispatch()
               )
             }
 
-            {
+           {/*  {
               sectionNHL === 'players' && (
               <>
                  <h3 className='text-center my-2'>Players</h3>
               </>
               )
-            }
+            } */}
 
           </section>
         </div>
