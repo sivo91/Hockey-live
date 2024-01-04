@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, {useEffect , useRef} from 'react'
+import React, {useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchNHLStandings } from '@/reduxFile/nhlSlice'
 import Link from 'next/link';
@@ -16,13 +16,7 @@ const Index = () => {
   const status = useSelector(state => state.nhlStandings.status);
   const error = useSelector(state => state.nhlStandings.error);
 
-  const closeButtonRef = useRef(null);
 
-  const handleCloseClick = () => {
-    if (closeButtonRef.current) {
-      closeButtonRef.current.click();
-    }
-  };
 
   
   useEffect(() => {
@@ -63,7 +57,7 @@ const Index = () => {
         <tr className='fw-semibold team-box border-bottom border-top' key={key}>
           <td>{i + 1}</td>
           <td className='px-2'>
-            <Link href={'#'} onClick={handleCloseClick}>
+            <Link href={'#'} >
               {value.shortname}
             </Link>
           </td>

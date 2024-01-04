@@ -28,7 +28,7 @@ const Index = () => {
 
     try {
       const res = await axios.request(options);
-      console.log(res.data);
+     // console.log(res.data);
       setData(res.data)
     } catch (error) {
       

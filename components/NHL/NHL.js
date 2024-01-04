@@ -14,6 +14,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectYear } from '@/reduxFile/selectYearSlice';
 import Standings_Estearn from './Standings/Eastern'
 import Standings_Western from './Standings/Western'
+import Leading from './Leading'
+import Struggled from './StandingsStruggle/VerticalBarDown'
 
 
 const Index = () => {
@@ -26,7 +28,7 @@ const dispatch = useDispatch()
 
 
    useEffect(() => {
-    console.log('useState year', selectedYear);
+   // console.log('useState year', selectedYear);
     dispatch(selectYear(selectedYear))
   }, [selectedYear, dispatch]);
 
@@ -36,8 +38,8 @@ const dispatch = useDispatch()
     setSelectedYear(event.target.value);
   };
 
- const [sectionNHL, setSectionNHL] = useState('Standings');
- console.log(sectionNHL)
+ const [sectionNHL, setSectionNHL] = useState('top-teams');
+ //console.log(sectionNHL)
 
 
   const handleButtonClick = (section) => {
@@ -50,7 +52,7 @@ const dispatch = useDispatch()
     <>
  
 
-       <h3 className='text-center my-3'>NHL</h3>
+       <h3 className='text-center mb-3'>NHL</h3>
 
        <select className="form-select form-select-lg mb-3" 
                value={selectedYear} onChange={handleChangeYear}
@@ -135,12 +137,14 @@ const dispatch = useDispatch()
           </aside>
 
 
-          <section> 
+          <section className='pb-5'> 
 
             {
               sectionNHL === 'top-teams' && (
               <>
-                 <h3 className='text-center my-2'>Leading Teams</h3>
+                 <h3 className='text-center my-4'>Leading Teams</h3>
+                 <hr />
+                 <Leading/>
               </>
               )
             }
@@ -149,6 +153,8 @@ const dispatch = useDispatch()
               sectionNHL === 'soft-teams' && (
               <>
                  <h3 className='text-center my-2'>Struggling Teams</h3>
+                  <hr />
+               
               </>
               )
             }
@@ -156,7 +162,7 @@ const dispatch = useDispatch()
             {
               sectionNHL === 'Standings' && (
                 <>
-                  <h3 className='text-center my-2'> Standings</h3>
+                  <h3 className='text-center my-2'>Standings</h3>
                   <div className="row justify-content-center gap-2">
                     <div className="col-12 col-md-5 border rounded-3">
                       <Standings_Estearn/>
@@ -173,6 +179,7 @@ const dispatch = useDispatch()
               sectionNHL === 'leaders' && (
               <>
                  <h3 className='text-center my-2'>Leaders</h3>
+                  <Struggled/>
               </>
               )
             }
@@ -239,10 +246,10 @@ const dispatch = useDispatch()
 
 
           aside {
-              position: sticky;
-              top: 0;
+              position: relative;
+              top: 20vh;
               width: 80px;
-              height: 10vh; 
+              height: 5vh; 
               border-right: 1px solid #ccc;
               z-index: 100; 
             }
@@ -252,6 +259,7 @@ const dispatch = useDispatch()
               margin-left:20px;
               width: calc(100% - 80px);
               height: 100vh;
+
             }
 
 
