@@ -34,7 +34,7 @@ const Index = () => {
 
    <>
                <h3 className='text-center py-2'>Eastern Conference </h3>
-                <table className='w-100 m-0 p-0 '>
+                <table className='w-100 m-0 p-0 mb-5'>
                   <thead>
                     <tr className='border-top'>
                       <th>#</th>

@@ -28,7 +28,7 @@ const Index = () => {
 
     try {
       const res = await axios.request(options);
-     // console.log(res.data);
+      console.log(res.data);
       setData(res.data)
     } catch (error) {
       
@@ -55,6 +55,7 @@ const Index = () => {
     const x = data?.games;
     const filteredGames = [];
     const playedGames = []
+    
 
     for (let i = 0; i < x?.length; i++) {
       if (x[i]?.score?.status?.startsWith('na programe')) {
@@ -86,14 +87,20 @@ const flag = (param) => {
   } else if (param.startsWith('FIN')) {
     return flagInfo('../Flags/fin.png');
 
-  } else if (param.startsWith('GET')) {
-    return flagInfo('../Flags/ger.png');
+  } else if (param.startsWith('CAN')) {
+    return flagInfo('../Flags/ca.png');
 
   } else if (param.startsWith('GER')) {
     return flagInfo('../Flags/ger.png');
 
   } else if (param.startsWith('NOR')) {
     return flagInfo('../Flags/nor.png');
+  } else if (param.startsWith('LAT')) {
+    return flagInfo('../Flags/lat.png');
+  } else if (param.startsWith('SVK')) {
+    return flagInfo('../Flags/svk.png');
+  } else if (param.startsWith('SUI')) {
+    return flagInfo('../Flags/swi.png');
   } else {
     return null; // or return <></> for an empty element
   }
@@ -111,6 +118,8 @@ const flag = (param) => {
   }
 
 
+
+
   return (
 
    <>
@@ -119,10 +128,9 @@ const flag = (param) => {
          <div className='nat-top'>
 
             <ul className='d-flex ' style={{height: '67px'}}>
-
-
-
-              {gamesList.map((item, i) => (
+             
+              {/* odohrane zapasy */}
+              {playedList.map((item, i) => (
 
                      <li key={i} 
                           className='border px-3 d-flex' 
@@ -155,8 +163,53 @@ const flag = (param) => {
                         </h6> 
 
                       </li>
-
                ))}
+
+                {/*   <li className='px-2 bg-secondary-subtle'
+                      style={{paddingTop: '20px'}}>
+                    Next
+                  </li> */}
+
+               
+
+
+                {/* zapasy na programe */}
+                {gamesList.map((item, i) => (
+
+                     <li key={i} 
+                          className='border px-3 d-flex' 
+                          style={{listStyle: 'none', width: '190px',height: '100%'}}>
+
+                        <div style={{width: '100px'}}>
+                          <div className='d-flex justify-content-between'>
+
+                            <div className='d-flex'>
+                              {flag(item?.team1short)}
+                              <p className={'fs-5 m-0'}>{item?.team1short}</p>
+                            </div>
+
+                            <p className={'fs-5 fw-bold m-0'}>{item?.score?.goals1}</p>
+                          </div>
+
+                          <div className='d-flex justify-content-between'>
+                            <div className='d-flex'>
+                              {flag(item?.team2short)}
+                              <p className={'fs-5'}>{item?.team2short}</p>
+                            </div>
+                            
+                            <p className={'fs-5 fw-bold'}>{item?.score?.goals2}</p>
+                          </div>  
+                        </div> 
+
+                        <h6 style={{position: 'relative', top: '20px', left: '9px'}}>
+                          {item?.score?.status.startsWith('konečný') && 'Final'}
+                          {item?.score?.status.startsWith('na') && 'Coming'}
+                        </h6> 
+
+                      </li>
+               ))}
+
+
            </ul>
 
          </div>

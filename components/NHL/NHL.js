@@ -17,6 +17,7 @@ import Standings_Western from './Standings/Western'
 import Leading from './Leading'
 import Struggled from './StandingsStruggle/VerticalBarDown'
 import BarChart  from './Struggle/Struggle'
+import StrugleEast from './Struggle/StrungledEast'
 
 
 const Index = () => {
@@ -52,42 +53,26 @@ const dispatch = useDispatch()
     { letter: 'A', frequency: 0.08167 },
     { letter: '1B', frequency: 0.01492 },
     { letter: 'B2', frequency: 0.01492 },
-    { letter: 'B3', frequency: 0.01492 },
-    { letter: 'B4', frequency: 0.01492 },
-    { letter: 'B5', frequency: 0.01492 },
-    { letter: 'B6', frequency: 0.01492 },
-    { letter: 'B', frequency: 0.01492 },
-    { letter: '8B', frequency: 0.01492 },
-    { letter: 'B9', frequency: 0.01492 },
-    { letter: 'Ba', frequency: 0.01492 },
-    { letter: 'Bs', frequency: 0.01492 },
-    { letter: 'Bd', frequency: 0.01492 },
-    { letter: 'Bf', frequency: 0.01492 },
-    { letter: 'Bg', frequency: 0.01492 },
-    { letter: 'Bh', frequency: 0.01492 },
-    { letter: 'Bj', frequency: 0.01492 },
-    { letter: 'Bk', frequency: 0.01492 },
-    { letter: 'Bxz', frequency: 0.01492 },
-    { letter: 'Bx', frequency: 0.01492 },
-    { letter: 'Bc', frequency: 0.01492 },
-    { letter: 'Bc', frequency: 0.01492 },
-    { letter: 'Bv', frequency: 0.01492 },
-    { letter: 'Bb', frequency: 0.01492 },
-    { letter: 'Bb', frequency: 0.01492 },
-    { letter: 'Bn', frequency: 0.01492 },
-    { letter: 'Bm', frequency: 0.01492 },
-    { letter: 'Bhy', frequency: 0.01492 },
-    { letter: 'Bgt', frequency: 0.01492 },
-    { letter: 'Bdr', frequency: 0.01492 },
-    { letter: 'Bfs', frequency: 0.01492 },
-    { letter: 'Bas', frequency: 0.01492 },
-    { letter: 'Bvd', frequency: 0.01492 },
-    { letter: 'Bfe', frequency: 0.01492 },
-    { letter: 'Bag', frequency: 0.01492 },
-    { letter: 'Bed', frequency: 0.01492 },
-    // ... more data
+
   ];
 
+
+
+   // Generate years dynamically
+    const generateYears = () => {
+        const currentYear = new Date().getFullYear();
+        const currentMonth = new Date().getMonth();
+
+        let startYear = currentMonth >= 8 ? currentYear + 1 : currentYear; 
+
+        let years = [];
+
+        for (let i = 0; i < 10; i++) {
+            years.push(startYear - i);
+        }
+
+        return years;
+    };
 
   return (
     <>
@@ -95,24 +80,21 @@ const dispatch = useDispatch()
 
        <h3 className='text-center mb-3'>NHL</h3>
 
-       <select className="form-select form-select-lg mb-3" 
-               value={selectedYear} onChange={handleChangeYear}
-               style={{width: '300px', margin: '0 auto'}} aria-label="Large select example">
-              <option selected>Select Seasson</option>
-              <option value="2023">2023/2024</option>
-              <option value="2022">2022/2023</option>
-              <option value="2021">2021/2022</option>
-              <option value="2020">2020/2021</option>
-              <option value="2019">2019/2020</option>
-              <option value="2018">2018/2019</option>
-              <option value="2017">2017/2018</option>
-              <option value="2016">2016/2017</option>
-              <option value="2015">2015/2016</option>
-              <option value="2014">2014/2015</option>
-              <option value="2013">2013/2014</option>
-              <option value="2012">2012/2013</option>
-        </select>
 
+     {/* when year react month august , we create new seasson  */}
+      <select className="form-select form-select-lg mb-3"
+                value={selectedYear} onChange={handleChangeYear}
+                style={{width: '300px', margin: '0 auto'}} 
+                aria-label="Large select example">
+            <option>Select Season</option>
+            { 
+                generateYears().map(year => (
+                  // year - 1 / lebo rocnik 2023 sa rata 23/23
+                   <option key={year} value={year - 1}>
+                      {`${year - 1}/${year}`}
+                   </option>
+            ))}
+      </select>
       
       
        <div className="d-flex">
@@ -198,7 +180,10 @@ const dispatch = useDispatch()
                   <hr />
                   <div className="row justify-content-center">
                     <div className="col-12 col-5">
-                      <h3>data</h3>
+                       <div className="col-12 col-5">
+                      <StrugleEast  />
+                    </div>
+
                     </div>
                     <div className="col-12 col-5">
                       <BarChart data={data} />
@@ -213,11 +198,11 @@ const dispatch = useDispatch()
               sectionNHL === 'Standings' && (
                 <>
                   <h3 className='text-center my-2'>Standings</h3>
-                  <div className="row justify-content-center gap-2">
-                    <div className="col-12 col-md-5 border rounded-3">
+                  <div className="row justify-content-evenly gap-2 my-5">
+                    <div className="col-10 col-md-5">
                       <Standings_Estearn/>
                     </div>
-                    <div className="col-12 col-md-5 border rounded-3">
+                    <div className="col-10 col-md-5">
                       <Standings_Western/>
                     </div>
                   </div>
@@ -264,7 +249,7 @@ const dispatch = useDispatch()
 
        <style>{`
 
-
+    
    
           .custom-tooltip {
             position: relative;
