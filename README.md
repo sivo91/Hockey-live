@@ -22,7 +22,7 @@ This project aims to provide hockey fans and analysts with comprehensive, up-to-
 
 ## Data Sources
 
-[Hockey-live.sk](http://www.hockey-live.sk)
+[Hockey-live.sk](https://rapidapi.com/palsoft/api/hockey-live-sk-data/details)
 
 
 ## Acknowledgments
