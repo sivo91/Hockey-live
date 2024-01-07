@@ -22,11 +22,7 @@ This project aims to provide hockey fans and analysts with comprehensive, up-to-
 
 ## Data Sources
 
-Our data is sourced from reliable and authoritative hockey databases and official tournament websites. We ensure data accuracy and timely updates following each game.
-
-## Contributing
-
-Contributions are welcome! If you have suggestions for additional statistics, data sources, or features, please open an issue or submit a pull request.
+[Hockey-live.sk](http://www.hockey-live.sk)
 
 
 ## Acknowledgments
