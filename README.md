@@ -24,4 +24,4 @@ This project aims to provide hockey fans and analysts with comprehensive, up-to-
 
 ---
 
-Enjoy exploring the world of hockey statistics with Hockey Live Statistics!
+Enjoy exploring the world of hockey statistics with Hockey-live
