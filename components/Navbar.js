@@ -157,13 +157,13 @@ const Navbar= () => {
                      {
                       user === null ? (
                         <>
-                          <Link href={'/login'}
+                          <Link href={'/auth/login'}
                                 onClick={CloseRightSideBar}
                                 className='btn btn-outline-secondary rounded-1 mt-3'
                                 style={{textDecoration: 'none'}}>
                             Sign In
                           </Link>
-                          <Link href={'/signUp'}
+                          <Link href={'/auth/register'}
                                 className='btn btn-outline-secondary rounded-1 mt-3'
                                 onClick={CloseRightSideBar}
                                 style={{textDecoration: 'none'}}>
@@ -173,7 +173,7 @@ const Navbar= () => {
                       ) : (
                         <>
                            <p>Email: {user?.email} </p>
-                           <Link href={'/signOut'}
+                           <Link href={'/'}
                                 className='btn btn-outline-secondary rounded-1 mt-3'
                                 onClick={() => handleLogOut() }
                                style={{textDecoration: 'none'}}>

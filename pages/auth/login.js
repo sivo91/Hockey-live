@@ -15,10 +15,9 @@ const Login = () => {
  const [email, setEmail] = useState('')
  const [password, setPassword] = useState('')
  const [process, setProcess] = useState(false)
- const [participant, setParticipant] = useState('supporter')
 
  
- const data = {email, password, participant}
+ const data = {email, password}
 
 
  const handleLogin = async (e) => {
@@ -88,35 +87,7 @@ const Login = () => {
                  placeholder="Enter your password" />
         </div>
 
-         <div className='mb-3'>
-                      <div className="form-check">
-                            <input className="form-check-input"
-                                  type="radio"
-                                  name="type"
-                                  id="exampleRadios3"
-                                  value="supporter"
-                                  checked={participant === 'supporter'}
-                                  onChange={participation}/>
-                            <label className="form-check-label"
-                                  htmlFor="exampleRadios3">
-                                I am Animal Supporter
-                            </label>
-                      </div>
-
-                      <div className="form-check">
-                          <input className="form-check-input"
-                                  type="radio"
-                                  name="type"
-                                  id="exampleRadios4"
-                                  value="shelter"
-                                  checked={participant === 'shelter'}
-                                  onChange={participation}/>
-                          <label className="form-check-label"
-                                  htmlFor="exampleRadios4">
-                              I am Shelter Representative
-                          </label>
-                      </div>
-              </div>
+      
 
 
         <button type="submit" 
@@ -128,10 +99,10 @@ const Login = () => {
         <hr />
 
         <div className='mt-3 d-flex justify-content-between mx-1'>
-          <Link href={'/auth/forgotPassword'}
+         {/*  <Link href={'/auth/forgotPassword'}
                 style={{textDecoration: 'none'}}>
             Forgot Password
-          </Link>
+          </Link> */}
 
           <Link href={'/auth/register'}
                 style={{textDecoration: 'none'}}>

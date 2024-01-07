@@ -2,10 +2,6 @@ import mongoose from "mongoose";
 const { ObjectId } = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({
-   participant: {
-        type: String,
-        required: true
-    },
     email: {
         type: String,
         required: true
@@ -19,10 +15,7 @@ const UserSchema = new mongoose.Schema({
        type: Boolean,
        default: false
     },
-    wishlist: [{
-        type: ObjectId,
-        ref: "NewEvent"
-    }],
+
     
 
 }, {timestamps: true})
