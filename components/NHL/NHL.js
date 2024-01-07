@@ -14,10 +14,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectYear } from '@/reduxFile/selectYearSlice';
 import Standings_Estearn from './Standings/Eastern'
 import Standings_Western from './Standings/Western'
-import Leading from './Leading'
-import Struggled from './StandingsStruggle/VerticalBarDown'
-import BarChart  from './Struggle/Struggle'
-import StrugleEast from './Struggle/StrungledEast'
+import Leading from './Leading/Leading'
+import Strugle  from './Struggle/Struggle'
+
+
 
 
 const Index = () => {
@@ -49,13 +49,6 @@ const dispatch = useDispatch()
   };
 
 
-   const data = [
-    { letter: 'A', frequency: 0.08167 },
-    { letter: '1B', frequency: 0.01492 },
-    { letter: 'B2', frequency: 0.01492 },
-
-  ];
-
 
 
    // Generate years dynamically
@@ -80,93 +73,101 @@ const dispatch = useDispatch()
 
        <h3 className='text-center mb-3'>NHL</h3>
 
+          {/* select year + sub lmenu */}
+          <div className="row justify-content-evenly ">
 
-     {/* when year react month august , we create new seasson  */}
-      <select className="form-select form-select-lg mb-3"
-                value={selectedYear} onChange={handleChangeYear}
-                style={{width: '300px', margin: '0 auto'}} 
-                aria-label="Large select example">
-            <option>Select Season</option>
-            { 
-                generateYears().map(year => (
-                  // year - 1 / lebo rocnik 2023 sa rata 23/23
-                   <option key={year} value={year - 1}>
-                      {`${year - 1}/${year}`}
-                   </option>
-            ))}
-      </select>
-      
-      
-       <div className="d-flex">
+            <div className="col-12 col-md-6">
+                {/* when year react month august , we create new seasson  */}
+                  <select className="form-select form-select-lg  my-3"
+                            value={selectedYear} onChange={handleChangeYear}
+                            style={{width: '300px', margin: '0 auto'}} 
+                            aria-label="Large select example">
+                        <option>Select Season</option>
+                        { 
+                            generateYears().map(year => (
+                              // year - 1 / lebo rocnik 2023 sa rata 23/24
+                              <option key={year} value={year - 1}>
+                                  {`${year - 1}/${year}`}
+                              </option>
+                        ))}
+                  </select>
+            </div>
+            <div className="col-12 col-md-6">
+              <div className='d-flex justify-content-around sub-menu my-3'>
 
-          <aside className='pt-2 text-center'>
+                    <button className='btn btn-light border mt-2 custom-tooltip' 
+                            data-tooltip="Leading Teams"  
+                            onClick={() => handleButtonClick('top-teams')}>
+                      <TfiStatsUp className='fs-2' />
+                    </button>
 
-                <button className='btn btn-light border mt-2 custom-tooltip' 
-                        data-tooltip="Leading Teams"  
-                        onClick={() => handleButtonClick('top-teams')}>
-                  <TfiStatsUp className='fs-2' />
-                </button>
+                    <button className='btn btn-light border mt-2 custom-tooltip' 
+                            data-tooltip="Struggling Teams"
+                            onClick={() => handleButtonClick('soft-teams')}>
+                      <TfiStatsDown className='fs-2' />
+                    </button>
 
-                <button className='btn btn-light border mt-2 custom-tooltip' 
-                         data-tooltip="Struggling Teams"
-                        onClick={() => handleButtonClick('soft-teams')}>
-                  <TfiStatsDown className='fs-2' />
-                </button>
+                    <button className='btn btn-light border mt-2 custom-tooltip' 
+                            data-tooltip="Standings"
+                            onClick={() => handleButtonClick('Standings')}>
+                      <SlGraph className='fs-2' />
+                    </button>
 
-                <button className='btn btn-light border mt-2 custom-tooltip' 
-                         data-tooltip="Standings"
-                        onClick={() => handleButtonClick('Standings')}>
-                  <SlGraph className='fs-2' />
-                </button>
+                    <button className='btn btn-light border mt-2 custom-tooltip' 
+                            data-tooltip="Leading Players"
+                            onClick={() => handleButtonClick('leaders')}>
+                      <GiHockey className='fs-2' />
+                    </button>
 
-                <button className='btn btn-light border mt-2 custom-tooltip' 
-                         data-tooltip="Leaders"
-                        onClick={() => handleButtonClick('leaders')}>
-                  <GiHockey className='fs-2' />
-                </button>
+                    <button className='btn btn-light border mt-2 custom-tooltip' 
+                            data-tooltip="Players"
+                            onClick={() => handleButtonClick('players')}>
+                      <HiUserGroup className='fs-2' />
+                    </button>
 
-                <button className='btn btn-light border mt-2 custom-tooltip' 
-                         data-tooltip="Players"
-                        onClick={() => handleButtonClick('players')}>
-                  <HiUserGroup className='fs-2' />
-                </button>
+                   <button className='btn btn-light border mt-2 custom-tooltip' 
+                            data-tooltip="Search"
+                            onClick={() => handleButtonClick('search')}>
+                      <CiSearch className='fs-2' />
+                    </button>
+                  {/*
+                    <button className='btn btn-light border mt-2 custom-tooltip' 
+                            data-tooltip="Notes"
+                            onClick={() => handleButtonClick('notes')}>
+                      <CgNotes className='fs-2' />
+                    </button>
 
-                <button className='btn btn-light border mt-2 custom-tooltip' 
-                         data-tooltip="Search"
-                        onClick={() => handleButtonClick('search')}>
-                  <CiSearch className='fs-2' />
-                </button>
+                    <button className='btn btn-light border mt-2 custom-tooltip'
+                            data-tooltip="Tooltip" 
+                            onClick={() => handleButtonClick('ice-skate')}>
+                      <GiIceSkate className='fs-2' />
+                    </button>
 
-                <button className='btn btn-light border mt-2 custom-tooltip' 
-                        data-tooltip="Notes"
-                        onClick={() => handleButtonClick('notes')}>
-                  <CgNotes className='fs-2' />
-                </button>
+                    <button 
+                      className='btn btn-light border mt-2 custom-tooltip' 
+                      onClick={() => handleButtonClick('top-teams')}
+                      data-tooltip="Tooltip">
+                      <TfiStatsUp className='fs-2' />
+                  </button> */}
 
-                <button className='btn btn-light border mt-2 custom-tooltip'
-                         data-tooltip="Tooltip" 
-                        onClick={() => handleButtonClick('ice-skate')}>
-                  <GiIceSkate className='fs-2' />
-                </button>
+              </div>
+            </div>
 
-                <button 
-                  className='btn btn-light border mt-2 custom-tooltip' 
-                  onClick={() => handleButtonClick('top-teams')}
-                  data-tooltip="Tooltip"  
-              >
-                  <TfiStatsUp className='fs-2' />
-              </button>
+          </div>
+        
 
-          </aside>
+    
 
-
+          {/* sub windows */}
           <section className='pb-5'> 
 
             {
               sectionNHL === 'top-teams' && (
               <>
-                 <h3 className='text-center my-4'>Leading Teams</h3>
-                 <hr />
+                 <h3 className='text-center my-4'>
+                    Leading Teams &nbsp;
+                    {selectedYear}/{Number(selectedYear)+1}</h3>
+                 <hr className='mx-5'/>
                  <Leading/>
                  <br /><br /><br /><br /><br />
               </>
@@ -176,20 +177,10 @@ const dispatch = useDispatch()
             {
               sectionNHL === 'soft-teams' && (
               <>
-                 <h3 className='text-center my-2'>Struggling Teams</h3>
-                  <hr />
-                  <div className="row justify-content-center">
-                    <div className="col-12 col-5">
-                       <div className="col-12 col-5">
-                      <StrugleEast  />
-                    </div>
-
-                    </div>
-                    <div className="col-12 col-5">
-                      <BarChart data={data} />
-                    </div>
-                  </div>
-
+                 <h3 className='text-center my-4'>Struggling Teams &nbsp;
+                    {selectedYear}/{Number(selectedYear)+1}</h3>
+                  <hr className='mx-5'/>
+                  <Strugle/>
               </>
               )
             }
@@ -213,22 +204,32 @@ const dispatch = useDispatch()
             {
               sectionNHL === 'leaders' && (
               <>
-                 <h3 className='text-center my-2'>Leaders</h3>
-                  <Struggled/>
+                 <h3 className='text-center my-2'>Leading Players</h3>
+                 <h4 className='text-center text-danger'>Coming Soon</h4>
               </>
               )
             }
 
-           {/*  {
+           {
               sectionNHL === 'players' && (
               <>
                  <h3 className='text-center my-2'>Players</h3>
+                 <h4 className='text-center text-danger'>Coming Soon</h4>
               </>
               )
-            } */}
+            } 
+
+           {
+              sectionNHL === 'search' && (
+              <>
+                 <h3 className='text-center my-2'>Search</h3>
+                 <h4 className='text-center text-danger'>Coming Soon</h4>
+              </>
+              )
+            } 
 
           </section>
-        </div>
+       
 
 
 
@@ -248,53 +249,56 @@ const dispatch = useDispatch()
            
 
        <style>{`
+         
 
+          .sub-side-menu {
+            position: absolute;
+            left: 75px;
+            top: 0;
+          }
     
    
           .custom-tooltip {
-            position: relative;
-            display: inline-block;
-          }
-
-          .custom-tooltip::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            left: 100%;  
-            top: 50%;
-            transform: translateX(10px) translateY(-50%);
-            white-space: nowrap;
-            background-color: black;
-            color: white;
-            text-align: center;
-            padding: 5px 10px;
-            border-radius: 6px;
-            z-index: 1;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-          }
-
-          .custom-tooltip:hover::after {
-            opacity: 1;
-            visibility: visible;
-          }
-
-
-          aside {
               position: relative;
-              top: 20vh;
-              width: 80px;
-              height: 5vh; 
-              border-right: 1px solid #ccc;
-              z-index: 100; 
+              display: inline-block;
             }
+
+            .custom-tooltip::after {
+              content: attr(data-tooltip);
+              position: absolute;
+              left: 50%; /* Center the tooltip */
+              top: 100%; /* Position it at the bottom of the button */
+              transform: translateX(-50%) translateY(10px); /* Adjust horizontal position and move it down */
+              white-space: nowrap;
+              background-color: black;
+              color: white;
+              text-align: center;
+              padding: 5px 10px;
+              border-radius: 6px;
+              z-index: 1;
+              opacity: 0;
+              visibility: hidden;
+              transition: opacity 0.3s, visibility 0.3s;
+            }
+
+            .custom-tooltip:hover::after {
+              opacity: 1;
+              visibility: visible;
+            }
+
+
+          .sub-menu {
+            position: relative;
+            width: 400px;
+            margin: 0 auto;
+          
+
+          }
 
             section {
               position: relative;
-              margin-left:20px;
-              width: calc(100% - 80px);
               height: 100vh;
-
+              
             }
 
 

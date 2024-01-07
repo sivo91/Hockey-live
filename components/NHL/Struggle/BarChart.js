@@ -5,24 +5,20 @@
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
-
-
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 
 
-const BarChart2 = ({ west }) => {
+const BarChart = ({ east }) =>  {
 
 
 
 let sestka = []
 
-for(let i = 0; i < west.length;i++) {
-  if( i < 8 ) {
-    sestka.push(west[i])
-  } else {
-    break
-  }
+for(let i = 0; i < east.length;i++) {
+  if( i > 7 ) {
+    sestka.push(east[i])
+  } 
 }
 
 let teamNames = [];
@@ -30,7 +26,7 @@ let teamPoints = [];
 
 for (let i = 0; i < sestka.length; i++) {
     teamNames.push(sestka[i].shortname); 
-    teamPoints.push(parseInt(sestka[i].points)); 
+    teamPoints.push(parseInt(-Number(sestka[i].points))); 
 }
 
 
@@ -40,8 +36,8 @@ const data = {
   labels: teamNames,
   datasets: [
     {
-      label: 'Western Conference',
-       data: teamPoints,
+      label: 'Eastern Conference',
+       data: teamPoints.reverse(),
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -53,7 +49,7 @@ const data = {
       borderColor: [
         'red',
         'blue',
-        'yellow',
+        'brown',
         'green',
         'purple',
         'orange',
@@ -78,4 +74,4 @@ const options = {
  
 }
 
-export default BarChart2;
+export default BarChart;

@@ -5,11 +5,11 @@ import { fetchNHLStandings } from '@/reduxFile/nhlSlice'
 import Link from 'next/link';
 import { BsArrowUpSquareFill } from "react-icons/bs";
 import { FaStop } from "react-icons/fa";
-import BarChart from './StandingsLead/BarChart';
-import BarChart2 from './StandingsLead/BarChart2';
-import VerticalBarChart from './StandingsLead/VerticalBar';
-import VerticalBarDown from './StandingsStruggle/VerticalBarDown';
-import { tr } from 'date-fns/locale';
+import BarChart from './BarChart';
+import BarChart2 from './BarChart2';
+import VerticalBarChart from './VerticalBar';
+
+
 
 
 const Index = () => {
@@ -29,21 +29,20 @@ const Index = () => {
   }, [year, dispatch]);
 
   
-
- 
   if (status === 'failed') return <div>Error: {error}</div>;
 
-
+  // teams selected by conference
   let east = []
   let west = []
+  // all teams
   let nhl = []
  
 
   const conferenceWest = leading?.conference['Západná konferencia'];
   const conferenceEast = leading?.conference['Východná konferencia'];
 
-  //console.log(conferenceData)
 
+  // east conference
   for (let key in conferenceEast) {
     if (conferenceEast.hasOwnProperty(key)) {
         const item = conferenceEast[key];
@@ -53,6 +52,7 @@ const Index = () => {
   }
 
 
+  // west conference
   for (let key in conferenceWest) {
      if (conferenceWest.hasOwnProperty(key)) {
         const item = conferenceWest[key];
@@ -105,7 +105,8 @@ const tableRowsWestern = createTableRowsWestern(west);
 
    <>
                 {/* first row , waster conf */}
-              <div className="row justify-content-center ">
+              <div className="row justify-content-evenly ">
+
                 <div className="col-12 col-md-3">
                   <h5 className='text-center mt-3'>Eastern Conference</h5>
                  {/*  <BarChart east={east}/> */}
@@ -127,6 +128,7 @@ const tableRowsWestern = createTableRowsWestern(west);
                       </tbody>
                     </table>
                 </div>
+
                 <div className="col-12 col-md-5">
                   <h5 className='text-center mt-3'>Playoff Teams</h5>
                   <BarChart east={east}/>
@@ -138,7 +140,7 @@ const tableRowsWestern = createTableRowsWestern(west);
 
 
               {/* sec row western conference */}
-              <div className="row justify-content-center">
+              <div className="row justify-content-evenly">
                 <div className="col-12 col-md-3">
                   <h5 className='text-center mt-3'>Western Conference</h5>
                  {/*  <BarChart east={east}/> */}
@@ -185,6 +187,10 @@ const tableRowsWestern = createTableRowsWestern(west);
                   <h5 className='text-center'>Teams Below the Playoff Line</h5>
                   <VerticalBarDown nhl={nhl}/>
                 </div> */}
+
+
+
+                
 
               </div>
 

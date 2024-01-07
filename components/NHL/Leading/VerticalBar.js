@@ -108,8 +108,8 @@ const data = {
       data: teamPlayOffPoints,
      /*  backgroundColor: ['#ff8882', '#b9c9ed', '#f2b3c8',' #befade','#ffcfba', '#e3e098','#a9f7fc','#c995fc','#f4ffb3','#f2f9fa', '#dad1f0','#fa91f3' ], */
       backgroundColor: ['#87a1ff' ],
-      borderColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 1,
+      borderColor: '#002bb5',
+      borderWidth: 2,
     },
     /* {
       type: 'bar',

@@ -7,6 +7,7 @@ const Index = () => {
 
   return (
     <>
+        <h4 className='text-center text-danger'>Coming soon</h4>
         <h3 className='text-center mt-3'>WORLD JUNIOR CHAMPIONSHIP</h3>
       
        <div className="container-fluid">

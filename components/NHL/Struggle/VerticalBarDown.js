@@ -70,31 +70,33 @@ const sortedTeams = [...nhl].sort((a, b) => a.points - b.points);
 
 
 
-let playOff = []
-let vacation = []
+let noPlayOff = []
+
 
 for(let i = 0; i < sortedTeams.length; i++) {
   if(i < 16) {
-    playOff.push(sortedTeams[i])
+    noPlayOff.push(sortedTeams[i])
   } else {
-    vacation.push(sortedTeams[i])
+   break
   }
 }
+
+
 
 let vacaTeam = []
 let vacaPoints = []
 
-for(let i = 0; i < playOff.length; i++) {
-  vacaTeam.push(playOff[i].shortname)
-  vacaPoints.push(-Number(playOff[i].points));
+for(let i = 0; i < noPlayOff.length; i++) {
+  vacaTeam.push(noPlayOff[i].shortname)
+  vacaPoints.push(-Number(noPlayOff[i].points));
 }
 
-// sorted 
-const sortedVacation = [...vacaPoints].sort((a, b) => a.points - b.points).reverse()
+// sorted data
+const sortedVacation = [...vacaPoints].sort((a, b) => b.points - a.points).reverse()
 
 
 const data = {
-  labels: vacaTeam,
+  labels: vacaTeam.reverse(),
   datasets: [
    /*  {
       type: 'bar',
@@ -107,10 +109,10 @@ const data = {
     {
       type: 'bar',
       label: 'On Vacation',
-      data: sortedVacation,
+      data: vacaPoints,
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      borderColor: 'rgba(255, 99, 132, 1)',
-      borderWidth: 1,
+      borderColor: '#f20a30',
+      borderWidth: 2
     }
   ],
 };
