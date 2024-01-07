@@ -69,7 +69,6 @@ const Navbar= () => {
 
     try {
       const res = await axios.request(options);
-     // console.log(res.data);
       setData(res.data)
     } catch (error) {
       
@@ -96,9 +95,6 @@ const Navbar= () => {
     <nav className='m-0 p-0' style={{height: '67px'}}>
         <NavbarTop/>
     </nav>
-
-
-     
     
     <nav className='d-flex justify-content-between border'>
 
