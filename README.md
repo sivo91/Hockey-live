@@ -13,13 +13,6 @@ This project aims to provide hockey fans and analysts with comprehensive, up-to-
 - **World Junior Cup**: Detailed statistics from the junior level international tournament, showcasing the future stars of hockey.
 - **Olympic Games**: A deep dive into the prestigious Olympic hockey games, with data from both men's and women's competitions.
 
-## How to Use
-
-1. **Clone the Repository**: `git clone https://github.com/sivo91/Hockey-live.git`
-2. **Navigate to the Project**: `cd hockey-stats-hub`
-3. **Install Dependencies**: `npm install` (assuming Node.js project)
-4. **Run the Application**: `npm start`
-
 ## Data Sources
 
 [Hockey-live.sk](https://rapidapi.com/palsoft/api/hockey-live-sk-data/details)
@@ -27,7 +20,6 @@ This project aims to provide hockey fans and analysts with comprehensive, up-to-
 
 ## Acknowledgments
 
-- Thanks to all contributors and hockey statistics enthusiasts.
 - Special thanks to hockey-live.sk for providing accurate and up-to-date data.
 
 ---
