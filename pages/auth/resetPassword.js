@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
 import User from '@/modules/User';
 import connectDB from "@/utils/db"
-import Shelter from '@/modules/Shelter';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
@@ -25,17 +24,13 @@ export async function getServerSideProps(context) {
 
     // show user
      const user = await User.findById( id )
-     const shelter = await Shelter.findById( id )
-      
+   
+    
      if(user) {
       emailProvided = user.email
      } 
 
-     if(shelter) {
-      emailProvided = shelter.email
-     }
-
-    
+  
     return {
       props: { 
          id,
