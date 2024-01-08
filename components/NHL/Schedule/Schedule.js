@@ -36,7 +36,7 @@ const Index = () => {
 //console.log(nhlSchedule.games.length); // 1320
 
 
-let total_games = nhlSchedule.games.length;
+let total_games = nhlSchedule?.games?.length;
 let currentTime = new Date();
 let games_played = 0;
 let waiting_for_game = 0;
@@ -50,7 +50,7 @@ twoDaysInFuture.setDate(currentTime.getDate() + 2);
 
 for (let i = 0; i < total_games; i++) {
 
-    let gameDayString = nhlSchedule.games[i].date.date.split('.')[0];
+    let gameDayString = nhlSchedule?.games[i]?.date?.date?.split('.')[0];
     let game_day = new Date(gameDayString);
    // console.log(game_day)  // Thu Apr 18 2024 22:00:00 GMT-0700
 
@@ -165,7 +165,7 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                     Total NHL Games
                   </div>
                   <div class="card-body">
-                    <p class="card-text fs-3 fw-semibold text-center">{nhlSchedule.games.length}</p>
+                    <p class="card-text fs-3 fw-semibold text-center">{nhlSchedule?.games?.length}</p>
                     <Link href={'#'}
                           style={{width: '120px', textDecoration: 'none'}}
                           className='btn btn-primary vstack mx-auto'>
