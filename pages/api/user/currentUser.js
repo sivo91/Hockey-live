@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import User from '@/modules/User';
-import Shelter from '@/modules/Shelter';
 import connectDB from "@/utils/db"
 
 
@@ -31,7 +30,7 @@ const handler = async (req, res) =>  {
     const userId = decodeData?.userId
 
     const user = await User.findById(userId).select('-password')
-    const shelter = await Shelter.findById(userId).select('-password')
+
     
 
      
@@ -53,35 +52,6 @@ const handler = async (req, res) =>  {
         })
 
     }
-
-
-   // ********   SHELTER   ******
-    if(shelter) {
- 
-        const userData = {
-            _id: shelter._id,
-            name: shelter.shelterName,
-            city: shelter.shelterCity,
-            state: shelter.shelterState,
-            participant: shelter.participant,
-            email: shelter.email,
-            stripeId: shelter.stripeID.substring(0,5), // sent partial id
-            createdAt: shelter.createdAt,
-        }
-
-
-
-        return res.status(200).send({
-          success: true,
-          currentUser: true,
-          userData,
-        })
-
-    }
-
-
-      /*   const account = await stripe.accounts.retrieve(user.stripeID)
-    console.log('acount stripe retrieve =>>>>>>>> ', account) */
 
     } catch (error) {
       console.log(error)

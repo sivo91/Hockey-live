@@ -1,7 +1,6 @@
 
 import connectDB from "@/utils/db"
 import User from "@/modules/User"
-import Shelter from "@/modules/Shelter";
 import bcrypt from 'bcrypt';
 
 
@@ -23,7 +22,7 @@ const handler = async (req, res) =>  {
 
 
     const user = await User.findById(id)
-    const shelter = await Shelter.findById(id)
+ 
 
     const saltRounds = 12;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -42,23 +41,6 @@ const handler = async (req, res) =>  {
       })
       
     }
-
-
-    // ***********  SHELTER *******
-    if(shelter) {
-
-      await Shelter.findByIdAndUpdate(id, { $set: { password: hashedPassword } }, { new: true });
-
-    
-
-      return res.status(201).send({
-        success: true,
-        message: 'Password Updated. Login now.'
-      })
-      
-    }
-
-    
 
     
   } catch (error) {
