@@ -9,6 +9,7 @@ const Index = () => {
 
 
  const [data, setData] = useState()
+ const [loading, setLoading] = useState(false)
 
 
  const fetchGameData = useCallback(async ()=> {
@@ -27,12 +28,14 @@ const Index = () => {
   };
 
     try {
+      setLoading(true)
       const res = await axios.request(options);
-      console.log(res.data);
+      //console.log(res.data);
       setData(res.data)
+      setLoading(false)
     } catch (error) {
-      
       console.log(error)
+      setLoading(false)
     }
   }, []);  // Dependencies array
 
@@ -128,42 +131,57 @@ const flag = (param) => {
          <div className='nat-top'>
 
             <ul className='d-flex ' style={{height: '67px'}}>
+
+              {
+                loading === true ? (
+                  <>
+                 
+                        <div className="spinner-grow text-primary mx-auto mt-3" role="status">
+                      </div>
+                  
+                  </>
+                ) : (
+                  <>
+                     {/* odohrane zapasy */}
+                      {playedList.map((item, i) => (
+
+                          <li key={i} 
+                                className='border px-3 d-flex' 
+                                style={{listStyle: 'none', width: '190px',height: '100%'}}>
+
+                              <div style={{width: '100px'}}>
+                                <div className='d-flex justify-content-between'>
+
+                                  <div className='d-flex'>
+                                    {flag(item?.team1short)}
+                                    <p className={'fs-5 m-0'}>{item?.team1short}</p>
+                                  </div>
+
+                                  <p className={'fs-5 fw-bold m-0'}>{item?.score?.goals1}</p>
+                                </div>
+
+                                <div className='d-flex justify-content-between'>
+                                  <div className='d-flex'>
+                                    {flag(item?.team2short)}
+                                    <p className={'fs-5'}>{item?.team2short}</p>
+                                  </div>
+                                  
+                                  <p className={'fs-5 fw-bold'}>{item?.score?.goals2}</p>
+                                </div>  
+                              </div> 
+
+                              <h6 style={{position: 'relative', top: '20px', left: '9px'}}>
+                                {item?.score?.status.startsWith('konečný') && 'Final'}
+                                {item?.score?.status.startsWith('na') && 'Coming'}
+                              </h6> 
+
+                            </li>
+                    ))}
+                  </>
+                )
+              }
              
-              {/* odohrane zapasy */}
-              {playedList.map((item, i) => (
-
-                     <li key={i} 
-                          className='border px-3 d-flex' 
-                          style={{listStyle: 'none', width: '190px',height: '100%'}}>
-
-                        <div style={{width: '100px'}}>
-                          <div className='d-flex justify-content-between'>
-
-                            <div className='d-flex'>
-                              {flag(item?.team1short)}
-                              <p className={'fs-5 m-0'}>{item?.team1short}</p>
-                            </div>
-
-                            <p className={'fs-5 fw-bold m-0'}>{item?.score?.goals1}</p>
-                          </div>
-
-                          <div className='d-flex justify-content-between'>
-                            <div className='d-flex'>
-                              {flag(item?.team2short)}
-                              <p className={'fs-5'}>{item?.team2short}</p>
-                            </div>
-                            
-                            <p className={'fs-5 fw-bold'}>{item?.score?.goals2}</p>
-                          </div>  
-                        </div> 
-
-                        <h6 style={{position: 'relative', top: '20px', left: '9px'}}>
-                          {item?.score?.status.startsWith('konečný') && 'Final'}
-                          {item?.score?.status.startsWith('na') && 'Coming'}
-                        </h6> 
-
-                      </li>
-               ))}
+             
 
                 {/*   <li className='px-2 bg-secondary-subtle'
                       style={{paddingTop: '20px'}}>
@@ -171,43 +189,55 @@ const flag = (param) => {
                   </li> */}
 
                
-
-
                 {/* zapasy na programe */}
-                {gamesList.map((item, i) => (
+                {/* {
+                  loading === true ? (
+                    <>
+                       <div className="spinner-grow text-primary mx-auto mt-3" role="status">
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                        
+                         {gamesList.map((item, i) => (
 
-                     <li key={i} 
-                          className='border px-3 d-flex' 
-                          style={{listStyle: 'none', width: '190px',height: '100%'}}>
+                          <li key={i} 
+                                className='border px-3 d-flex' 
+                                style={{listStyle: 'none', width: '190px',height: '100%'}}>
 
-                        <div style={{width: '100px'}}>
-                          <div className='d-flex justify-content-between'>
+                              <div style={{width: '100px'}}>
+                                <div className='d-flex justify-content-between'>
 
-                            <div className='d-flex'>
-                              {flag(item?.team1short)}
-                              <p className={'fs-5 m-0'}>{item?.team1short}</p>
-                            </div>
+                                  <div className='d-flex'>
+                                    {flag(item?.team1short)}
+                                    <p className={'fs-5 m-0'}>{item?.team1short}</p>
+                                  </div>
 
-                            <p className={'fs-5 fw-bold m-0'}>{item?.score?.goals1}</p>
-                          </div>
+                                  <p className={'fs-5 fw-bold m-0'}>{item?.score?.goals1}</p>
+                                </div>
 
-                          <div className='d-flex justify-content-between'>
-                            <div className='d-flex'>
-                              {flag(item?.team2short)}
-                              <p className={'fs-5'}>{item?.team2short}</p>
-                            </div>
-                            
-                            <p className={'fs-5 fw-bold'}>{item?.score?.goals2}</p>
-                          </div>  
-                        </div> 
+                                <div className='d-flex justify-content-between'>
+                                  <div className='d-flex'>
+                                    {flag(item?.team2short)}
+                                    <p className={'fs-5'}>{item?.team2short}</p>
+                                  </div>
+                                  
+                                  <p className={'fs-5 fw-bold'}>{item?.score?.goals2}</p>
+                                </div>  
+                              </div> 
 
-                        <h6 style={{position: 'relative', top: '20px', left: '9px'}}>
-                          {item?.score?.status.startsWith('konečný') && 'Final'}
-                          {item?.score?.status.startsWith('na') && 'Coming'}
-                        </h6> 
+                              <h6 style={{position: 'relative', top: '20px', left: '9px'}}>
+                                {item?.score?.status.startsWith('konečný') && 'Final'}
+                                {item?.score?.status.startsWith('na') && 'Coming'}
+                              </h6> 
 
-                      </li>
-               ))}
+                            </li>
+                        ))}
+                    </>
+                  )
+                }
+ */}
+               
 
 
            </ul>

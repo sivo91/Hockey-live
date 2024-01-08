@@ -3,10 +3,11 @@ import Head from 'next/head'
 
 
 import Link from 'next/link';
-import React, { useState} from 'react';
+import React, { useState, useCallback, useEffect} from 'react';
 import NHL from '@/components/NHL/NHL'
 import WJC from '@/components/WJC/WJC'
 import WCH from '@/components/WCH/WCH'
+import axios from 'axios';
 
 
 /* const NHL = 'https://hockey-live-sk-data.p.rapidapi.com/table/NHL/2023'
@@ -24,6 +25,43 @@ const Home= () => {
     const handleChangeA = (event) => {
         setCheckedItem(event.target.id);
     };
+
+
+/* 
+const [data, setData] = useState()
+ const fetchGameData = useCallback(async ()=> {
+  
+ const options = {
+    method: 'GET',
+   url: `https://hockey-live-sk-data.p.rapidapi.com/games/NHL/2023`,
+    params: {
+      key: process.env.NEXT_PUBLIC_API_KEY2,
+      tz: 'America/New_York'
+    },
+    headers: {
+      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
+      'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
+    }
+  };
+
+    try {
+      const res = await axios.request(options);
+      console.log(res.data);
+      setData(res.data)
+    } catch (error) {
+      
+      console.log(error)
+    }
+  }, []);  // Dependencies array
+
+  useEffect(() => {
+    fetchGameData();
+   
+    const intervalId = setInterval(fetchGameData, 5000000);
+
+    return () => clearInterval(intervalId);
+  }, [fetchGameData]); */
+
 
   return (
     <>

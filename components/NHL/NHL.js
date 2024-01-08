@@ -16,6 +16,8 @@ import Standings_Estearn from './Standings/Eastern'
 import Standings_Western from './Standings/Western'
 import Leading from './Leading/Leading'
 import Strugle  from './Struggle/Struggle'
+import { BsCalendar3 } from "react-icons/bs";
+import Schedule from '@/components/NHL/Schedule/Schedule'
 
 
 
@@ -120,9 +122,9 @@ const dispatch = useDispatch()
                     </button>
 
                     <button className='btn btn-light border mt-2 custom-tooltip' 
-                            data-tooltip="Players"
-                            onClick={() => handleButtonClick('players')}>
-                      <HiUserGroup className='fs-2' />
+                            data-tooltip="schedule"
+                            onClick={() => handleButtonClick('schedule')}>
+                      <BsCalendar3 className='fs-2' />
                     </button>
 
                    <button className='btn btn-light border mt-2 custom-tooltip' 
@@ -211,10 +213,9 @@ const dispatch = useDispatch()
             }
 
            {
-              sectionNHL === 'players' && (
+              sectionNHL === 'schedule' && (
               <>
-                 <h3 className='text-center my-2'>Players</h3>
-                 <h4 className='text-center text-danger'>Coming Soon</h4>
+                  <Schedule />
               </>
               )
             } 

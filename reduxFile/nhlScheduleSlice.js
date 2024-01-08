@@ -1,18 +1,16 @@
 
 
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-
-
 // Async thunk for fetching NHL standings
-export const fetchNHLStandings = createAsyncThunk(
-  'nhlStandings/fetchNHLStandings',
+export const fetchNHLSchedule = createAsyncThunk(
+  'nhlSchedule/fetchNHLSchedule',
   async (year) => {
    const options = {
     method: 'GET',
-    url: `https://hockey-live-sk-data.p.rapidapi.com/table/NHL/${year}`,
+    url: `https://hockey-live-sk-data.p.rapidapi.com/games/NHL/${year}`,
+
     params: {
       key: process.env.NEXT_PUBLIC_API_KEY2,
       tz: 'America/New_York'
@@ -28,11 +26,9 @@ export const fetchNHLStandings = createAsyncThunk(
   }
 );
 
-
-
 // Slice for NHL standings
-const nhlStandingsSlice = createSlice({
-  name: 'nhlStandings',
+const nhlScheduleSlice = createSlice({
+  name: 'nhlSchedule',
   initialState: {
     data: null,
     status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
@@ -41,22 +37,20 @@ const nhlStandingsSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchNHLStandings.pending, (state) => {
+      .addCase(fetchNHLSchedule.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchNHLStandings.fulfilled, (state, action) => {
+      .addCase(fetchNHLSchedule.fulfilled, (state, action) => {
         state.status = 'succeeded';
         // Add any fetched data to the state
         state.data = action.payload;
       })
-      .addCase(fetchNHLStandings.rejected, (state, action) => {
+      .addCase(fetchNHLSchedule.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
   }
 });
 
-
-
-export default nhlStandingsSlice.reducer;
+export default nhlScheduleSlice.reducer;
 
