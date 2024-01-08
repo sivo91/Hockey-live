@@ -3,7 +3,6 @@
 
 import jwt from 'jsonwebtoken'
 import User from '@/modules/User';
-import Shelter from '@/modules/Shelter';
 import connectDB from "@/utils/db"
 import bcrypt from 'bcrypt';
 
@@ -33,8 +32,7 @@ const handler = async (req, res) =>  {
 
     
     const user = await User.findById(userId).select('-password -stripeID')
-    const shelter = await Shelter.findById(userId).select('-password -stripeID')
-  
+   
 
    // *********   USER ******
    if(user) {
@@ -62,36 +60,6 @@ const handler = async (req, res) =>  {
 
    }
 
-
-    
-   // *********   SHELTER   ******
-   if(shelter) {
-      // current pass
-      const userPassword = await Shelter.findById(userId).select('password')
-
-      const doMatch = await bcrypt.compare(currentPsw, userPassword.password);
-
-      if (!doMatch) {
-        return res.status(401).send({ 
-            success: false,
-            message: 'Incorrect currect password!' });
-      }
-
-      const saltRounds = 12;
-      const hashedPassword = await bcrypt.hash(newPassword, saltRounds)
-
-      await Shelter.updateOne({ email: shelter.email }, { password: hashedPassword })  
-
-
-      return res.status(200).send({
-        success: true,
-        message: 'Password updated successfully!'
-      })   
-
-   }
-    
-
-   
 
     } catch (error) {
       console.log(error)
