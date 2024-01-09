@@ -92,7 +92,7 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                   </div>
                   <div class="card-body">
                     <p class="card-text fs-3 fw-semibold text-center">{games_played}</p>
-                    <Link href={'/schedule/CompletedGames'}
+                    <Link href={'/NHL/schedule/CompletedGames'}
                           style={{width: '120px', textDecoration: 'none'}}
                           className='btn btn-primary vstack mx-auto'>
                         Visit

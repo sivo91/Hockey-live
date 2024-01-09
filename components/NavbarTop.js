@@ -79,31 +79,31 @@ const Index = () => {
 
 const flag = (param) => {
   if (param.startsWith('CZE')) {
-    return flagInfo('../Flags/cz.png');
+    return flagInfo('../../Flags/cz.png');
 
   } else if (param.startsWith('SWE')) {
-    return flagInfo('../Flags/swe.png');
+    return flagInfo('../../Flags/swe.png');
 
   } else if (param.startsWith('USA')) {
-    return flagInfo('../Flags/usa.png');
+    return flagInfo('../../Flags/usa.png');
 
   } else if (param.startsWith('FIN')) {
-    return flagInfo('../Flags/fin.png');
+    return flagInfo('../../Flags/fin.png');
 
   } else if (param.startsWith('CAN')) {
-    return flagInfo('../Flags/ca.png');
+    return flagInfo('../../Flags/ca.png');
 
   } else if (param.startsWith('GER')) {
-    return flagInfo('../Flags/ger.png');
+    return flagInfo('../../Flags/ger.png');
 
   } else if (param.startsWith('NOR')) {
-    return flagInfo('../Flags/nor.png');
+    return flagInfo('../../Flags/nor.png');
   } else if (param.startsWith('LAT')) {
-    return flagInfo('../Flags/lat.png');
+    return flagInfo('../../Flags/lat.png');
   } else if (param.startsWith('SVK')) {
-    return flagInfo('../Flags/svk.png');
+    return flagInfo('../../Flags/svk.png');
   } else if (param.startsWith('SUI')) {
-    return flagInfo('../Flags/swi.png');
+    return flagInfo('../../Flags/swi.png');
   } else {
     return null; // or return <></> for an empty element
   }

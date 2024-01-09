@@ -29,7 +29,7 @@ const Home= () => {
 
 
 /* 
-const [data, setData] = useState()
+ const [data, setData] = useState()
  const fetchGameData = useCallback(async ()=> {
   
  const options = {
