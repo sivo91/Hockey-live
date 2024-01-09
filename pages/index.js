@@ -7,7 +7,8 @@ import React, { useState, useCallback, useEffect} from 'react';
 import NHL from '@/components/NHL/NHL'
 import WJC from '@/components/WJC/WJC'
 import WCH from '@/components/WCH/WCH'
-import axios from 'axios';
+import SVK from '@/components/SVK/SVK'
+
 
 
 /* const NHL = 'https://hockey-live-sk-data.p.rapidapi.com/table/NHL/2023'
@@ -75,7 +76,7 @@ const [data, setData] = useState()
       <div className="container-fluid my-5">
 
      
-        <div className='d-flex justify-content-center ps-5'
+        <div className='d-flex justify-content-center ps-4'
              style={{width: '400px', margin: '0 auto'}}>
 
             <div className="form-check" 
@@ -119,6 +120,20 @@ const [data, setData] = useState()
                     WCH
                 </label>
             </div>
+
+            <div className="form-check form" 
+                 style={{width: '150px'}}>
+                <input 
+                    className="form-check-input fw-semibold fs-5 hover" 
+                    type="checkbox" 
+                    id="SVK" 
+                    checked={checkedItem === 'SVK'} 
+                    onChange={handleChangeA} 
+                />
+                <label className="form-check-label fs-5 hover" htmlFor="SVK">
+                    SVK
+                </label>
+            </div>
         </div>
         <hr />
 
@@ -132,6 +147,9 @@ const [data, setData] = useState()
         }
         {
           checkedItem === 'WCH' && <WCH/>
+        }
+        {
+          checkedItem === 'SVK' && <SVK/>
         }
 
 

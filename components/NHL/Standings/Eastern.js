@@ -34,9 +34,9 @@ const Index = () => {
 
    <>
                <h3 className='text-center py-2'>Eastern Conference </h3>
-                <table className='w-100 m-0 p-0 mb-5'>
+                <table className='w-100 m-0 p-0 mb-5 border'>
                   <thead>
-                    <tr className='border-top'>
+                    <tr className='border text-center'>
                       <th>#</th>
                       <th>Team</th>
                       <th>GP</th>
@@ -58,7 +58,7 @@ const Index = () => {
                       </tr>
                     ) : nhl_standings && nhl_standings.conference && nhl_standings.conference["Východná konferencia"] ? (
                       Object.entries(nhl_standings.conference["Východná konferencia"]).map(([key, team], index) => (
-                        <tr className='fw-semibold team-box border-bottom border-top' key={key}>
+                        <tr className='fw-semibold team-box border text-center' key={key}>
                           <td>
                             {index + 1}
                           </td>
@@ -109,6 +109,14 @@ const Index = () => {
                table tr td, table tr th {
                     padding-top: 10px;
                     padding-bottom: 10px;
+                }
+
+                table tr:nth-child(even) {
+                  background-color: #f0f0f0;
+                }
+
+              table tr:nth-child(odd) {
+                  background-color: #fafafa;
                 }
 
             

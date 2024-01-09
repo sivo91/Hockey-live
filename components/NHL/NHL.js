@@ -122,7 +122,7 @@ const dispatch = useDispatch()
                     </button>
 
                     <button className='btn btn-light border mt-2 custom-tooltip' 
-                            data-tooltip="schedule"
+                            data-tooltip="Schedule"
                             onClick={() => handleButtonClick('schedule')}>
                       <BsCalendar3 className='fs-2' />
                     </button>

@@ -54,7 +54,7 @@ const Index = () => {
      // console.log('key + value', key, value)
 
       tableRows.push(
-        <tr className='fw-semibold team-box border-bottom border-top' key={key}>
+        <tr className='fw-semibold team-box border text-center' key={key}>
           <td>{i + 1}</td>
           <td className='px-2'>
             <Link href={'#'} >
@@ -99,9 +99,9 @@ const Index = () => {
 
    <>
                    <h3 className='text-center py-2'>Western Conference </h3>
-                   <table className='w-100 m-0 p-0 border-bottom border-top'>
+                   <table className='w-100 m-0 p-0 border'>
                       <thead>
-                        <tr>
+                        <tr className='text-center border'>
                           <th>#</th>
                           <th>Team</th>
                           <th>GP</th>
@@ -127,6 +127,13 @@ const Index = () => {
                     padding-bottom: 10px;
                 }
 
+                 table tr:nth-child(even) {
+                  background-color: #f0f0f0;
+                }
+
+              table tr:nth-child(odd) {
+                  background-color: #fafafa;
+                }
             
               
                 .card-east:hover {

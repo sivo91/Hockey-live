@@ -32,7 +32,7 @@ const Index = () => {
 
 
 
-//console.log(nhlSchedule.games[622])
+//console.log(nhlSchedule?.games)
 //console.log(nhlSchedule.games.length); // 1320
 
 
@@ -71,6 +71,7 @@ for (let i = 0; i < total_games; i++) {
     }
 }
 
+
 /* console.log('Played: ', games_played);
 console.log('Scheduled: ', waiting_for_game); 
 console.log('Games in the last 2 days: ', recentGames);
@@ -91,7 +92,7 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                   </div>
                   <div class="card-body">
                     <p class="card-text fs-3 fw-semibold text-center">{games_played}</p>
-                    <Link href={'#'}
+                    <Link href={'/schedule/CompletedGames'}
                           style={{width: '120px', textDecoration: 'none'}}
                           className='btn btn-primary vstack mx-auto'>
                         Visit

@@ -67,7 +67,7 @@ const Index = () => {
  function createTableRowsEastern(east) {
 
   return east.slice(0, 8).map((item, index) => (
-    <tr key={index} className='border'>
+    <tr key={index} className='border text-center'>
       <td>{index + 1}</td> 
       <td>{item.shortname}</td>
       <td>{item.gp}</td>
@@ -85,7 +85,7 @@ const tableRowsEastern = createTableRowsEastern(east);
  function createTableRowsWestern(west) {
 
   return west.slice(0, 8).map((item, index) => (
-    <tr key={index} className='border'>
+    <tr key={index} className='border text-center'>
       <td>{index + 1}</td> 
       <td>{item.shortname}</td>
       <td>{item.gp}</td>
@@ -110,9 +110,9 @@ const tableRowsWestern = createTableRowsWestern(west);
                 <div className="col-12 col-md-3">
                   <h5 className='text-center mt-3'>Eastern Conference</h5>
                  {/*  <BarChart east={east}/> */}
-                 <table className='w-100  border-bottom border-top '>
+                 <table className='w-100 border'>
                       <thead className='border'>
-                        <tr>
+                       <tr className='text-center'>
                           <th>#</th>
                           <th>Team</th>
                           <th>GP</th>
@@ -120,7 +120,6 @@ const tableRowsWestern = createTableRowsWestern(west);
                           <th>L</th>
                           <th className='bg-primary-subtle text-center'>PTS</th>
                           <th className='text-center'>S</th>
-                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -144,9 +143,9 @@ const tableRowsWestern = createTableRowsWestern(west);
                 <div className="col-12 col-md-3">
                   <h5 className='text-center mt-3'>Western Conference</h5>
                  {/*  <BarChart east={east}/> */}
-                 <table className='w-100  border-bottom border-top '>
+                 <table className='w-100  border'>
                       <thead className='border'>
-                        <tr>
+                        <tr className='text-center'>
                           <th>#</th>
                           <th>Team</th>
                           <th>GP</th>
@@ -154,7 +153,6 @@ const tableRowsWestern = createTableRowsWestern(west);
                           <th>L</th>
                           <th className='bg-primary-subtle text-center'>PTS</th>
                           <th className='text-center'>S</th>
-                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -211,11 +209,11 @@ const tableRowsWestern = createTableRowsWestern(west);
                 }
 
               table tr:nth-child(even) {
-                  background-color: #f0f0f0;
+                  background-color: #dbdbdb;
                 }
 
               table tr:nth-child(odd) {
-                  background-color: #f7f7f7;
+                  background-color: #fafafa;
                 }
 
             
