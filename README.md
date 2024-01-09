@@ -13,11 +13,6 @@ This project aims to provide hockey fans and analysts with comprehensive, up-to-
 - **World Junior Cup**: Detailed statistics from the junior level international tournament, showcasing the future stars of hockey.
 - **Olympic Games**: A deep dive into the prestigious Olympic hockey games, with data from both men's and women's competitions.
 
-## Data Sources
-
-[Hockey-live.sk](https://rapidapi.com/palsoft/api/hockey-live-sk-data/details)
-
-
 ## Acknowledgments
 
 - Special thanks to hockey-live.sk for providing accurate and up-to-date data.
