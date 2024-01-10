@@ -168,11 +168,6 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                   </div>
                   <div class="card-body">
                     <p class="card-text fs-3 fw-semibold text-center">{nhlSchedule?.games?.length}</p>
-                    <Link href={'#'}
-                          style={{width: '120px', textDecoration: 'none'}}
-                          className='btn btn-danger vstack mx-auto'>
-                        Not Ready
-                    </Link>
                   </div>
                 </div>
            </div>

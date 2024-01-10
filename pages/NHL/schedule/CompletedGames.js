@@ -230,7 +230,7 @@ const Index = () => {
                   ) :
                   (
                     <>
-                     <h5 className='text-center'>Total {selectedTeam} games: {teamOutput?.length}</h5>
+                     <h5 className='text-center mb-5'>Total {selectedTeam} games: {teamOutput?.length}</h5>
                      {show_specific_team && teamOutput}
                     </>
                   )

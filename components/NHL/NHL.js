@@ -18,6 +18,7 @@ import Leading from './Leading/Leading'
 import Strugle  from './Struggle/Struggle'
 import { BsCalendar3 } from "react-icons/bs";
 import Schedule from '@/components/NHL/Schedule/Schedule'
+import Search from '@/components/NHL/Search/Search'
 
 
 
@@ -223,8 +224,7 @@ const dispatch = useDispatch()
            {
               sectionNHL === 'search' && (
               <>
-                 <h3 className='text-center my-2'>Search</h3>
-                 <h4 className='text-center text-danger'>Coming Soon</h4>
+                 <Search/>
               </>
               )
             } 
