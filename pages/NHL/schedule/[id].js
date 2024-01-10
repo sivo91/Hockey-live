@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import Chart from 'chart.js/auto';
 import logo from '@/utils/gameDetailsLogo'
+import Link from 'next/link';
 
 
 
@@ -68,11 +69,12 @@ const team1Data = [
   gameData?.stats?.team1?.points,
   gameData?.stats?.team1?.wins,  
 ];
+
 const team2Data = [ 
-  -Number(gameData?.stats?.team2?.gp),
-  -Number(gameData?.stats?.team2?.losts),
-  -Number(gameData?.stats?.team2?.points),
-  -Number(gameData?.stats?.team2?.wins),
+  gameData?.stats?.team2?.gp,
+  gameData?.stats?.team2?.losts,
+  gameData?.stats?.team2?.points,
+  gameData?.stats?.team2?.wins,
 ];
 
 const labels = ['GP','Losts', 'Points','Wins'];
@@ -97,54 +99,35 @@ const backgroundColorForTeam2 = team2Data.map((value, index) => {
 const data = {
   labels: labels,
   datasets: [
-    {
-      label: gameData?.team1short,
+     {
+      label: gameData?.team1short, // team1
       data: team1Data,
       borderColor: '#d1d1d1',
       backgroundColor: backgroundColorForTeam1,
     },
     {
-     label: gameData?.team2short,
+      label: gameData?.team2short, // team2
       data: team2Data,
       borderColor: '#d1d1d1',
       backgroundColor: backgroundColorForTeam2,
-    }
+    },
+   
   ]
 };
 
 
-    const config = {
+const config = {
   type: 'bar',
   data: data,
   options: {
-    indexAxis: 'y',
-    elements: {
-      bar: {
-        borderWidth: 1,
-      }
-    },
     responsive: true,
     plugins: {
       legend: {
-        position: 'right',
+        position: 'top',
       },
       title: {
         display: true,
-        text: 'Game Details'
-      },
-      tooltip: {
-        callbacks: {
-          label: function(context) {
-            let label = context.dataset.label || '';
-            if (label) {
-              label += ': ';
-            }
-            if (context.parsed.x !== null) {
-              label += Math.abs(context.parsed.x);
-            }
-            return label;
-          }
-        }
+        text: 'Chart.js Bar Chart'
       }
     }
   },
@@ -157,15 +140,12 @@ const data = {
   }, [gameData]);
 
 
-  let goals_team1 = []
-  let goals_team2 = []
+
 
  console.log(gameData)
  
 
-/*   const teamShorts = gameData?.goals.map(item => item.teamshort);
-  console.log(gameData) */
- 
+
   
   
   let goalsTeam1 = [];
@@ -235,10 +215,7 @@ const GP = (x, y) => {
       </div>
       <hr className='mx-5'/>
 
-       
-          
-
-
+    
 
      {/* accordion graph */}
      <div className="container-fluid my-3">
@@ -266,10 +243,6 @@ const GP = (x, y) => {
 
 
      
- 
-
-      
-
 
    {/* stats  */}
    <div className="container-fluid my-5">
@@ -305,7 +278,7 @@ const GP = (x, y) => {
                 <h5>PIM</h5>
                <h5>
                   <span className="badge px-3" 
-                        style={{ backgroundColor: PIM(gameData?.stats?.team2?.penaltyminutes, gameData?.stats?.team2?.penaltyminutes) }}>
+                        style={{ backgroundColor: PIM(gameData?.stats?.team2?.penaltyminutes, gameData?.stats?.team1?.penaltyminutes) }}>
                     {gameData?.stats?.team2?.penaltyminutes}
                   </span>
                 </h5>
@@ -332,14 +305,14 @@ const GP = (x, y) => {
              <div className='d-flex justify-content-between border-bottom pt-2'>
                <h5>
                 <span className="badge px-3" 
-                      style={{ backgroundColor: GP(gameData?.stats?.team1?.losts, gameData?.stats?.team2?.losts) }}>
+                      style={{ backgroundColor: PIM(gameData?.stats?.team1?.losts, gameData?.stats?.team2?.losts) }}>
                   {gameData?.stats?.team1?.losts}
                 </span>
               </h5>
                 <h5>Losts</h5>
                <h5>
                   <span className="badge px-3" 
-                        style={{ backgroundColor: GP(gameData?.stats?.team2?.losts, gameData?.stats?.team1?.losts) }}>
+                        style={{ backgroundColor: PIM(gameData?.stats?.team2?.losts, gameData?.stats?.team1?.losts) }}>
                     {gameData?.stats?.team2?.losts}
                   </span>
                 </h5>
@@ -466,6 +439,15 @@ const GP = (x, y) => {
 
         </div>
       </div>
+
+
+
+
+      <Link href={'/NHL/schedule/CompletedGames'}
+            style={{textDecoration: 'none', width: '150px'}}
+            className='btn btn-primary vstack mx-auto my-5'>
+        Back
+      </Link>
 
 
         <style>{`
