@@ -83,6 +83,7 @@ console.log('Games in the next 2 days: ', upcomingGames); */
    <> 
       <h3 className='text-center my-5'>Schedule</h3>
 
+
       <div className="row d-flex justify-content-evenly">
 
             <div className="col-11 col-md-5 mt-3">
@@ -110,8 +111,8 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                     <p class="card-text fs-3 fw-semibold text-center">{waiting_for_game}</p>
                     <Link href={'#'}
                           style={{width: '120px', textDecoration: 'none'}}
-                          className='btn btn-primary vstack mx-auto'>
-                        Visit
+                          className='btn btn-danger vstack mx-auto'>
+                        Not Ready
                     </Link>
                   </div>
                 </div>
@@ -132,8 +133,8 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                     <p class="card-text fs-3 fw-semibold text-center">{recentGames}</p>
                     <Link href={'#'}
                           style={{width: '120px', textDecoration: 'none'}}
-                          className='btn btn-primary vstack mx-auto'>
-                        Visit
+                          className='btn btn-danger vstack mx-auto'>
+                        Not Ready
                     </Link>
                   </div>
                 </div>
@@ -148,8 +149,8 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                     <p class="card-text fs-3 fw-semibold text-center">{upcomingGames}</p>
                     <Link href={'#'}
                           style={{width: '120px', textDecoration: 'none'}}
-                          className='btn btn-primary vstack mx-auto'>
-                        Visit
+                          className='btn btn-danger vstack mx-auto'>
+                        Not Ready
                     </Link>
                   </div>
                 </div>
@@ -169,8 +170,8 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                     <p class="card-text fs-3 fw-semibold text-center">{nhlSchedule?.games?.length}</p>
                     <Link href={'#'}
                           style={{width: '120px', textDecoration: 'none'}}
-                          className='btn btn-primary vstack mx-auto'>
-                        Visit
+                          className='btn btn-danger vstack mx-auto'>
+                        Not Ready
                     </Link>
                   </div>
                 </div>
