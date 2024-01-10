@@ -222,7 +222,7 @@ const GP = (x, y) => {
              <h1>{gameData?.score?.goals1}</h1>
           </div>
 
-          <div className="col-1 fs-1 pt-4">-</div>
+          <div className="col-1 fs-1 pt-4 text-center">-</div>
 
           <div className="col-4 col-md-3 text-center">
               <div>
@@ -235,11 +235,16 @@ const GP = (x, y) => {
       </div>
       <hr className='mx-5'/>
 
+       
+          
+
 
 
      {/* accordion graph */}
-     <div className='mx-2'>
-       <div className="accordion accordion-flush border rounded-2" 
+     <div className="container-fluid my-3">
+      <div className="row justify-content-center">
+        <div className="col-11 col-md-6">
+          <div className="accordion accordion-flush border rounded-2" 
            style={{position: 'relative', maxWidth: '900px', margin: ' 0 auto'}} 
            id="accordionFlushExample">
         <div className="accordion-item">
@@ -253,6 +258,8 @@ const GP = (x, y) => {
                   <canvas ref={chartRef} />
                 </div>
           </div>
+        </div>
+      </div>
         </div>
       </div>
      </div>
@@ -420,43 +427,45 @@ const GP = (x, y) => {
         </div>
    </div> 
       
-  <div className="container-fluid">
-    <div className="row justify-content-center">
+ 
+   {/* Best Players */}
+       <div className="container-fluid">
+        <div className="row justify-content-center">
 
-      <div className="col-11 col-md-3 mt-2">
-        <div className="card">
-          <div className="card-header">
-             The Best Player: {gameData?.stats?.team1?.bestplayer?.name}
+          <div className="col-11 col-md-3 mt-2">
+            <div className="card">
+              <div className="card-header text-center fw-semibold">
+                The Best Player: {gameData?.stats?.team1?.bestplayer?.name}
+              </div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item d-flex justify-content-evenly">
+                  <p className='m-0'>G: {gameData?.stats?.team1?.bestplayer?.goals}</p> 
+                  <p className='m-0'>A: {gameData?.stats?.team1?.bestplayer?.asists}</p> 
+                  <p className='m-0'>PTS: {Number(gameData?.stats?.team1?.bestplayer?.asists) + 
+                              Number(gameData?.stats?.team1?.bestplayer?.goals)}</p>
+                </li>
+              </ul>
+            </div>
           </div>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">G: {gameData?.stats?.team1?.bestplayer?.goals}</li>
-            <li className="list-group-item">A: {gameData?.stats?.team1?.bestplayer?.asists}</li>
-            <li className="list-group-item">P: {Number(gameData?.stats?.team1?.bestplayer?.asists) + 
-                                                Number(gameData?.stats?.team1?.bestplayer?.goals)}</li>
-            
-          </ul>
+
+          <div className="col-11 col-md-3 mt-2">
+            <div className="card">
+              <div className="card-header text-center fw-semibold">
+                The Best Player: {gameData?.stats?.team2?.bestplayer?.name}
+              </div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item d-flex justify-content-evenly">
+                  <p className='m-0'>G: {gameData?.stats?.team2?.bestplayer?.goals}</p> 
+                  <p className='m-0'>A: {gameData?.stats?.team2?.bestplayer?.asists}</p> 
+                  <p className='m-0'>PTS: {Number(gameData?.stats?.team2?.bestplayer?.asists) + 
+                              Number(gameData?.stats?.team2?.bestplayer?.goals)}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
-
-      <div className="col-11 col-md-3 mt-2">
-        <div className="card">
-          <div className="card-header">
-             The Best Player: {gameData?.stats?.team2?.bestplayer?.name}
-          </div>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">G: {gameData?.stats?.team2?.bestplayer?.goals}</li>
-            <li className="list-group-item">A: {gameData?.stats?.team2?.bestplayer?.asists}</li>
-            <li className="list-group-item">P: {Number(gameData?.stats?.team2?.bestplayer?.asists) + 
-                                                Number(gameData?.stats?.team2?.bestplayer?.goals)}</li>
-            
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-       
-
 
 
         <style>{`
