@@ -75,7 +75,8 @@ const Home= () => {
 
       <div className="container-fluid my-5">
 
-     
+      
+         {/* select section  */}
         <div className='d-flex justify-content-center ps-4'
              style={{width: '400px', margin: '0 auto'}}>
 

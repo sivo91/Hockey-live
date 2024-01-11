@@ -18,7 +18,7 @@ console.log(gameData)
  const options = {
     method: 'GET',
     //url: `https://hockey-live-sk-data.p.rapidapi.com/games/NHL/2023`,
-    url: `https://hockey-live-sk-data.p.rapidapi.com/player/EICHEL%20Jack/NHL`,
+    url: `https://hockey-live-sk-data.p.rapidapi.com/team//NHL/2023`,
     params: {
       key: process.env.NEXT_PUBLIC_API_KEY2,
       tz: 'America/New_York'
