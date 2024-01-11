@@ -109,10 +109,10 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                   </div>
                   <div class="card-body">
                     <p class="card-text fs-3 fw-semibold text-center">{waiting_for_game}</p>
-                    <Link href={'#'}
+                    <Link href={'/NHL/schedule/Upcoming'}
                           style={{width: '120px', textDecoration: 'none'}}
-                          className='btn btn-danger vstack mx-auto'>
-                        Not Ready
+                          className='btn btn-primary vstack mx-auto'>
+                        Visit
                     </Link>
                   </div>
                 </div>
@@ -131,10 +131,10 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                   </div>
                   <div class="card-body">
                     <p class="card-text fs-3 fw-semibold text-center">{recentGames}</p>
-                    <Link href={'#'}
+                    <Link href={'/NHL/schedule/Last2days'}
                           style={{width: '120px', textDecoration: 'none'}}
-                          className='btn btn-danger vstack mx-auto'>
-                        Not Ready
+                          className='btn btn-primary vstack mx-auto'>
+                        Visit
                     </Link>
                   </div>
                 </div>
@@ -147,10 +147,10 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                   </div>
                   <div class="card-body">
                     <p class="card-text fs-3 fw-semibold text-center">{upcomingGames}</p>
-                    <Link href={'#'}
+                    <Link href={'/NHL/schedule/Next2days'}
                           style={{width: '120px', textDecoration: 'none'}}
-                          className='btn btn-danger vstack mx-auto'>
-                        Not Ready
+                          className='btn btn-primary vstack mx-auto'>
+                        Visit
                     </Link>
                   </div>
                 </div>
@@ -164,7 +164,7 @@ console.log('Games in the next 2 days: ', upcomingGames); */
           <div className="col-11 col-md-5 mt-3 mb-5">
                 <div class="card">
                   <div class="card-header fw-semibold fs-5 text-center">
-                    Total NHL Games
+                    Total NHL Games ({Number(year)}/{Number(year)+1})
                   </div>
                   <div class="card-body">
                     <p class="card-text fs-3 fw-semibold text-center">{nhlSchedule?.games?.length}</p>
@@ -172,21 +172,7 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                 </div>
            </div>
 
-         {/*  <div className="col-11 col-md-5 mt-3">
-                <div class="card">
-                  <div class="card-header fw-semibold fs-5 text-center">
-                    Upcoming games in 2 days
-                  </div>
-                  <div class="card-body">
-                    <p class="card-text fs-3 fw-semibold text-center"></p>
-                    <Link href={'/'}
-                          style={{width: '120px', textDecoration: 'none'}}
-                          className='btn btn-primary vstack mx-auto'>
-                        Visit
-                    </Link>
-                  </div>
-                </div>
-           </div> */}
+     
 
       </div> 
 

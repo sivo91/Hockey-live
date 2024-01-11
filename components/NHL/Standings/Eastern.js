@@ -19,6 +19,7 @@ const Index = () => {
   const error = useSelector(state => state.nhlStandings.error);
 
 
+  console.log(nhl_standings)
 
    useEffect(() => {
     if (year) {
@@ -63,7 +64,7 @@ const Index = () => {
                             {index + 1}
                           </td>
                           <td className='px-2'>
-                            <Link href={'#'}  >
+                            <Link href={`/NHL/Team/${team?.shortname}`}  >
                               {team.shortname}
                               {/* {team.longname} */}
                             </Link>

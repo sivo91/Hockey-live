@@ -30,6 +30,10 @@ const Index = () => {
   const [isLoading, setIsLoading] = useState(false);
 
 
+ 
+const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 18;
+  
 
   
    useEffect(() => {
@@ -67,14 +71,13 @@ const Index = () => {
 
  // all played games
   const show_all_played_games = () => {
-    return finished_games.map((game, index) => (
+    return currentItems.map((game, index) => (
                   <>
                       <div key={index} className="col-5 col-md-2">
                         {/* Content for each game */}
                         <Link href={`/NHL/schedule/${game?.id}`}
                               style={{textDecoration: 'none'}}>
                             <div className="card my-2 px-3 py-2">
-                              <h5 className='card-title text-center'>Game # {index + 1}</h5>
                               <p className='text-center mb-0'> 
                                   {/* get date */}
                                   {new Date(game?.date?.date?.split('.')[0]).toLocaleDateString("en-US", {
@@ -178,12 +181,103 @@ const Index = () => {
 
 
 
+ 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = finished_games.slice(indexOfFirstItem, indexOfLastItem);
+
+
+
+  const totalPages = Math.ceil(finished_games.length / itemsPerPage);
+
+
+
+const renderPagination = () => {
+  let pageNumbers = [];
+  const pageNeighbours = 1;
+  const totalBlocks = pageNeighbours * 2 + 3;
+
+  // Previous Button
+  pageNumbers.push(
+    <li key="prev" className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
+      <span className="page-link" onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)} style={{ cursor: "pointer" }}>
+        Prev
+      </span>
+    </li>
+  );
+
+  const startPage = Math.max(2, currentPage - pageNeighbours);
+  const endPage = Math.min(totalPages - 1, currentPage + pageNeighbours);
+
+  if (totalPages > totalBlocks) {
+    if (startPage > 2) {
+      pageNumbers.push(
+        // First Page
+        <li key="start" className="page-item">
+          <span className="page-link" onClick={() => setCurrentPage(1)} style={{ cursor: "pointer" }}>
+            1
+          </span>
+        </li>
+      );
+      pageNumbers.push(<li key="ellipsis1" className="page-item"><span className="page-link">...</span></li>);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(
+        <li key={i} className={`page-item ${currentPage === i ? "active" : ""}`}>
+          <span className="page-link" onClick={() => setCurrentPage(i)} style={{ cursor: "pointer" }}>
+            {i}
+          </span>
+        </li>
+      );
+    }
+
+    if (endPage < totalPages - 1) {
+      pageNumbers.push(<li key="ellipsis2" className="page-item"><span className="page-link">...</span></li>);
+      pageNumbers.push(
+        // Last Page
+        <li key="end" className="page-item">
+          <span className="page-link" onClick={() => setCurrentPage(totalPages)} style={{ cursor: "pointer" }}>
+            {totalPages}
+          </span>
+        </li>
+      );
+    }
+  } else {
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(
+        <li key={i} className={`page-item ${currentPage === i ? "active" : ""}`}>
+          <span className="page-link" onClick={() => setCurrentPage(i)} style={{ cursor: "pointer" }}>
+            {i}
+          </span>
+        </li>
+      );
+    }
+  }
+
+  // Next Button
+  pageNumbers.push(
+    <li key="next" className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
+      <span className="page-link" onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)} style={{ cursor: "pointer" }}>
+        Next
+      </span>
+    </li>
+  );
+
+  return pageNumbers;
+};
+
+
+
+
+
   return (
     <>
       <h3 className='text-center my-5'>Completed NHL Games</h3>
 
-
-      {/* select team */}
+     
+     
+      {/* select specific team */}
       <div className="container-fluid">
         <div className="row justify-content-center">
          <div className="col-12 col-md-6">
@@ -205,7 +299,8 @@ const Index = () => {
       </div>
       </div>
 
-
+      
+      {/* display games */}
       <div className="container my-5">
       <div className="row justify-content-center">
 
@@ -223,23 +318,40 @@ const Index = () => {
 
 
      
-                {
-                  isLoading  ? (
-                       <div className="spinner-grow text-primary mx-auto mt-3" role="status">
-                      </div>
-                  ) :
-                  (
-                    <>
-                     <h5 className='text-center mb-5'>Total {selectedTeam} games: {teamOutput?.length}</h5>
-                     {show_specific_team && teamOutput}
-                    </>
-                  )
-                }
+        {
+          isLoading  ? (
+                <div className="spinner-grow text-primary mx-auto mt-3" role="status">
+              </div>
+          ) :
+          (
+            <>
+              <h5 className='text-center mb-5'>Total {selectedTeam} games: {teamOutput?.length}</h5>
+              {show_specific_team && teamOutput}
+            </>
+          )
+        }
         
 
         
       </div>
-    </div>
+      </div>
+
+
+    {/* pagination */}
+     { !show_specific_team &&
+       <div className='container-fluid my-5'>
+        <div className="row justify-content-center"> 
+          <div className="col-10 col-md-6">
+            <nav aria-label="Page navigation" className="d-flex justify-content-center"> 
+              <ul className="pagination pagination-sm">
+                {renderPagination()}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+     }
+
 
 
       <Link href={'/'}

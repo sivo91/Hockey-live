@@ -1,11 +1,19 @@
+
+
+
+
+import { useRouter } from 'next/router'
 import React, {useState, useEffect, useCallback , useRef} from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 
 
+
+
 const Index = () => {
 
-
+  const router = useRouter()
+  const { id } = router.query
 
   
 
@@ -18,7 +26,7 @@ console.log(gameData)
   
  const options = {
     method: 'GET',
-    url: `https://hockey-live-sk-data.p.rapidapi.com/team/MTL/NHL/2023`,
+    url: `https://www.hockey-live.sk/api/team/MTL/NHL/2023`,
     params: {
       key: process.env.NEXT_PUBLIC_API_KEY2,
       tz: 'America/New_York'
@@ -43,26 +51,12 @@ console.log(gameData)
   }, [fetchGameData]);
 
 
-
-
-
-
-
-  
-
-  
   return (
-   <>
-     <h3 className='text-center my-5'>Search for Team</h3>
+    <>
+      <h3 className='text-center my-5'>Single Team</h3>
 
-
-     
-     <Link href={'/'}
-           style={{textDecoration: 'none', width: '200px'}}
-           className='btn btn-primary rounded-1 vstack mx-auto'>
-       Back
-     </Link>
-   </>
+      <h3 className='text-center my-5'>idddd : {id}</h3>
+    </>
   )
 }
 

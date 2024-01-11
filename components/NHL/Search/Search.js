@@ -17,6 +17,7 @@ const Index = () => {
 
       <div className="container-fluid">
         <div className="row justify-content-center gap-3">
+
           <div className="col-11 col-md-3 px-3 rounded-2 text-center">
             <Link href={'/NHL/Search/SearchPlayer'} 
                   style={{textDecoration: 'none'}}
@@ -25,14 +26,16 @@ const Index = () => {
               <img src="./player.png" className='w-100' alt="img" />
             </Link>
           </div>
-          <div className="col-11 col-md-3 px-3 rounded-2 text-center">
+
+          {/* <div className="col-11 col-md-3 px-3 rounded-2 text-center">
             <Link href={'/NHL/Search/SearchTeam'} 
                   style={{textDecoration: 'none'}}
                   className='btn btn-outline-dark rounded-2 py-3 px-3'>
                 <h6>Team Search</h6>
-                <img src="./team.jpg" className='w-100' alt="img" />
+                <img src="./team.jpg" className='w-100 p-5 m-1' alt="img" />
               </Link>
-          </div>
+          </div> */}
+
         </div>
       </div>
     </>

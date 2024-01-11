@@ -136,8 +136,8 @@ const flag = (param) => {
                 loading === true ? (
                   <>
                  
-                        <div className="spinner-grow text-primary mx-auto mt-3" role="status">
-                      </div>
+                       <div className="spinner-grow text-primary mx-auto mt-3" role="status">
+                       </div>
                   
                   </>
                 ) : (
