@@ -10,6 +10,7 @@ import Footer from '@/components/Footer'
 import '../styles/Home.module.css'
 import NextNProgress from 'nextjs-progressbar';
 import { useEffect } from "react";
+import React from 'react';
 
 
 
@@ -27,6 +28,8 @@ function App({ Component, pageProps: {session, ...pageProps} }) {
   }, []);
 
   return (
+
+    <React.StrictMode>
     <>
        <Head>
 
@@ -54,6 +57,7 @@ function App({ Component, pageProps: {session, ...pageProps} }) {
 
        
     </>
+    </React.StrictMode>
   )
 }
 

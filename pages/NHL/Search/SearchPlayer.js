@@ -21,41 +21,6 @@ const [activeTab, setActiveTab] = useState('bio');
 const [err, setErr] = useState()
 const [playerData, setPlayerData] = useState(null)
 
-/* 
-
- const fetchGameData = useCallback(async ()=> {
-  
- const options = {
-    method: 'GET',
-    url: `https://hockey-live-sk-data.p.rapidapi.com/player/${query}/NHL`,
-    params: {
-      key: process.env.NEXT_PUBLIC_API_KEY2,
-      tz: 'America/New_York'
-    },
-    headers: {
-      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
-      'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
-    }
-  };
-
-    try {
-      setLoad(true)
-      const res = await axios.request(options);
-      setPlayerData(res.data)
-      setLoad(false)
-    } catch (error) {
-        console.error('An error occurred:', error);
-        setErr(error); 
-        setLoad(false);
-    }
-  }, [query]);  
-
-
-  useEffect(() => {
-    
-    if(query.length === 0 || query.length > 5 ) fetchGameData();
-   
-  }, [fetchGameData, query]); */
 
   
  const fetchGameData = useCallback(async () => {
@@ -70,8 +35,9 @@ const [playerData, setPlayerData] = useState(null)
 }, [query]);
 
 useEffect(() => {
+  if(query === '') return
   fetchGameData();
-}, [fetchGameData]);
+}, [fetchGameData, query]);
 
   
 

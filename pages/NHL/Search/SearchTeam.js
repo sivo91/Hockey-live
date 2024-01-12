@@ -61,7 +61,28 @@ const fetchGameData = useCallback(async () => {
   }, [fetchGameData]);
 
 
+/* 
+ 
 
+
+
+  try {
+
+    const queryParam = encodeURIComponent(query);
+    const res = await axios.get(`/api/NHL/findTeam?team=${queryParam}`);
+    setTeamData(res.data.data);
+
+  } catch (error) {
+    console.error(error);
+  }
+}, [query]);
+
+
+  useEffect(() => {
+         fetchGameData();
+  }, [fetchGameData]);
+
+*/
 
 
 // if query meet contintion, show team

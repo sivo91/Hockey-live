@@ -24,7 +24,7 @@ const Index = ({ playerData, err }) => {
               <>
                   <div className='border mt-2 py-3 px-2 rounded-3'>
                       <div className="row justify-content-center">
-                        <div className="col-12 col-md-6">
+                        <div className="col-12 col-md-6 mt-2">
                           <div className="card">
                               <ul className="list-group list-group-flush">
                                 <li className="list-group-item">Born: {playerData?.bio?.born}</li>
@@ -33,7 +33,7 @@ const Index = ({ playerData, err }) => {
                               </ul>
                             </div>
                         </div>
-                        <div className="col-12 col-md-6">
+                        <div className="col-12 col-md-6 mt-2">
                           <div className="card">
                               <ul className="list-group list-group-flush">
                                 <li className="list-group-item">Position: {playerData?.pos}</li>

@@ -19,6 +19,7 @@ import Strugle  from './Struggle/Struggle'
 import { BsCalendar3 } from "react-icons/bs";
 import Schedule from '@/components/NHL/Schedule/Schedule'
 import Search from '@/components/NHL/Search/Search'
+import BestPlayers from '@/components/NHL/BestPlayers/BestPlayers'
 
 
 
@@ -117,7 +118,7 @@ const dispatch = useDispatch()
                     </button>
 
                     <button className='btn btn-light border mt-2 custom-tooltip' 
-                            data-tooltip="Leading Players"
+                            data-tooltip="Players Statistics"
                             onClick={() => handleButtonClick('leaders')}>
                       <GiHockey className='fs-2' />
                     </button>
@@ -207,8 +208,7 @@ const dispatch = useDispatch()
             {
               sectionNHL === 'leaders' && (
               <>
-                 <h3 className='text-center my-2'>Leading Players</h3>
-                 <h4 className='text-center text-danger'>Coming Soon</h4>
+                <BestPlayers/>
               </>
               )
             }
