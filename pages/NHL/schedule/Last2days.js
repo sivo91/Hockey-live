@@ -25,7 +25,7 @@ let currentTime = new Date();
 let twoDaysAgo = new Date();
 let recentGames = 0;
 twoDaysAgo.setDate(currentTime.getDate() - 2);
-let total_games = nhlSchedule?.games?.length || 0;
+let total_games = nhlSchedule?.data?.games?.length || 0;
 
 /* 
 
@@ -52,7 +52,7 @@ for (let i = 0; i < total_games; i++) {
   
 for (let i = 0; i < total_games; i++) {
 
-   let gameDayString = nhlSchedule?.games[i]?.date?.date?.split('.')[0];
+   let gameDayString = nhlSchedule?.data?.games[i]?.date?.date?.split('.')[0];
     let game_day = new Date(gameDayString);
    // console.log(game_day)  // Thu Apr 18 2024 22:00:00 GMT-0700
 
@@ -61,7 +61,7 @@ for (let i = 0; i < total_games; i++) {
     //  last 2 days games
     if (game_day >= twoDaysAgo && game_day < currentTime) {
         recentGames++;
-         last_2_days_games.push(nhlSchedule?.games[i]);
+         last_2_days_games.push(nhlSchedule?.data?.games[i]);
     }
   
 }

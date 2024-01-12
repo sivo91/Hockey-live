@@ -1,69 +1,52 @@
-import React, {useState, useEffect, useCallback , useRef} from 'react'
-import axios from 'axios'
-import Link from 'next/link'
 
+
+
+
+
+import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
+import Link from 'next/link';
 
 const Index = () => {
 
-
-
-  
-
-const [gameData, setGameData] = useState(null)
-console.log(gameData)
+  const [data, setData] = useState();
+   const [team, setTeam] = useState("MTL");
+  //console.log(data);
 
 
 
- const fetchGameData = useCallback(async ()=> {
-  
- const options = {
-    method: 'GET',
-    url: `https://hockey-live-sk-data.p.rapidapi.com/team/MTL/NHL/2023`,
-    params: {
-      key: process.env.NEXT_PUBLIC_API_KEY2,
-      tz: 'America/New_York'
-    },
-    headers: {
-      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
-      'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
-    }
-  };
+ const fetchGameData = useCallback(async () => {
+  if (!team) {
+    console.log("No team specified");
+    return;
+  }
 
-    try {
-      const res = await axios.request(options);
-      setGameData(res.data)
-    } catch (error) {
-        console.error('An error occurred:', error);
-    }
-  }, []); 
+  try {
+    const queryParam = encodeURIComponent(team);
+    const res = await axios.get(`/api/NHL/findTeam?team=${queryParam}`); 
+    setData(res.data);
+  } catch (error) {
+    console.log(error);
+  }
+}, [team]);
+
+useEffect(() => {
+  fetchGameData();
+}, [fetchGameData]);
 
 
-  useEffect(() => {
-       fetchGameData();
-  }, [fetchGameData]);
-
-
-
-
-
-
-
-  
-
-  
   return (
-   <>
-     <h3 className='text-center my-5'>Search for Team</h3>
-
+    <>
+      <h3 className='text-center my-5'>Search for Team</h3>
 
      
-     <Link href={'/'}
-           style={{textDecoration: 'none', width: '200px'}}
-           className='btn btn-primary rounded-1 vstack mx-auto'>
-       Back
-     </Link>
-   </>
-  )
+      <Link href={'/'}
+            style={{ textDecoration: 'none', width: '200px' }}
+            className='btn btn-primary rounded-1 vstack mx-auto'>
+        Back
+      </Link>
+    </>
+  );
 }
 
-export default Index
+export default Index;

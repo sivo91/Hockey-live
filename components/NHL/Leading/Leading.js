@@ -20,7 +20,7 @@ const Index = () => {
   const status = useSelector(state => state.nhlStandings.status);
   const error = useSelector(state => state.nhlStandings.error);
 
-
+ 
   
   useEffect(() => {
     if (year) {
@@ -38,8 +38,8 @@ const Index = () => {
   let nhl = []
  
 
-  const conferenceWest = leading?.conference['Západná konferencia'];
-  const conferenceEast = leading?.conference['Východná konferencia'];
+  const conferenceWest = leading?.data?.conference['Západná konferencia'];
+  const conferenceEast = leading?.data?.conference['Východná konferencia'];
 
 
   // east conference

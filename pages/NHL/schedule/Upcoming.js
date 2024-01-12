@@ -18,26 +18,23 @@ const Index = () => {
   const nhlSchedule = useSelector(state => state.nhlSchedule.data);
   const status = useSelector(state => state.nhlSchedule.status);
   const error = useSelector(state => state.nhlSchedule.error);
-  
-  console.log(status)
 
-  console.log(nhlSchedule)
 
 
   let upcoming_games = []
   let currentTime = new Date();
-  let total_games = nhlSchedule?.games?.length || 0
+  let total_games = nhlSchedule?.data?.games?.length || 0
 
 
 
   for(let i = 0; i < total_games; i++) {
    // console.log(nhlSchedule?.games[i]?.date)
 
-   let gameDayString = nhlSchedule?.games[i]?.date?.date?.split('.')[0];
+   let gameDayString = nhlSchedule?.data?.games[i]?.date?.date?.split('.')[0];
     let game_day = new Date(gameDayString);
 
   if(game_day > currentTime ) {
-     upcoming_games.push(nhlSchedule?.games[i]);
+     upcoming_games.push(nhlSchedule?.data?.games[i]);
     } 
   }
 

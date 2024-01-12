@@ -43,8 +43,8 @@ const Index = () => {
         </td>
       </tr>
     );
-  } else if (nhl_standings && nhl_standings?.conference && nhl_standings?.conference["Západná konferencia"]) {
-    const arrays = Object.entries(nhl_standings.conference["Západná konferencia"]);
+  } else if (nhl_standings && nhl_standings?.data?.conference && nhl_standings?.data?.conference["Západná konferencia"]) {
+    const arrays = Object.entries(nhl_standings?.data?.conference["Západná konferencia"]);
     //console.log('arrays', arrays)
 
     tableRows = [];

@@ -117,8 +117,8 @@ const Index = () => {
   let nhl = []
  
 
-  const conferenceWest = leading?.conference['Západná konferencia'];
-  const conferenceEast = leading?.conference['Východná konferencia'];
+  const conferenceWest = leading?.data?.conference['Západná konferencia'];
+  const conferenceEast = leading?.data?.conference['Východná konferencia'];
 
 
   // east conference

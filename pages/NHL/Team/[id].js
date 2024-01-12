@@ -15,40 +15,28 @@ const Index = () => {
   const router = useRouter()
   const { id } = router.query
 
-  
-
-const [gameData, setGameData] = useState(null)
-console.log(gameData)
-
-
-
+/* const [data, setData] = useState()
  const fetchGameData = useCallback(async ()=> {
   
- const options = {
-    method: 'GET',
-    url: `https://www.hockey-live.sk/api/team/MTL/NHL/2023`,
-    params: {
-      key: process.env.NEXT_PUBLIC_API_KEY2,
-      tz: 'America/New_York'
-    },
-    headers: {
-      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
-      'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
-    }
-  };
+      try {
+        const res = await axios.get(`/api/NHL/Leaders`);
+        console.log(res.data);
+        setData(res.data);
+      } catch (error) {
+        console.log(error);
+      }
 
-    try {
-      const res = await axios.request(options);
-      setGameData(res.data)
-    } catch (error) {
-        console.error('An error occurred:', error);
-    }
-  }, []); 
+}, []);
 
 
   useEffect(() => {
-       fetchGameData();
-  }, [fetchGameData]);
+    fetchGameData();
+   
+    const intervalId = setInterval(fetchGameData, 5000000);
+
+    return () => clearInterval(intervalId);
+  }, [fetchGameData]); */
+
 
 
   return (

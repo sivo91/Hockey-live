@@ -50,6 +50,23 @@ const Navbar= () => {
     
 
  const [data, setData] = useState()
+
+
+ const fetchGameData = useCallback(async () => {
+  
+  try {
+    const res = await axios.get(`/api/Navbar/Navbar`); 
+    setData(res.data);
+  } catch (error) {
+    console.log(error);
+  }
+}, []);
+
+useEffect(() => {
+  fetchGameData();
+}, [fetchGameData]);
+
+ /* 
  const fetchGameData = useCallback(async ()=> {
   
   //  https://hockey-live-sk-data.p.rapidapi.com/game/{id}?key={API_key}
@@ -83,7 +100,7 @@ const Navbar= () => {
 
     return () => clearInterval(intervalId);
   }, [fetchGameData]);
- 
+  */
 
 
 

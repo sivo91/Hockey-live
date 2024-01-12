@@ -7,7 +7,8 @@ import axios from 'axios';
 export const fetchNHLSchedule = createAsyncThunk(
   'nhlSchedule/fetchNHLSchedule',
   async (year) => {
-   const options = {
+
+  /*  const options = {
     method: 'GET',
     url: `https://hockey-live-sk-data.p.rapidapi.com/games/NHL/${year}`,
 
@@ -22,7 +23,11 @@ export const fetchNHLSchedule = createAsyncThunk(
   };
   
     const response = await axios.request(options);
-    return response.data;
+    return response.data; */
+
+    const queryParam = encodeURIComponent(year);
+    const res = await axios.get(`/api/NHL/schedule?year=${queryParam}`)
+    return res.data;
   }
 );
 

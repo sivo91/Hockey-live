@@ -2,7 +2,6 @@
 import Head from 'next/head'
 
 
-import Link from 'next/link';
 import React, { useState, useCallback, useEffect} from 'react';
 import NHL from '@/components/NHL/NHL'
 import WJC from '@/components/WJC/WJC'

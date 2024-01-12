@@ -21,7 +21,7 @@ const [activeTab, setActiveTab] = useState('bio');
 const [err, setErr] = useState()
 const [playerData, setPlayerData] = useState(null)
 
-
+/* 
 
  const fetchGameData = useCallback(async ()=> {
   
@@ -48,14 +48,30 @@ const [playerData, setPlayerData] = useState(null)
         setErr(error); 
         setLoad(false);
     }
-  }, [query]);  // Dependencies array
+  }, [query]);  
 
 
   useEffect(() => {
     
     if(query.length === 0 || query.length > 5 ) fetchGameData();
    
-  }, [fetchGameData, query]);
+  }, [fetchGameData, query]); */
+
+  
+ const fetchGameData = useCallback(async () => {
+  
+  try {
+    const queryParam = encodeURIComponent(query);
+    const res = await axios.get(`/api/NHL/searchPlayer?player=${queryParam}`); 
+    setPlayerData(res.data.data);
+  } catch (error) {
+    console.log(error);
+  }
+}, [query]);
+
+useEffect(() => {
+  fetchGameData();
+}, [fetchGameData]);
 
   
 

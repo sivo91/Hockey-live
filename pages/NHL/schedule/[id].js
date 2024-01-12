@@ -25,11 +25,29 @@ const [gameData, setGameData] = useState(null)
 
 
 
- const fetchGameData = useCallback(async ()=> {
+ const fetchGameData = useCallback(async () => {
+  if (!id) {
+    console.log("Can't find game");
+    return;
+  }
+
+  try {
+    const queryParam = encodeURIComponent(id);
+    const res = await axios.get(`/api/NHL/gameDetails?id=${queryParam}`); 
+    setGameData(res.data.data);
+  } catch (error) {
+    console.log(error);
+  }
+}, [id]);
+
+useEffect(() => {
+  fetchGameData();
+}, [fetchGameData]);
+
+/*  const fetchGameData = useCallback(async ()=> {
   
  const options = {
     method: 'GET',
-    //url: `https://hockey-live-sk-data.p.rapidapi.com/games/NHL/2023`,
     url: `https://hockey-live-sk-data.p.rapidapi.com/game/${id}`,
     params: {
       key: process.env.NEXT_PUBLIC_API_KEY2,
@@ -48,14 +66,14 @@ const [gameData, setGameData] = useState(null)
       
       console.log(error)
     }
-  }, [id]);  // Dependencies array
+  }, [id]);  
 
 
   useEffect(() => {
      fetchGameData();
-  }, [fetchGameData]);
+  }, [fetchGameData]); */
 
-  //console.log(gameData)
+
 
 
   // Chart

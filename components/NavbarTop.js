@@ -11,7 +11,7 @@ const Index = () => {
  const [data, setData] = useState()
  const [loading, setLoading] = useState(false)
 
-
+/* 
  const fetchGameData = useCallback(async ()=> {
   
  const options = {
@@ -30,22 +30,34 @@ const Index = () => {
     try {
       setLoading(true)
       const res = await axios.request(options);
-      //console.log(res.data);
+  
       setData(res.data)
       setLoading(false)
     } catch (error) {
       console.log(error)
       setLoading(false)
     }
-  }, []);  // Dependencies array
+  }, []); 
 
   useEffect(() => {
     fetchGameData();
-   
-   /*  const intervalId = setInterval(fetchGameData, 5000000);
 
-    return () => clearInterval(intervalId); */
-  }, [fetchGameData]);
+  }, [fetchGameData]); */
+
+  
+ const fetchGameData = useCallback(async () => {
+  
+  try {
+    const res = await axios.get(`/api/TopNav/TopNavNHL`); 
+    setData(res.data);
+  } catch (error) {
+    console.log(error);
+  }
+}, []);
+
+useEffect(() => {
+  fetchGameData();
+}, [fetchGameData]);
  
   
 
@@ -55,7 +67,7 @@ const Index = () => {
 
 
   useEffect(() => {
-    const x = data?.games;
+    const x = data?.data?.games;
     const filteredGames = [];
     const playedGames = []
     

@@ -19,7 +19,7 @@ const Index = () => {
   const error = useSelector(state => state.nhlStandings.error);
 
 
-  console.log(nhl_standings)
+ 
 
    useEffect(() => {
     if (year) {
@@ -57,8 +57,8 @@ const Index = () => {
                           </div>
                         </td>
                       </tr>
-                    ) : nhl_standings && nhl_standings.conference && nhl_standings.conference["Východná konferencia"] ? (
-                      Object.entries(nhl_standings.conference["Východná konferencia"]).map(([key, team], index) => (
+                    ) : nhl_standings && nhl_standings?.data?.conference && nhl_standings?.data?.conference["Východná konferencia"] ? (
+                      Object.entries(nhl_standings?.data?.conference["Východná konferencia"]).map(([key, team], index) => (
                         <tr className='fw-semibold team-box border text-center' key={key}>
                           <td>
                             {index + 1}

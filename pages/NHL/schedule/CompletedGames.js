@@ -52,17 +52,17 @@ const [currentPage, setCurrentPage] = useState(1);
 
   let finished_games = []
   let currentTime = new Date();
-  let total_games = nhlSchedule?.games?.length || 0
+  let total_games = nhlSchedule?.data?.games?.length || 0
 
 
   for(let i = 0; i < total_games; i++) {
    // console.log(nhlSchedule?.games[i]?.date)
 
-   let gameDayString = nhlSchedule?.games[i]?.date?.date?.split('.')[0];
+   let gameDayString = nhlSchedule?.data?.games[i]?.date?.date?.split('.')[0];
     let game_day = new Date(gameDayString);
 
   if(game_day < currentTime) {
-     finished_games.push(nhlSchedule?.games[i]);
+     finished_games.push(nhlSchedule?.data?.games[i]);
     } 
   }
 

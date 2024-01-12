@@ -19,7 +19,7 @@ const Index = () => {
   
   
 let future_games = []
-let total_games = nhlSchedule?.games?.length;
+let total_games = nhlSchedule?.data?.games?.length;
 let currentTime = new Date();
 let upcomingGames = 0;
 let twoDaysAgo = new Date();
@@ -30,13 +30,13 @@ twoDaysInFuture.setDate(currentTime.getDate() + 2);
 
 for (let i = 0; i < total_games; i++) {
 
-    let gameDayString = nhlSchedule?.games[i]?.date?.date?.split('.')[0];
+    let gameDayString = nhlSchedule?.data?.games[i]?.date?.date?.split('.')[0];
     let game_day = new Date(gameDayString);
    // console.log(game_day)  // Thu Apr 18 2024 22:00:00 GMT-0700
 
    if (game_day > currentTime && game_day <= twoDaysInFuture) {
         upcomingGames++;
-        future_games.push(nhlSchedule?.games[i]);
+        future_games.push(nhlSchedule?.data?.games[i]);
     }
 }
 
