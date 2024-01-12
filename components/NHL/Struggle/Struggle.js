@@ -209,7 +209,19 @@ const tableRowsWestern = createTableRowsWestern(west);
 
                 <div className="col-12 col-md-5">
                   <h5 className='text-center mt-3'>Teams Below the Playoff Line</h5>
-                  <BarChart east={east}/>
+                  {
+                      status === 'loading' ? (
+                            <div className='text-center my-5'>
+                                <div className="spinner-grow" style={{color:'#9c4b0e'}} role="status">
+                                </div>
+                              </div>
+                             
+                      ) : 
+                      (
+                        <BarChart east={east}/>
+                      )
+                    }
+                  
                 </div>
               </div>
               <hr />
@@ -244,7 +256,19 @@ const tableRowsWestern = createTableRowsWestern(west);
 
                 <div className="col-12 col-md-5">
                   <h5 className='text-center mt-3'>Teams Below the Playoff Line</h5>
-                   <BarChart2 west={west} /> 
+                   {
+                      status === 'loading' ? (
+                            <div className='text-center my-5'>
+                                <div className="spinner-grow" style={{color:'#9c4b0e'}} role="status">
+                                </div>
+                              </div>
+                             
+                      ) : 
+                      (
+                       <BarChart2 west={west} /> 
+                      )
+                    }
+                   
                 </div>
               </div>
               <hr />
