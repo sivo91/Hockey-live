@@ -26,28 +26,28 @@ const Index = () => {
   const [load, setLoad] = useState(false)
 
 
- console.log(teamData)
 
-
+ // call data
 const fetchGameData = useCallback(async () => {
 
-  // Clear teamData when query is too short
+  // Clear teamData when query < 2
   if (query.length <= 2) {
     setTeamData(null);
     setAlertInfo(false);
-    return; // Exit the function early
+    return; 
   }
 
-
-
   try {
+
     setLoad(true)
     const queryParam = encodeURIComponent(query);
     const res = await axios.get(`/api/NHL/findTeam?team=${queryParam}`);
     setTeamData(res.data.data);
     setAlertInfo(!res.data.data); 
     setLoad(false)
+
   } catch (error) {
+
     console.error(error);
     setTeamData(null); 
     setAlertInfo(true);
@@ -57,12 +57,8 @@ const fetchGameData = useCallback(async () => {
 
 
   useEffect(() => {
-    fetchGameData();
+         fetchGameData();
   }, [fetchGameData]);
-
-
-
-
 
 
 
@@ -139,7 +135,7 @@ const fetchGameData = useCallback(async () => {
     }
 };
 
-
+// output
 const currentTeam = (param) => {
 
     let info_team = teamInfoData[Number(param)];
@@ -191,7 +187,7 @@ const currentTeam = (param) => {
     );
 };
 
-
+// short key
 const nhlTeamShortKeys = [
   "NSH", "TBL", "PIT", "CHI", "VGK", "MIN", "ANA",
   "FLA", "PHI", "WSH", "ARI", "NYI", "SJS", "CGY",
@@ -200,6 +196,7 @@ const nhlTeamShortKeys = [
   "SEA", "CAR", "OTT", "EDM", "STL", "VAN"
 ];
 
+// sort alphabetically
 nhlTeamShortKeys.sort();
 
 

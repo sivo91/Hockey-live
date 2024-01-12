@@ -11,7 +11,6 @@ import Link from 'next/link';
 
 
 
-
 const Index = () => {
 
   const dispatch = useDispatch();
@@ -19,6 +18,8 @@ const Index = () => {
   const nhlSchedule = useSelector(state => state.nhlSchedule.data);
   const status = useSelector(state => state.nhlSchedule.status);
   const error = useSelector(state => state.nhlSchedule.error);
+
+  console.log(status)
 
   
 
@@ -93,7 +94,19 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                     Completed NHL Games
                   </div>
                   <div className="card-body">
-                    <p className="card-text fs-3 fw-semibold text-center">{games_played}</p>
+                    {
+                      status === 'loading' ? (
+                            <div className='text-center my-2'>
+                                <div className="spinner-grow text-primary" role="status">
+                                </div>
+                              </div>
+                             
+                      ) : 
+                      (
+                          <p className="card-text fs-3 fw-semibold text-center">{games_played}</p>
+                      )
+                    }
+                   
                     <Link href={'/NHL/schedule/CompletedGames'}
                           style={{width: '120px', textDecoration: 'none'}}
                           className='btn btn-primary vstack mx-auto'>
@@ -109,7 +122,18 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                     Upcoming NHL Games
                   </div>
                   <div className="card-body">
-                    <p className="card-text fs-3 fw-semibold text-center">{waiting_for_game}</p>
+                     {
+                      status === 'loading' ? (
+                            <div className='text-center my-2'>
+                                <div className="spinner-grow text-primary" role="status">
+                                </div>
+                              </div>
+                             
+                      ) : 
+                      (
+                          <p className="card-text fs-3 fw-semibold text-center">{waiting_for_game}</p>
+                      )
+                    }
                     <Link href={'/NHL/schedule/Upcoming'}
                           style={{width: '120px', textDecoration: 'none'}}
                           className='btn btn-primary vstack mx-auto'>
@@ -131,7 +155,18 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                     NHL Games in the Last 2 Days
                   </div>
                   <div className="card-body">
-                    <p className="card-text fs-3 fw-semibold text-center">{recentGames}</p>
+                     {
+                      status === 'loading' ? (
+                            <div className='text-center my-2'>
+                                <div className="spinner-grow text-primary" role="status">
+                                </div>
+                              </div>
+                             
+                      ) : 
+                      (
+                          <p className="card-text fs-3 fw-semibold text-center">{recentGames}</p>
+                      )
+                    }
                     <Link href={'/NHL/schedule/Last2days'}
                           style={{width: '120px', textDecoration: 'none'}}
                           className='btn btn-primary vstack mx-auto'>
@@ -147,7 +182,18 @@ console.log('Games in the next 2 days: ', upcomingGames); */
                     NHL Games in the Next 2 Days
                   </div>
                   <div className="card-body">
-                    <p className="card-text fs-3 fw-semibold text-center">{upcomingGames}</p>
+                    {
+                      status === 'loading' ? (
+                            <div className='text-center my-2'>
+                                <div className="spinner-grow text-primary" role="status">
+                                </div>
+                              </div>
+                             
+                      ) : 
+                      (
+                          <p className="card-text fs-3 fw-semibold text-center">{upcomingGames}</p>
+                      )
+                    }
                     <Link href={'/NHL/schedule/Next2days'}
                           style={{width: '120px', textDecoration: 'none'}}
                           className='btn btn-primary vstack mx-auto'>
