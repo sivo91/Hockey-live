@@ -82,7 +82,7 @@ console.log('Games in the next 2 days: ', upcomingGames); */
   return (
 
    <> 
-      <h3 className='text-center my-5'>Schedule</h3>
+      <h3 className='text-center my-5'>Schedule {year}/{Number(year)+1}</h3>
 
 
       <div className="row d-flex justify-content-evenly">

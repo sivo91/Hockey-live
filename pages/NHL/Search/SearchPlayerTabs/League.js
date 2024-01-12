@@ -39,7 +39,7 @@ const Index = ({ playerData, err }) => {
                                 <th>GP</th>
                                 <th>G</th>
                                 <th>A</th>
-                                <th className='bg-info-subtle'>PTS</th>
+                                <th className='bg-info-subtle text-center'>PTS</th>
                                 {/* Add more headers as needed */}
                               </tr>
                             </thead>
@@ -51,7 +51,7 @@ const Index = ({ playerData, err }) => {
                                   <td>{season?.stats?.gp}</td>
                                   <td>{season?.stats?.goals}</td>
                                   <td>{season?.stats?.asists}</td>
-                                  <td>{season?.stats?.points}</td>
+                                  <td className='text-center'>{season?.stats?.points}</td>
                                 </tr>
                               ))}
                             </tbody>

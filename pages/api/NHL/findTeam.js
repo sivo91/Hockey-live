@@ -11,7 +11,7 @@ async function handler(req, res) {
 
   const options = {
     method: 'GET',
-    url: `https://www.hockey-live.sk/api/team/${team}/NHL/2023`, // Dynamic team insertion
+    url: `https://www.hockey-live.sk/api/team/${team}/NHL/2023`, 
     params: {
       key: process.env.API_KEY2,
       tz: 'America/New_York'

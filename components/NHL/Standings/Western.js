@@ -131,9 +131,9 @@ const Index = () => {
                   background-color: #f0f0f0;
                 }
 
-              table tr:nth-child(odd) {
-                  background-color: #fafafa;
-                }
+                table tr:nth-child(odd) {
+                    background-color: #fafafa;
+                  }
             
               
                 .card-east:hover {
