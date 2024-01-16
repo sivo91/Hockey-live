@@ -96,6 +96,7 @@ const teamQuery = useMemo(() => {
     try {
       const queryParam = encodeURIComponent(teamQuery);
       const res = await axios.get(`/api/NHL/findTeam?team=${queryParam}`);
+      console.log(res.data.data)
       return res.data.data; 
     } catch (error) {
       console.error(error);
@@ -104,7 +105,7 @@ const teamQuery = useMemo(() => {
   };
 
 
-
+  
 const fetchAllTeamsData = useCallback(async () => {
     setLoad(true);
     const topPlayers = [];
@@ -114,8 +115,8 @@ const fetchAllTeamsData = useCallback(async () => {
       setClub(team);
       const teamData = await fetchTeamData(team);
 
-      if (teamData && teamData.players) {
-        const sortedPlayers = teamData.players.sort((a, b) => b.stats.points - a.stats.points);
+      if (teamData && teamData) {
+        const sortedPlayers = teamData.sort((a, b) => b.stats.points - a.stats.points);
         const teamTopPlayers = sortedPlayers.slice(0, 2);
         topPlayers.push(...teamTopPlayers);
       }
@@ -231,6 +232,7 @@ const teamQuery = [
                 <table>
                     <thead>
                       <tr className='border-bottom text-center'>
+                        <th>#</th>
                         <th className='text-start'>Name</th>
                         <th>GP</th>
                         <th>G</th>
@@ -240,9 +242,10 @@ const teamQuery = [
                       </tr>
                     </thead>
                     <tbody className='text-center'>
-                      { allTopPlayers.slice(0,10).map( player => (
+                      { allTopPlayers.slice(0,10).map( (player, idx) => (
                         <tr key={player.idx}>
-                          <td className='text-start'>{player.name}</td>
+                          <td>{idx+1}</td>
+                          <td className='text-start ps-1'>{player.name}</td>
                           <td>{player.stats.gp}</td>
                           <td>{player.stats.goals}</td>
                           <td>{player.stats.asists}</td>
@@ -260,6 +263,7 @@ const teamQuery = [
                 <table>
                     <thead>
                       <tr className='border-bottom text-center'>
+                        <th>#</th>
                         <th className='text-start'>Name</th>
                         <th>GP</th>
                         <th className='bg-info-subtle'>G</th>
@@ -269,9 +273,10 @@ const teamQuery = [
                       </tr>
                     </thead>
                     <tbody className='text-center'>
-                      { topGoals.slice(0,10).map( player => (
+                      { topGoals.slice(0,10).map( (player, idx) => (
                         <tr key={player.idx}>
-                          <td className='text-start'>{player.name}</td>
+                          <td>{idx+1}</td>
+                          <td className='text-start ps-1'>{player.name}</td>
                           <td>{player.stats.gp}</td>
                           <td className='bg-info-subtle'>{player.stats.goals}</td>
                           <td>{player.stats.asists}</td>
@@ -296,6 +301,7 @@ const teamQuery = [
                 <table>
                     <thead>
                       <tr className='border-bottom text-center'>
+                        <th>#</th>
                         <th className='text-start'>Name</th>
                         <th>GP</th>
                         <th >G</th>
@@ -305,9 +311,10 @@ const teamQuery = [
                       </tr>
                     </thead>
                     <tbody className='text-center'>
-                      { topAssists.slice(0,10).map( player => (
+                      { topAssists.slice(0,10).map( (player, idx) => (
                         <tr key={player.idx}>
-                          <td className='text-start'>{player.name}</td>
+                          <td>{idx+1}</td>
+                          <td className='text-start ps-1'>{player.name}</td>
                           <td>{player.stats.gp}</td>
                           <td>{player.stats.goals}</td>
                           <td className='bg-info-subtle'>{player.stats.asists}</td>
@@ -326,6 +333,7 @@ const teamQuery = [
                 <table>
                     <thead>
                       <tr className='border-bottom text-center'>
+                        <th>#</th>
                         <th className='text-start'>Name</th>
                         <th>GP</th>
                         <th>G</th>
@@ -335,9 +343,10 @@ const teamQuery = [
                       </tr>
                     </thead>
                     <tbody className='text-center'>
-                      { mostPIM.slice(0,10).map( player => (
+                      { mostPIM.slice(0,10).map( (player,idx) => (
                         <tr key={player.idx}>
-                          <td className='text-start'>{player.name}</td>
+                          <td>{idx +1}</td>
+                          <td className='text-start ps-1'>{player.name}</td>
                           <td>{player.stats.gp}</td>
                           <td>{player.stats.goals}</td>
                           <td>{player.stats.asists}</td>

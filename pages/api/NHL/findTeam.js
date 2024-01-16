@@ -26,7 +26,11 @@ async function handler(req, res) {
     const team = await axios.request(options);
     res.status(200).json({
       status: "success",
-      data: team.data
+      // return teams and players data
+      //data: team.data,
+
+      // return only players data
+      data: team.data.players
     });
   } catch (error) {
     res.status(500).json({ 
