@@ -5,84 +5,64 @@
 import axios from 'axios';
 import { useEffect, useState, useCallback, useMemo } from 'react';
 
+
 const Index = () => {
   const [allTopPlayers, setAllTopPlayers] = useState([]);
   const [topGoals, setTopGoals] = useState([])
   const [topAssists, setTopAssists] = useState([])
   const [mostPIM, setMostPIM] = useState([])
   const [load, setLoad] = useState(false)
-  const [club, setClub] = useState()
+  
 
-   
-
-
-  // >>>>>>>>>>>>>> MISSING DEPENDENCY
-
-  // List of teams to query
-  /* const teamQuery = [
-  "NSH", "TBL", "PIT", "CHI", "VGK", "MIN", "ANA",
-  "FLA", "PHI", "WSH", "ARI", "NYI", "SJS", "CGY",
-  "BUF", "NYR", "CBJ", "NJD", "DET", "DAL",
-  "TOR", "MTL", "BOS", "LAK", "COL", "WPG",
-  "SEA", "CAR", "OTT", "EDM", "STL", "VAN"
-]; 
-
-
-
-
-const fetchAllTeamsData = async () => {
-  const topPlayers = [];
-
-  for (const team of teamQuery) {
-    setLoad(true)
-    setClub(team)
-    const teamData = await fetchTeamData(team);
-    if (teamData && teamData.players) {
-    
-      const sortedPlayers = teamData.players.sort((a, b) => b.stats.points - a.stats.points);
-      
-      const teamTopPlayers = sortedPlayers.slice(0, 2); 
-
-      topPlayers.push(...teamTopPlayers);
-    }
-  }
-    const sortedTopPlayers = topPlayers.sort((a, b) => b.stats.points - a.stats.points);
-    setAllTopPlayers(sortedTopPlayers);
-
-    const sortedTopGoals = topPlayers.sort((a,b) => b.stats.goals - a.stats.goals)
-    setTopGoals(sortedTopGoals)
-
-    const sortedTopAssists = topPlayers.sort((a,b) => b.stats.asists - a.stats.asists)
-    setTopAssists(sortedTopAssists)
-
-    const sortedMostPIM = topPlayers.sort((a,b) => b.stats.penalty - a.stats.penalty)
-    setMostPIM(sortedMostPIM)
-
-    setLoad(false);
-};
-
+ 
   useEffect(() => {
-    fetchAllTeamsData();
-  }, []);  */
+    
+    const bestPlayers = async () => {
+      try {
+
+      setLoad(true)  
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+        // call data from mongo. 
+        const res = await axios.get('/api/NHL/playersStats', config)
+       // console.log(res.data)
+        
+        if(res.data) {
+          setAllTopPlayers(res.data.data.mostPTS)
+          setTopGoals(res.data.data.mostGoals)
+          setTopAssists(res.data.data.mostAssists)
+          setMostPIM(res.data.data.mostPIM)
+        } 
+
+         setLoad(false)
+      } catch (error) {
+        console.log(error)
+        setLoad(false)
+      }
+    }
+
+    bestPlayers()
+
+  }, [])
+
+
+
+  // least PIM / top 10 players
+  const leastPIM = allTopPlayers.slice(0,10)
+  const leastPenalty = leastPIM.sort((a,b) => a.pim - b.pim)
 
 
 
 
 
 
+ 
 
-
-
-
-
-
-
-
-
-// >>>>>>>>>>>>> API CALL TWICE !!!!!!!!!
-
-
-const teamQuery = useMemo(() => {
+/* const teamQuery = useMemo(() => {
     return [
       "NSH", "TBL", "PIT", "CHI", "VGK", "MIN", "ANA",
       "FLA", "PHI", "WSH", "ARI", "NYI", "SJS", "CGY",
@@ -141,67 +121,7 @@ const fetchAllTeamsData = useCallback(async () => {
   useEffect(() => {
     fetchAllTeamsData();
   }, [fetchAllTeamsData]); 
-  
-
-
-
-
-  
-/* 
-
-const teamQuery = [
-  "NSH", "TBL", "PIT", "CHI", "VGK", "MIN", "ANA",
-  "FLA", "PHI", "WSH", "ARI", "NYI", "SJS", "CGY",
-  "BUF", "NYR", "CBJ", "NJD", "DET", "DAL",
-  "TOR", "MTL", "BOS", "LAK", "COL", "WPG",
-  "SEA", "CAR", "OTT", "EDM", "STL", "VAN"
-];
-
-
-
-  useEffect(() => {
-
-    
- const fetchTeamData = async (team) => {
-  
-    try {
-      const queryParam = encodeURIComponent(team);
-      const res = await axios.get(`/api/NHL/findTeam?team=${queryParam}`);
-      return res.data.data;
-    } catch (error) {
-      console.error(error);
-      return null;
-    }
-  };
-
-    const fetchAllTeamsData = async () => {
-      setLoad(true);
-      const topPlayers = [];
-      console.log('first')
-      for (const team of teamQuery) {
-        setClub(team);
-        const teamData = await fetchTeamData(team);
-
-        if (teamData && teamData.players) {
-          const sortedPlayers = teamData.players.sort((a, b) => b.stats.points - a.stats.points);
-          const teamTopPlayers = sortedPlayers.slice(0, 2);
-          topPlayers.push(...teamTopPlayers);
-        }
-      }
-
-      // Process and set the state for each category
-      setAllTopPlayers(topPlayers.sort((a, b) => b.stats.points - a.stats.points));
-      setTopGoals([...topPlayers].sort((a, b) => b.stats.goals - a.stats.goals));
-      setTopAssists([...topPlayers].sort((a, b) => b.stats.asists - a.stats.asists));
-      setMostPIM([...topPlayers].sort((a, b) => b.stats.penalty - a.stats.penalty));
-
-      setLoad(false);
-    };
-
-    fetchAllTeamsData();
-  }, []);
- */
-
+   */
 
 
 
@@ -213,11 +133,10 @@ const teamQuery = [
        <h3 className='text-center my-5'>Players Statistics</h3>
 
        {
-        load && <p className='text-center'> Looking for the best players  
-                   <span className='fw-semibold ms-2'>
-                      {club}
-                   </span>
-                </p>
+        load &&   <div className='text-center my-5'>
+                        <div className="spinner-grow" style={{color:'#48d1db'}} role="status">
+                        </div>
+                 </div>
        }
 
 
@@ -225,7 +144,7 @@ const teamQuery = [
       {
         !load && (
           <>
-           <div className="row justify-content-center">
+           <div className="row justify-content-center ">
             {/* most points */}
               <div className="col-11 col-md-5 mt-2">
                 <h4>Points</h4>
@@ -242,17 +161,17 @@ const teamQuery = [
                       </tr>
                     </thead>
                     <tbody className='text-center'>
-                      { allTopPlayers.slice(0,10).map( (player, idx) => (
+                       { allTopPlayers.slice(0,10).map( (player, idx) => (
                         <tr key={player.idx}>
                           <td>{idx+1}</td>
                           <td className='text-start ps-1'>{player.name}</td>
-                          <td>{player.stats.gp}</td>
-                          <td>{player.stats.goals}</td>
-                          <td>{player.stats.asists}</td>
-                          <td className='bg-info-subtle'>{player.stats.points}</td>
-                          <td>{player.stats.penalty}</td>
+                          <td>{player.gp}</td>
+                          <td>{player.goals}</td>
+                          <td>{player.assists}</td>
+                          <td className='bg-info-subtle'>{player.pts}</td>
+                          <td>{player.pim}</td>
                         </tr>
-                      ))}
+                      ))} 
                     </tbody>
                   </table>
               </div>
@@ -273,17 +192,17 @@ const teamQuery = [
                       </tr>
                     </thead>
                     <tbody className='text-center'>
-                      { topGoals.slice(0,10).map( (player, idx) => (
+                     { topGoals.slice(0,10).map( (player, idx) => (
                         <tr key={player.idx}>
                           <td>{idx+1}</td>
                           <td className='text-start ps-1'>{player.name}</td>
-                          <td>{player.stats.gp}</td>
-                          <td className='bg-info-subtle'>{player.stats.goals}</td>
-                          <td>{player.stats.asists}</td>
-                          <td >{player.stats.points}</td>
-                          <td>{player.stats.penalty}</td>
+                          <td>{player.gp}</td>
+                          <td className='bg-info-subtle'>{player.goals}</td>
+                          <td>{player.assists}</td>
+                          <td >{player.pts}</td>
+                          <td>{player.pim}</td>
                         </tr>
-                      ))}
+                      ))} 
                     </tbody>
                   </table>
               </div>
@@ -310,18 +229,18 @@ const teamQuery = [
                         <th>PIM</th>
                       </tr>
                     </thead>
-                    <tbody className='text-center'>
+                    <tbody className='text-center scrollable-tbody'>
                       { topAssists.slice(0,10).map( (player, idx) => (
                         <tr key={player.idx}>
                           <td>{idx+1}</td>
                           <td className='text-start ps-1'>{player.name}</td>
-                          <td>{player.stats.gp}</td>
-                          <td>{player.stats.goals}</td>
-                          <td className='bg-info-subtle'>{player.stats.asists}</td>
-                          <td >{player.stats.points}</td>
-                          <td>{player.stats.penalty}</td>
+                          <td>{player.gp}</td>
+                          <td>{player.goals}</td>
+                          <td className='bg-info-subtle'>{player.assists}</td>
+                          <td >{player.pts}</td>
+                          <td>{player.pim}</td>
                         </tr>
-                      ))}
+                      ))} 
                     </tbody>
                   </table>
               </div>
@@ -330,7 +249,7 @@ const teamQuery = [
               {/* most PIM */}
               <div className="col-11 col-md-5 mt-2">
                 <h4>Leaders with the most PIM </h4>
-                <table>
+                    <table>
                     <thead>
                       <tr className='border-bottom text-center'>
                         <th>#</th>
@@ -345,24 +264,99 @@ const teamQuery = [
                     <tbody className='text-center'>
                       { mostPIM.slice(0,10).map( (player,idx) => (
                         <tr key={player.idx}>
-                          <td>{idx +1}</td>
+                          <td>{idx + 1}</td>
                           <td className='text-start ps-1'>{player.name}</td>
-                          <td>{player.stats.gp}</td>
-                          <td>{player.stats.goals}</td>
-                          <td>{player.stats.asists}</td>
-                          <td >{player.stats.points}</td>
-                          <td className='bg-info-subtle'>{player.stats.penalty}</td>
+                          <td>{player.gp}</td>
+                          <td>{player.goals}</td>
+                          <td>{player.assists}</td>
+                          <td >{player.pts}</td>
+                          <td className='bg-info-subtle'>{player.pim}</td>
                         </tr>
-                      ))}
+                      ))} 
                     </tbody>
                   </table>
               </div>
 
 
            </div>
+
+           <div className="row justify-content-center mt-2">
+            
+
+            {/* most apples */}
+              <div className="col-11 col-md-5 mt-2">
+                <h4>Leaders with the Least PIM</h4>
+                <table>
+                    <thead>
+                      <tr className='border-bottom text-center'>
+                        <th>#</th>
+                        <th className='text-start'>Name</th>
+                        <th>GP</th>
+                        <th >G</th>
+                        <th >A</th>
+                        <th >PTS</th>
+                        <th className='bg-info-subtle'>PIM</th>
+                      </tr>
+                    </thead>
+                    <tbody className='text-center scrollable-tbody'>
+                      { leastPenalty.map( (player, idx) => (
+                        <tr key={player.idx}>
+                          <td>{idx+1}</td>
+                          <td className='text-start ps-1'>{player.name}</td>
+                          <td>{player.gp}</td>
+                          <td>{player.goals}</td>
+                          <td >{player.assists}</td>
+                          <td >{player.pts}</td>
+                          <td className={idx === 0 ?
+                                'bg-danger-subtle' :
+                                 'bg-info-subtle'}>
+                                  {player.pim}
+                         </td>
+                        </tr>
+                      ))} 
+                    </tbody>
+                  </table>
+              </div>
+
+
+              {/* most PIM */}
+             {/*  <div className="col-11 col-md-5 mt-2">
+                <h4>Leaders with the most PIM </h4>
+                    <table>
+                    <thead>
+                      <tr className='border-bottom text-center'>
+                        <th>#</th>
+                        <th className='text-start'>Name</th>
+                        <th>GP</th>
+                        <th>G</th>
+                        <th>A</th>
+                        <th >PTS</th>
+                        <th className='bg-info-subtle'>PIM</th>
+                      </tr>
+                    </thead>
+                    <tbody className='text-center'>
+                      { mostPIM.slice(0,10).map( (player,idx) => (
+                        <tr key={player.idx}>
+                          <td>{idx + 1}</td>
+                          <td className='text-start ps-1'>{player.name}</td>
+                          <td>{player.gp}</td>
+                          <td>{player.goals}</td>
+                          <td>{player.assists}</td>
+                          <td >{player.pts}</td>
+                          <td className='bg-info-subtle'>{player.pim}</td>
+                        </tr>
+                      ))} 
+                    </tbody>
+                  </table>
+              </div> */}
+
+
+           </div>
           </>
         )
       }
+
+      <br /><br />
 
 
 
@@ -371,6 +365,7 @@ const teamQuery = [
         .cursor {
           cursor: pointer;
         }
+
          .table-container {
               overflow-x: auto;
             }
@@ -378,13 +373,21 @@ const teamQuery = [
             table {
             width: 100%;
             border-collapse: collapse; 
-        }
+          }
 
             th, td {
               border: 1px solid black;
             }
 
+           .scrollable-table {
+                width: 100%;
+                height: 100px; /* Set your desired height */
+                overflow-y: auto;
+            }
 
+            .scrollable-table table {
+                width: 100%;
+            }
 
             tr {
               border: 1px solid black; 
