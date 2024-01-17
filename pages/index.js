@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from 'next/head'
+import axios from 'axios';
 
 
 import React, { useState, useCallback, useEffect} from 'react';
@@ -25,6 +26,28 @@ const Home= () => {
     const handleChangeA = (event) => {
         setCheckedItem(event.target.id);
     };
+
+
+  /*  setInterval(() =>{
+     ( function async () {
+      const res = await axios.get('/api/NHL/UpdateNHLstats')
+     })()
+   },)  */
+
+
+ let date = new Date();
+let hr = date.getHours();
+
+if (hr === 23) {
+    (async function() {
+        try {
+            const res = await axios.get('/api/NHL/UpdateNHLstats');
+            console.log(res.data); // Log the response data
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    })();
+}
 
 
 /* 

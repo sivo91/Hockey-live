@@ -148,7 +148,13 @@ const Index = () => {
   return east.slice(8, 16).map((item, index) => (
     <tr key={index} className='border text-center'>
       <td>{index + 9}</td> 
-      <td>{item.shortname}</td>
+      <td>
+         <Link href={` /NHL/Team/${item?.shortname}`}
+              className='fw-semibold'
+              style={{textDecoration: 'none'}}>
+         {item.shortname}
+        </Link>
+      </td>
       <td>{item.gp}</td>
       <td>{item.wins}</td>
       <td>{item.losts}</td>
@@ -166,7 +172,13 @@ const tableRowsEastern = createTableRowsEastern(east);
   return west.slice(8, 16).map((item, index) => (
     <tr key={index} className='border text-center'>
       <td>{index + 9}</td> 
-      <td>{item.shortname}</td>
+      <td>
+        <Link href={` /NHL/Team/${item?.shortname}`}
+                className='fw-semibold'
+                style={{textDecoration: 'none'}}>
+          {item.shortname}
+          </Link>
+      </td>
       <td>{item.gp}</td>
       <td>{item.wins}</td>
       <td>{item.losts}</td>
@@ -186,7 +198,7 @@ const tableRowsWestern = createTableRowsWestern(west);
                 {/* first row , waster conf */}
               <div className="row justify-content-evenly ">
 
-                <div className="col-12 col-md-3">
+                <div className="col-12 col-md-4">
                   <h5 className='text-center mt-3'>Eastern Conference</h5>
                  {/*  <BarChart east={east}/> */}
                  <table className='w-100  border'>
@@ -231,7 +243,7 @@ const tableRowsWestern = createTableRowsWestern(west);
               {/* sec row western conference */}
               <div className="row justify-content-evenly">
 
-                <div className="col-12 col-md-3">
+                <div className="col-12 col-md-4">
 
                   <h5 className='text-center mt-3'>Western Conference</h5>
 

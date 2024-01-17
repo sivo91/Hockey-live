@@ -57,7 +57,7 @@ const Index = () => {
         <tr className='fw-semibold team-box border text-center' key={key}>
           <td>{i + 1}</td>
           <td className='px-2'>
-            <Link href={'#'} >
+            <Link href={`/NHL/Team/${value?.shortname}`} >
               {value.shortname}
             </Link>
           </td>

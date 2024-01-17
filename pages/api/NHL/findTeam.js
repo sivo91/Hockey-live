@@ -30,7 +30,10 @@ async function handler(req, res) {
       //data: team.data,
 
       // return only players data
-      data: team.data.players
+      data: team.data.players,
+      data2: team.data
+
+    
     });
   } catch (error) {
     res.status(500).json({ 

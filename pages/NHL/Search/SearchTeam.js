@@ -329,7 +329,7 @@ nhlTeamShortKeys.sort();
            <div className="container-fluid my-5">
               <div className="row justify-content-center">
                 <div className="col-11 col-md-10 table-container">
-                  {teamData?.players && (
+                       <h3>Roster</h3>
                         <table>
                           <thead>
                             <tr className='border-bottom'>
@@ -347,9 +347,11 @@ nhlTeamShortKeys.sort();
                             </tr>
                           </thead>
                           <tbody>
-                            {teamData?.players.map((player) => (
+                            {teamData?.map((player) => (
                               <tr key={player.id}>
-                                <td>{player.name}</td>
+                                <td style={{textAlign: 'start', paddingLeft:' 8px'}}>
+                                  {player.name}
+                                </td>
                                 <td>{player.pos}</td>
                                 <td>{player.bio.born}</td>
                                 <td>{player.bio.hold}</td>
@@ -364,7 +366,7 @@ nhlTeamShortKeys.sort();
                             ))}
                           </tbody>
                         </table>
-                      )}
+                     
                 </div>
               </div>
             </div>
@@ -400,6 +402,7 @@ nhlTeamShortKeys.sort();
 
             th, td {
               border: 1px solid black;
+              text-align: center;
             }
 
             tr {

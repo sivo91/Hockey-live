@@ -29,7 +29,7 @@ const Index = () => {
       }
         // call data from mongo. 
         const res = await axios.get('/api/NHL/playersStats', config)
-       // console.log(res.data)
+         console.log(res.data)
         
         if(res.data) {
           setAllTopPlayers(res.data.data.mostPTS)
@@ -379,15 +379,7 @@ const fetchAllTeamsData = useCallback(async () => {
               border: 1px solid black;
             }
 
-           .scrollable-table {
-                width: 100%;
-                height: 100px; /* Set your desired height */
-                overflow-y: auto;
-            }
-
-            .scrollable-table table {
-                width: 100%;
-            }
+          
 
             tr {
               border: 1px solid black; 
