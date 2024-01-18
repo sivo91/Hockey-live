@@ -1,4 +1,4 @@
-
+/* 
 
 import axios from 'axios';
 import MostPTS from '@/modules/MostPTS';
@@ -53,9 +53,7 @@ async function handler(req, res) {
     }).flat()
 
 
-    /* 26 sec to update, sort, save all 4 sections */
-
-    /* ************   create, save and update data to mongoDB   *************** */
+ 
 
 
     // total points 
@@ -80,7 +78,6 @@ async function handler(req, res) {
       )
     }
 
-    /* ******************************************* */
 
     
 
@@ -105,7 +102,7 @@ async function handler(req, res) {
       )
     }
 
-    /* ******************************************* */
+   
 
 
 
@@ -133,7 +130,7 @@ async function handler(req, res) {
     }
 
 
-    /* ******************************************* */
+
 
 
 
@@ -162,8 +159,6 @@ async function handler(req, res) {
     }
 
 
-  /* **************************************************** */
-      
 
     res.status(200).json({
       status: "success",
@@ -182,6 +177,9 @@ async function handler(req, res) {
 
 export default handler;
 
+
+
+ */
 
 
 

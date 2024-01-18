@@ -1,5 +1,5 @@
 
-/* 
+
 
 import mongoose from "mongoose";
 
@@ -21,9 +21,9 @@ export default function connectDB() {
   }
 }
 
- */
 
 
+/* 
 import mongoose from "mongoose";
 
 export default async function connectDB() {
@@ -40,3 +40,4 @@ export default async function connectDB() {
     process.exit(1);
   }
 }
+ */

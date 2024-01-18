@@ -11,39 +11,6 @@ const Index = () => {
  const [data, setData] = useState()
  const [loading, setLoading] = useState(false)
 
-/* 
- const fetchGameData = useCallback(async ()=> {
-  
- const options = {
-    method: 'GET',
-    url: 'https://hockey-live-sk-data.p.rapidapi.com/games/WJC/2024',
-    params: {
-      key: process.env.NEXT_PUBLIC_API_KEY2,
-      tz: 'America/New_York'
-    },
-    headers: {
-      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
-      'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
-    }
-  };
-
-    try {
-      setLoading(true)
-      const res = await axios.request(options);
-  
-      setData(res.data)
-      setLoading(false)
-    } catch (error) {
-      console.log(error)
-      setLoading(false)
-    }
-  }, []); 
-
-  useEffect(() => {
-    fetchGameData();
-
-  }, [fetchGameData]); */
-
   
  const fetchGameData = useCallback(async () => {
   

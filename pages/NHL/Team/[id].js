@@ -51,6 +51,8 @@ const fetchGameData = useCallback(async () => {
 }, [id]);
 
 
+
+
   useEffect(() => {
          fetchGameData();
   }, [fetchGameData]);

@@ -22,7 +22,7 @@ const Index = () => {
             <Link href={'/NHL/Search/SearchPlayer'} 
                   style={{textDecoration: 'none'}}
                   className='btn btn-outline-dark rounded-2 py-3 px-3'>
-              <h6>Player for Search</h6>
+              <h6>Search for Player</h6>
               <img src="./player.png" className='w-100' alt="img" />
             </Link>
           </div>
@@ -31,7 +31,7 @@ const Index = () => {
             <Link href={'/NHL/Search/SearchTeam'} 
                   style={{textDecoration: 'none'}}
                   className='btn btn-outline-dark rounded-2 py-3 px-3'>
-                <h6>Team for Search</h6>
+                <h6>Search for Team</h6>
                 <img src="./team.png" className='w-100' alt="img" />
               </Link>
           </div> 

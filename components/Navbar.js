@@ -66,41 +66,6 @@ useEffect(() => {
   fetchGameData();
 }, [fetchGameData]);
 
- /* 
- const fetchGameData = useCallback(async ()=> {
-  
-  //  https://hockey-live-sk-data.p.rapidapi.com/game/{id}?key={API_key}
-
- const options = {
-    method: 'GET',
-    url: 'https://hockey-live-sk-data.p.rapidapi.com/game/1596',
-    params: {
-      key: process.env.NEXT_PUBLIC_API_KEY2,
-      tz: 'America/New_York'
-    },
-    headers: {
-      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
-      'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
-    }
-  };
-
-    try {
-      const res = await axios.request(options);
-      setData(res.data)
-    } catch (error) {
-      
-      console.log(error)
-    }
-  }, []);  // Dependencies array
-
-  useEffect(() => {
-    fetchGameData();
-   
-    const intervalId = setInterval(fetchGameData, 5000000);
-
-    return () => clearInterval(intervalId);
-  }, [fetchGameData]);
-  */
 
 
 

@@ -70,7 +70,7 @@ const Index = () => {
     <tr key={index} className='border text-center'>
       <td>{index + 1}</td> 
        <td>
-        <Link href={` /NHL/Team/${item?.shortname}`}
+        <Link href={`/NHL/Team/${item?.shortname}`}
               className='fw-semibold'
               style={{textDecoration: 'none'}}>
          {item.shortname}
