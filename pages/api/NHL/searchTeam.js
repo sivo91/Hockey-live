@@ -6,15 +6,12 @@
 import axios from 'axios';
 
 async function handler(req, res) {
-  const year = req.query.year; 
-
-
+  const team = req.query.team; 
 
 
   const options = {
-
     method: 'GET',
-    url: `https://hockey-live-sk-data.p.rapidapi.com/table/NHL/${year}`, 
+    url: `https://www.hockey-live.sk/api/team/${team}/NHL/2023`, 
     params: {
       key: process.env.API_KEY2,
       tz: 'America/New_York'
@@ -26,11 +23,17 @@ async function handler(req, res) {
   };
 
   try {
-    const data = await axios.request(options);
-
+    const team = await axios.request(options);
     res.status(200).json({
       status: "success",
-      data: data.data
+      // return teams and players data
+      //data: team.data,
+
+      // return only players data
+      data: team.data.players,
+      data2: team.data
+
+    
     });
   } catch (error) {
     res.status(500).json({ 

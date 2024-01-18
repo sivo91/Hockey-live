@@ -50,13 +50,14 @@ if (hr === 23) {
 }
 
 
-/* 
+
  const [data, setData] = useState()
  const fetchGameData = useCallback(async ()=> {
   
  const options = {
     method: 'GET',
-   url: `https://hockey-live-sk-data.p.rapidapi.com/games/NHL/2023`,
+    //url: `https://hockey-live-sk-data.p.rapidapi.com/games/NHL/2023`,
+    url: `https://hockey-live-sk-data.p.rapidapi.com/table/NHL/2023`, 
     params: {
       key: process.env.NEXT_PUBLIC_API_KEY2,
       tz: 'America/New_York'
@@ -83,7 +84,7 @@ if (hr === 23) {
     const intervalId = setInterval(fetchGameData, 5000000);
 
     return () => clearInterval(intervalId);
-  }, [fetchGameData]); */
+  }, [fetchGameData]); 
 
 
   return (

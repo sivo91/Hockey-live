@@ -41,7 +41,7 @@ const fetchGameData = useCallback(async () => {
 
     setLoad(true)
     const queryParam = encodeURIComponent(query);
-    const res = await axios.get(`/api/NHL/findTeam?team=${queryParam}`);
+    const res = await axios.get(`/api/NHL/searchTeam?team=${queryParam}`);
     setTeamData(res.data.data);
     setAlertInfo(!res.data.data); 
     setLoad(false)

@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import React , {useEffect, useCallback, useState } from 'react'
+import React  from 'react'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaRegCircleUser } from "react-icons/fa6";
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 import { userLogin, userLogOut } from '@/reduxFile/userSlice';
-import { RootState } from '@/reduxFile/store'; // Import RootState
+import { RootState } from '@/reduxFile/store'; 
 import axios from 'axios';
 import NavbarTop from './NavbarTop'
 
@@ -47,26 +47,6 @@ const Navbar= () => {
 
 
 
-    
-
- const [data, setData] = useState()
-
-
- const fetchGameData = useCallback(async () => {
-  
-  try {
-    const res = await axios.get(`/api/Navbar/Navbar`); 
-    setData(res.data);
-  } catch (error) {
-    console.log(error);
-  }
-}, []);
-
-useEffect(() => {
-  fetchGameData();
-}, [fetchGameData]);
-
-
 
 
 
@@ -106,15 +86,7 @@ useEffect(() => {
                  In the Locker Room
                </Link>
                 <br />
-               {/*  <Link href={'/stats/standings'} 
-                      className='rounded-1 my-5 text-dark fs-5 ms-3' 
-                      onClick={CloseSideBar}
-                      style={{textDecoration: 'none'}}>
-                 Standings
-               </Link> */}
-               
-               
-
+              
               </div>
             </div>
          </div>

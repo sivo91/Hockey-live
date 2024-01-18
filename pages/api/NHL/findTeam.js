@@ -5,13 +5,16 @@
 import axios from 'axios';
 
 async function handler(req, res) {
-  const team = req.query.team; // Correctly expecting 'team' as the query parameter
+  const team = req.query.team; 
+  const year = req.query.year
+
+  console.log('yearrrrr', year)
 
 
 
   const options = {
     method: 'GET',
-    url: `https://www.hockey-live.sk/api/team/${team}/NHL/2023`, 
+    url: `https://www.hockey-live.sk/api/team/${team}/NHL/${year}`, 
     params: {
       key: process.env.API_KEY2,
       tz: 'America/New_York'

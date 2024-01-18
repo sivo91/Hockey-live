@@ -10,6 +10,8 @@ import Link from 'next/link'
 import logo from '@/utils/teamSearch'
 import teamFullName from '@/utils/teamFullName'
 import { BsArrowUpSquare } from "react-icons/bs";
+import { useSelector } from 'react-redux';
+import ScrooBtn from '@/utils/ScrollBtnUp'
 
 
 
@@ -18,6 +20,11 @@ const Index = () => {
 
   const router = useRouter()
   const { id } = router.query
+
+  const year = useSelector((state) => state.year.year);
+
+
+
 
   const [load, setLoad] = useState(false)
   const [team, setTeam] = useState([])
@@ -33,7 +40,7 @@ const fetchGameData = useCallback(async () => {
 
     setLoad(true)
     const queryParam = encodeURIComponent(id);
-    const res = await axios.get(`/api/NHL/findTeam?team=${queryParam}`);
+    const res = await axios.get(`/api/NHL/findTeam?team=${queryParam}&year=${year}`);
     if(res.data) {
        //console.log(res.data.data2)
       setTeam(res.data)
@@ -48,7 +55,7 @@ const fetchGameData = useCallback(async () => {
 
     setLoad(false);
   }
-}, [id]);
+}, [id, year]);
 
 
 
@@ -143,7 +150,8 @@ const getTabClassName = (tabValue) => {
 
                 <div className="container-fluid my-5">
               
-                    <h5 className="card-title text-center">{team.name}</h5>
+                    <h5 className="text-center">{team.name}</h5>
+                    <p className='text-center lead m-0'>Seasson {year}/{Number(year)+1}</p>
                         
                     <div className="row justify-content-center">
                        <div className="col-10 col-md-2 mt-3">
@@ -264,6 +272,8 @@ const getTabClassName = (tabValue) => {
 
                   </div>
 
+                   <ScrooBtn />
+
 
                   <style>{`
 
@@ -287,35 +297,35 @@ const getTabClassName = (tabValue) => {
                       }
 
                        .cursor {
-          cursor: pointer;
-        }
-         .table-container {
-              overflow-x: auto;
-            }
+                        cursor: pointer;
+                      }
+                      .table-container {
+                            overflow-x: auto;
+                          }
 
-            table {
-              width: 100%;
-              min-width: 700px; 
-              border-collapse: collapse; 
-            }
+                          table {
+                            width: 100%;
+                            min-width: 700px; 
+                            border-collapse: collapse; 
+                          }
 
-            th, td {
-              border: 1px solid black;
-              text-align: center;
-            }
+                          th, td {
+                            border: 1px solid black;
+                            text-align: center;
+                          }
 
-            tr {
-              border: 1px solid black; 
-              
-            }
+                          tr {
+                            border: 1px solid black; 
+                            
+                          }
 
-          table tr:nth-child(even) {
-            background-color: #ededed;
-          }
+                        table tr:nth-child(even) {
+                          background-color: #ededed;
+                        }
 
-          table tr:nth-child(odd) {
-              background-color: #ffffff;
-            }
+                        table tr:nth-child(odd) {
+                            background-color: #ffffff;
+                          }
 
                   `}</style>
 
