@@ -27,6 +27,8 @@ async function handler(req, res) {
 
   try {
     const team = await axios.request(options);
+    console.log(team)
+
     res.status(200).json({
       status: "success",
       // return teams and players data

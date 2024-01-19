@@ -51,42 +51,6 @@ if (hr === 23) {
 
 
 
- const [data, setData] = useState()
- const fetchGameData = useCallback(async ()=> {
-  
- const options = {
-    method: 'GET',
-    //url: `https://hockey-live-sk-data.p.rapidapi.com/games/NHL/2023`,
-    url: `https://hockey-live-sk-data.p.rapidapi.com/table/NHL/2023`, 
-    params: {
-      key: process.env.NEXT_PUBLIC_API_KEY2,
-      tz: 'America/New_York'
-    },
-    headers: {
-      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
-      'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
-    }
-  };
-
-    try {
-      const res = await axios.request(options);
-      console.log(res.data);
-      setData(res.data)
-    } catch (error) {
-      
-      console.log(error)
-    }
-  }, []);  // Dependencies array
-
-  useEffect(() => {
-    fetchGameData();
-   
-    const intervalId = setInterval(fetchGameData, 5000000);
-
-    return () => clearInterval(intervalId);
-  }, [fetchGameData]); 
-
-
   return (
     <>
       <Head>
