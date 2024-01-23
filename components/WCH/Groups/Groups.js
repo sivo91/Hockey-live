@@ -5,13 +5,16 @@ import { Tooltip } from '@nextui-org/react';
 import Logo from '@/utils/wchLogo'
 import Link from 'next/link';
 
+
+
+
 const Index = ({ year }) => {
 
 
   const [load, setLoad] = useState(false)
   const [groupA, setGroupA] = useState(null)
   const [groupB, setGroupB] = useState(null)
-  console.log(groupA)
+
 
 
   
@@ -35,12 +38,12 @@ const fetchGameData = useCallback(async () => {
          fetchGameData();
   }, [fetchGameData]);
 
-
+ /***********************  Groups ************************** */
 
   let allTeamsA = [];
   let allTeamsB = []
   
-  // create arrs and loop 
+  // create arrs and loop  - groups
   for(const team in groupA) {
       const x = groupA[team]
       allTeamsA.push(x)
@@ -51,101 +54,251 @@ const fetchGameData = useCallback(async () => {
       allTeamsB.push(x)
   }
  
-  console.log(allTeamsB)
+   
+
+
+
+
+/******************** Recursive func from C++ class *********************** */
+
+
+/* 
+const merge = (left, right) => {
+    let sortedArray = []
+    
+
+
+    // merge groups
+    while (left.length && right.length) {
+        if (left[0].points > right[0].points) {
+            sortedArray.push(left.shift())
+        } else {
+            sortedArray.push(right.shift())
+        }
+    }
+
+    // concat teams
+    return [...sortedArray, ...left, ...right]
+}
+
+
+const mergeSort = (arr) => {
+    if (arr.length < 2) {
+        return arr
+    }
+
+    // find the middle point to divide the array into two groups
+    let middle = Math.floor(arr.length / 2)
+    let left = arr.slice(0, middle)
+    let right = arr.slice(middle)
+
+    // Call mergeSort recursively for the two halves
+    return merge(mergeSort(left), mergeSort(right))
+}
+
+
+const standingGroupA = mergeSort(allTeamsA);
+console.log(standingGroupA)
+
+console.log(standingGroupA) */
+
+
+const x = allTeamsA.sort((a, b) => b.points - a.points)
+const y = allTeamsB.sort((a, b) => b.points - a.points)
+
+
+/************************** use pivot ************************ */
+/* 
+const quickSort = (arr) => {
+    if (arr.length < 2) {
+        return arr
+    }
+
+    let pivot = arr[0]   // pivot
+    let left = []       // less than pivot
+    let right = []     // greater than pivot
+
+    
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i].points > pivot.points) {
+            left.push(arr[i]);
+        } else {
+            right.push(arr[i]);
+        }
+    }
+
+    // merge data
+    return [...quickSort(left), pivot, ...quickSort(right)]
+}
+
+const standingGroupB = quickSort(allTeamsB) */
+
+
+
+
 
 
   return (
   <> 
     
-     <h3 className='text-center '>Groups</h3>
+   
       {
         load  ? ( <>
                        <div className='text-center my-5'>
-                         <div className="spinner-grow" style={{color:'#2dc2b3'}} role="status">
+                         <div className="spinner-grow" /* style={{color:'#2dc2b3'}} */ 
+                              style={{backgroundImage: 'radial-gradient(circle, white, black)'}} role="status">
                          </div>
                         </div> 
                  </>)  :
                  (<>
 
-                 <div className="container-fluid">
-                  <div className="row justify-content-center gap-3">
+                
+               
+                 <div className="panel mb-5">
 
-                   
-                  
-                     <div className="skupinaA">
-                        { 
-                          allTeamsA.map( (item, i) => (
-                              
-                            <Link href={`#}`} key={i} >
-                              <Tooltip content={item.shortname} color='primary' className='text-light px-2 fw-semibold rounded-2'>
-                              <div className="skupinaImgBox" >
-                                {Logo(item.shortname,150,90)}
-                              </div>
-                              </Tooltip> 
-                            </Link>
-                            ))
-                        }
+
+                     {/* group A */}
+                    <div className="box mx-2 my-2">
+                       <table className='table-bordered'>
+                          <thead>
+                            <tr>
+                              <th colSpan="2" className='text-center'>Group A</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {allTeamsA.map((team, index) => (
+                              index % 2 === 0 ? (
+                                <tr key={index}>
+                                  <td  key={team.shortname}>
+                                    <Tooltip content={team.shortname} color='primary' className='text-light px-2 fw-semibold rounded-2'>
+                                      <Link href={`/WCH/team/${team.shortname}`}>
+                                        {Logo(team.shortname, 57, 40)}
+                                      </Link> 
+                                    </Tooltip>
+                                  </td>
+                                  {allTeamsA[index + 1] && (
+                                    <td  key={allTeamsA[index + 1].shortname} className='py-3'>
+                                      <Tooltip content={allTeamsA[index + 1].shortname} color='primary' className='text-light px-2 fw-semibold rounded-2'>
+                                      <Link href={`/WCH/team/${allTeamsA[index + 1].shortname}`}>
+                                        {Logo(allTeamsA[index + 1].shortname, 57, 40)}
+                                      </Link> 
+                                    </Tooltip>
+                                      
+                                    </td>
+                                  )}
+                                </tr>
+                              ) : null
+                            ))}
+                          </tbody>
+                        </table>
                     </div>
-                 
-
-                  
-              
-                      <div className="skupinaB">
-                      { 
-                           allTeamsB.map( (item, i) => (
-                              
-                            <Link href={`#}`} key={i} >
-                              <Tooltip content={item.shortname} color='primary' className='text-light px-2 fw-semibold rounded-2'>
-                              <div className="skupinaImgBox" >
-                                {Logo(item.shortname,150,90)}
-                              </div>
-                              </Tooltip> 
-                            </Link>
-                            ))
-                       }
-                    
-                      </div> 
-{/* 
-                      
-                          {allTeamsB.map((item, i) => {
-                              // Check if the index is even
-                              if (i % 2 === 0) {
-                                  return (
-                                      <div className="row" key={`row-${i}`}>
-                                          <Link href={`#}`} key={`link-${i}`}>
-                                              <Tooltip content={item.shortname} color='primary' className='text-light px-2 fw-semibold rounded-2'>
-                                                  <div className="skupinaImgBox">
-                                                      {Logo(item.shortname, 150, 90)}
-                                                  </div>
-                                              </Tooltip>
-                                          </Link>
-                                          {allTeamsB[i + 1] && (
-                                              <Link href={`#}`} key={`link-${i + 1}`}>
-                                                  <Tooltip content={allTeamsB[i + 1].shortname} color='primary' className='text-light px-2 fw-semibold rounded-2'>
-                                                      <div className="skupinaImgBox">
-                                                          {Logo(allTeamsB[i + 1].shortname, 150, 90)}
-                                                      </div>
-                                                  </Tooltip>
-                                              </Link>
-                                          )}
-                                      </div>
-                                  );
-                              } else {
-                                  // For odd indices, do nothing (as they are already included in the row with the previous item)
-                                  return null;
-                              }
-                          })} */}
+                         
+                       {/* group B */}  
+                    <div className="box mx-2 my-2">
+                      <table className='table-bordered'>
+                              <thead>
+                                <tr>
+                                  <th colSpan="2" className='text-center'>Group B</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {allTeamsB.map((team, index) => (
+                                  index % 2 === 0 ? (
+                                    <tr key={index}>
+                                      <td className='text-center'>
+                                        <Tooltip content={team.shortname} color='primary' className='text-light px-2 fw-semibold rounded-2'>
+                                          <Link href={`/WCH/team/${team.shortname}`}>
+                                            {Logo(team.shortname, 57, 40)}
+                                          </Link> 
+                                        </Tooltip>
+                                      </td>
+                                      {allTeamsB[index + 1] && (
+                                        <td className='text-center py-3'>
+                                          <Tooltip content={allTeamsB[index + 1].shortname} color='primary' className='text-light px-2 fw-semibold rounded-2'>
+                                          <Link href={`/WCH/team/${allTeamsB[index + 1].shortname}`}>
+                                            {Logo(allTeamsB[index + 1].shortname, 57, 40)}
+                                          </Link> 
+                                        </Tooltip>
+                                          
+                                        </td>
+                                      )}
+                                    </tr>
+                                  ) : null
+                                ))}
+                              </tbody>
+                            </table>
+                    </div>
                    
+                    {/* standing group A */}
+                    <div className="box2 mx-2 my-2">
+                    <div>
+                      <table className='table-bordered'>
+                        <thead>
+                          <tr>
+                              <th colSpan="4" className='text-center'>Standing Group A</th>
+                          </tr>
+                          <tr>
+                            <th className='py-1'>#</th>
+                            <th className='py-1'>Team</th>
+                            <th className='py-1'>GP</th>
+                            <th className='py-1'>PTS</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {
+                            x &&
+                            x.map((team, idx) => (
+                              <>
+                                  <tr key={idx}>
+                                    
+                                    <td className='py-1'>{idx + 1}</td>
+                                    <td className='py-1'>{team.shortname}</td>
+                                    <td className='py-1'>{team.gp}</td>
+                                    <td className='py-1'>{team.points}</td>
+                                  </tr>
+                              </>
+                            ))
+                          }
+                        </tbody>
+                      </table>
+                    </div>
+                    </div>
 
-              
-                  
+                    <div className="box2 mx-2 my-2">
+                    <div>
+                      <table className='table-bordered'>
+                        <thead>
+                          <tr>
+                              <th colSpan="4" className='text-center'>Standing Group B</th>
+                          </tr>
+                          <tr>
+                            <th className='py-1'>#</th>
+                            <th className='py-1'>Team</th>
+                            <th className='py-1'>GP</th>
+                            <th className='py-1'>PTS</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {
+                            y &&
+                            y.map((team, idx) => (
+                              <>
+                                  <tr key={idx}>
+                                    <td className='py-1'>{idx + 1}</td>
+                                    <td className='py-1'>{team.shortname}</td>
+                                    <td className='py-1'>{team.gp}</td>
+                                    <td className='py-1'>{team.points}</td>
+                                  </tr>
+                              </>
+                            ))
+                          }
+                        </tbody>
+                      </table>
+                    </div>
+                    </div>
 
-                 
-                 
-                  </div>
                  </div>
-                 
-      
+                         
                  
                  </>)
            }
@@ -155,43 +308,40 @@ const fetchGameData = useCallback(async () => {
 
             <style>{`
 
-               .groupContainer {
-                position: relative;
+            .table-bordered {
+                border-collapse: collapse;
+                width: 100%;
+              }
+
+              .panel {
+                width: 100%;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-               }
+              }
+
+              .box {
+                position: relative;
+                min-width: 300px;
+              }
+
+              .box2 {
+                position: relative;
+                min-width: 300px;
+              }
+
+              .table-bordered th, .table-bordered td {
+                padding: 13px 0;
+                text-align: left;
+                text-align: center;
+              }
+
+              .table-bordered th {
+                background-color: #f2f2f2;
+              }
+
+
               
-
-                .skupinaA, .skupinaB, .skupinaC {
-                  position: relative;
-                  min-width: 345px;
-                  max-width: 336px;
-                  padding: 10px 0 ;
-                  display: flex;
-                  justify-content: center;
-                  flex-wrap: wrap;
-                  border: 1px solid black;
-                  border-radius: 8px;
-                  background: #f5f5f5;
-                }
-                .skupinaImgBox {
-                  position: relative;
-                  width: 150px;
-                  height: 92px;
-                  margin: 10px;
-                  overflow: hidden;
-                  background: black;
-                  border-radius: 6px;
-                  border: 1px solid gray;
-                }
-
-                .skupinaImgBox img {
-                  position: relative;
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                }
             `}</style>
 
   

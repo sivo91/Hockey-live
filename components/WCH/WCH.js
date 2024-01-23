@@ -11,6 +11,8 @@ import { MdOutlineSportsHockey } from "react-icons/md";
 import { useSelector, useDispatch } from 'react-redux';
 import { selectYear } from '@/reduxFile/selectYearSlice';
 import Groups from '@/components/WCH/Groups/Groups'
+import { BsCalendar3 } from "react-icons/bs";
+import { GoListUnordered } from "react-icons/go";
 
 
 const Index = () => {
@@ -32,7 +34,6 @@ dispatch(selectYear(selectedYear))
 
 
 
-
 const handleTab = (e) => {
     e.preventDefault();
     setActiveTab(e.target.getAttribute('value'));
@@ -43,26 +44,14 @@ const handleTab = (e) => {
   };
 
 
-
-
-
-
-
-  
-
   const handleChangeYear = (event) => {
     setSelectedYear(event.target.value);
   };
 
 
-
-
-
   const handleButtonClick = (section) => {
     setSectionWCH(section);
   };
-
-
 
 
    // Generate years dynamically
@@ -80,8 +69,6 @@ const handleTab = (e) => {
 
         return years;
     };
-
-
 
 
   return (
@@ -113,13 +100,14 @@ const handleTab = (e) => {
                         ))}
                   </select>
             </div>
+            
             <div className="col-12 col-md-6">
               <div className='d-flex justify-content-around sub-menu my-3'>
 
                     <button className='btn btn-light border mt-2 custom-tooltip' 
                             data-tooltip="Groups"  
                             onClick={() => handleButtonClick('groups')}>
-                      <GrGroup className='fs-2' />
+                      <GoListUnordered className='fs-2' />
                     </button>
 
                     <button className='btn btn-light border mt-2 custom-tooltip' 
@@ -129,48 +117,23 @@ const handleTab = (e) => {
                     </button>
 
                     <button className='btn btn-light border mt-2 custom-tooltip' 
-                            data-tooltip="Standings"
-                            onClick={() => handleButtonClick('Standings')}>
-                      <IoStatsChart className='fs-2' />
-                    </button>
-
-                    <button className='btn btn-light border mt-2 custom-tooltip' 
-                            data-tooltip="Players Statistics"
-                            onClick={() => handleButtonClick('leaders')}>
-                      <IoStatsChart className='fs-2' />
+                            data-tooltip="teams"
+                            onClick={() => handleButtonClick('Teams')}>
+                      <GrGroup className='fs-2' />
                     </button>
 
                     <button className='btn btn-light border mt-2 custom-tooltip' 
                             data-tooltip="Schedule"
+                            onClick={() => handleButtonClick('leaders')}>
+                      <BsCalendar3 className='fs-2' />
+                    </button>
+
+                    <button className='btn btn-light border mt-2 custom-tooltip' 
+                            data-tooltip="Stats"
                             onClick={() => handleButtonClick('schedule')}>
                       <IoStatsChart className='fs-2' />
                     </button>
-
-                   <button className='btn btn-light border mt-2 custom-tooltip' 
-                            data-tooltip="Search"
-                            onClick={() => handleButtonClick('search')}>
-                      <IoStatsChart className='fs-2' />
-                    </button>
-                  {/*
-                    <button className='btn btn-light border mt-2 custom-tooltip' 
-                            data-tooltip="Notes"
-                            onClick={() => handleButtonClick('notes')}>
-                      <CgNotes className='fs-2' />
-                    </button>
-
-                    <button className='btn btn-light border mt-2 custom-tooltip'
-                            data-tooltip="Tooltip" 
-                            onClick={() => handleButtonClick('ice-skate')}>
-                      <GiIceSkate className='fs-2' />
-                    </button>
-
-                    <button 
-                      className='btn btn-light border mt-2 custom-tooltip' 
-                      onClick={() => handleButtonClick('top-teams')}
-                      data-tooltip="Tooltip">
-                      <TfiStatsUp className='fs-2' />
-                  </button> */}
-
+                 
               </div>
             </div>
 
