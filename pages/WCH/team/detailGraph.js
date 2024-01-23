@@ -13,12 +13,13 @@ ChartJS.register(...registerables);
 
 const Index = ({ schedule, id }) => {
  
-    
-
-    schedule.sort((a, b) => new Date(a.date) - new Date(b.date));
-
-    let gameData = [];
+     let gameData = [];
     let gameLabels = [];
+
+   if(schedule) {
+     schedule.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+   
 
      schedule.forEach( game => {
 
@@ -37,6 +38,7 @@ const Index = ({ schedule, id }) => {
         gameLabels.push(`${opponentShortName}`); // oponent shortname
         
     });
+   }
 
 
 
