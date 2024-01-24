@@ -12,7 +12,7 @@ import teamFullName from '@/utils/teamFullName'
 import { BsArrowUpSquare } from "react-icons/bs";
 import { useSelector } from 'react-redux';
 import ScrooBtn from '@/utils/ScrollBtnUp'
-
+import Graph from '@/pages/NHL/Team/graph'
 
 
 
@@ -32,6 +32,7 @@ const Index = () => {
   const [schedule, setSchedule] = useState([])
   const [activeTab, setActiveTab] = useState('roster');
 
+  console.log(schedule)
 
 
  // call data
@@ -180,6 +181,14 @@ const getTabClassName = (tabValue) => {
                                           onClick={handleTab}>Schedule</a>
                                       </li>
 
+                                      <li className="nav-item">
+                                        <a className={getTabClassName('graph')} 
+                                          value='graph' 
+                                          href="#" 
+                                          style={{color: 'black'}}
+                                          onClick={handleTab}>Performance</a>
+                                      </li>
+
                                     </ul>
                                   
                                 </div>
@@ -207,7 +216,7 @@ const getTabClassName = (tabValue) => {
                                       {
                                           schedule.slice(0,41).map((item, idx) => (
                                             <>
-                                             <Link href={'#'} 
+                                             <Link href={`/NHL/Team/gameDetail/${item.id}`} 
                                                      style={{textDecoration: 'none', color: 'black'}}>
                                                    <div className='border rounded-2 pt-2 my-1 pb-1 cursor'>
                                                     {/*  <p className='text-center m-0'>game #{idx + 1}</p> */}
@@ -236,7 +245,7 @@ const getTabClassName = (tabValue) => {
                                       {
                                           schedule.slice(41,schedule.length).map((item, idx) => (
                                             <>
-                                               <Link href={'#'} 
+                                               <Link href={`/`} 
                                                      key={idx}
                                                      style={{textDecoration: 'none', color: 'black'}}>
                                                     <div className='border rounded-2 pt-2 my-1 pb-1 cursor'>
@@ -268,6 +277,22 @@ const getTabClassName = (tabValue) => {
                           )
                          }
 
+                         {
+                          activeTab === 'graph' && (
+                            <>
+                               <p className='text-center mt-5 mb-0'>top, or 1 = win</p>
+                               <p className='text-center m-0'>bottom, or -1 = lose</p>
+
+                               <div className='graph-box mb-5'>
+                                 <div className='graph-panel'>
+                                   <Graph schedule={schedule}
+                                           id={id}/>
+                                 </div>
+                               </div>
+                            </>
+                          )
+                         }
+
                  
 
                   </div>
@@ -277,7 +302,20 @@ const getTabClassName = (tabValue) => {
 
                   <style>{`
 
+                   .graph-panel {
+                      position: relative;
+                      width: 5000px; 
+                      height: 300px;
+                      overflow-x: auto; 
+                    }
 
+                    .graph-box {
+                      position: relative;
+                      width: 98%;
+                      left: 1%; 
+                      border: 1px solid gray;
+                      overflow-x: scroll; // Ensure this is correctly spelled
+                    }
 
                   .cursor:hover {
                     box-shadow: 1px 1px 5px gray;

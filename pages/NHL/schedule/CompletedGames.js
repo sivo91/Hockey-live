@@ -186,6 +186,7 @@ const [currentPage, setCurrentPage] = useState(1);
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = finished_games.slice(indexOfFirstItem, indexOfLastItem);
 
+  console.log(currentItems)
 
 
   const totalPages = Math.ceil(finished_games.length / itemsPerPage);
