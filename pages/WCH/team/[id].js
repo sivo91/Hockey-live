@@ -29,7 +29,7 @@ const Index = () => {
 
   const dispatch = useDispatch()
     
- 
+  
 
 
   const [load, setLoad] = useState(false)
@@ -56,6 +56,7 @@ const fetchGameData = useCallback(async () => {
     const res = await axios.get(`/api/WCH/findTeam?team=${queryParam}&year=${year}`);
     
     if(res.data) {
+      console.log(res.data)
       setTeam(res.data)
       setRoster(res.data.data2.players)
       setSchedule(res.data.data2.games)

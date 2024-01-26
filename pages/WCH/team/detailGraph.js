@@ -71,9 +71,9 @@ const Index = ({ schedule, id }) => {
                     // Customize the Y-axis labels
                     callback: function(value) {
                         if (value === 1) {
-                            return 'Win';
+                            return 'Win  ';
                         } else if (value === -1) {
-                            return 'Loss';
+                            return 'Loss ';
                         }
                         return '';
                     }

@@ -13,6 +13,7 @@ import { selectYear } from '@/reduxFile/selectYearSlice';
 import Groups from '@/components/WCH/Groups/Groups'
 import { BsCalendar3 } from "react-icons/bs";
 import { GoListUnordered } from "react-icons/go";
+import Schedule from '@/components/WCH/Schedule/schedule'
 
 
 const Index = () => {
@@ -123,8 +124,8 @@ const handleTab = (e) => {
                     </button>
 
                     <button className='btn btn-light border mt-2 custom-tooltip' 
-                            data-tooltip="Schedule"
-                            onClick={() => handleButtonClick('leaders')}>
+                            data-tooltip="schedule"
+                            onClick={() => handleButtonClick('schedule')}>
                       <BsCalendar3 className='fs-2' />
                     </button>
 
@@ -142,6 +143,10 @@ const handleTab = (e) => {
 
          {
           sectionWCH === 'groups' && <Groups year={year}/>
+         }
+
+         {
+          sectionWCH === 'schedule' && <Schedule />
          }
 
 
