@@ -1,20 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from 'next/head'
 import axios from 'axios';
+import Link from 'next/link';
 
 
 import React, { useState, useCallback, useEffect} from 'react';
-import NHL from '@/components/NHL/NHL'
-import WJC from '@/components/WJC/WJC'
-import WCH from '@/components/WCH/WCH'
-import SVK from '@/components/SVK/SVK'
-
-
-
-/* const NHL = 'https://hockey-live-sk-data.p.rapidapi.com/table/NHL/2023'
-const KHL = 'https://hockey-live-sk-data.p.rapidapi.com/table/KHL/2023'
-const WCH = 'https://hockey-live-sk-data.p.rapidapi.com/table/WCH/2023'
-const WJC = 'https://hockey-live-sk-data.p.rapidapi.com/table/WJC/2023' */
 
 
 
@@ -59,11 +49,11 @@ if (hr === 23) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+{/* 
       <div className="container-fluid my-5">
 
       
-         {/* select section  */}
+
         <div className='d-flex justify-content-center ps-4'
              style={{width: '400px', margin: '0 auto'}}>
 
@@ -144,14 +134,60 @@ if (hr === 23) {
 
        
       </div>
+ */}
+
+ 
+
+   <h4 className='text-center mt-5'>Explore the World of Hockey</h4>
+   <h4 className='text-center mb-5'>
+      Special thanks to <a href="http://hockey-live.sk" target="_blank" rel="noopener noreferrer">hockey-live.sk</a> for providing accurate and up-to-date data.
+    </h4>
 
 
+  <div className="container-fluid">
+    <div className="row justify-content-center">
+
+      <div className="col-11 col-md-3 mt-5">
+         <h4 className='text-center'>NHL</h4>
+         <div className='text-center cursor'>
+          <Link href={'/NHL/Leading/Leading'}>
+             <img src="./NHL/nhl.png" style={{width: '200px'}} alt="img" />
+          </Link>
+        </div>
+      </div>
+
+      <div className="col-11 col-md-3 mt-5">
+         <h4 className='text-center'>WCH</h4>
+         <div className='text-center cursor'>
+          <Link href={'/WCH/Groups/Groups'}>
+            <img src="./WCH/WCH.png" style={{width: '200px'}} alt="img" />
+          </Link>
+         </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+   
      
 
    
 
 
       <style>{`
+
+      .cursor:hover {
+         cursor: pointer;
+      }
+
+      .hero-paragraph {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 20px;
+      }
 
        .selection {
         position: relative;

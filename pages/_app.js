@@ -6,7 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { store } from '@/reduxFile/store';
 import { Provider } from 'react-redux';
 import Head from 'next/head';
-import Footer from '@/components/Footer'
 import '../styles/Home.module.css'
 import NextNProgress from 'nextjs-progressbar';
 import { useEffect } from "react";
@@ -48,7 +47,7 @@ function App({ Component, pageProps: {session, ...pageProps} }) {
            <Layout>
                 <NextNProgress color="#0a0a0a" />
                 <Component {...pageProps}/>
-                <Footer />
+          
            </Layout>
 
         </Provider>

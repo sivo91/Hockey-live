@@ -1,174 +1,228 @@
-/* eslint-disable @next/next/no-img-element */
-import React  from 'react'
-import { GiHamburgerMenu } from "react-icons/gi";
-import { FaRegCircleUser } from "react-icons/fa6";
-import Link from 'next/link';
-import { useSelector, useDispatch } from 'react-redux';
+
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import { userLogin, userLogOut } from '@/reduxFile/userSlice';
-import { RootState } from '@/reduxFile/store'; 
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 import NavbarTop from './NavbarTop'
+import { selectYear } from '@/reduxFile/selectYearSlice';
 
 
-const Navbar= () => {
-
-  const user = useSelector((state) => state.userAuth.user);
-
-  const dispatch = useDispatch()
-
-  const CloseRightSideBar = ()=> {
-      setTimeout(() => {
-        const closeButton = document.querySelector('#offcanvasRight .btn-close') 
-        closeButton?.click();
-      }, 400);
-    };
-
-    const CloseSideBar = () => {
-      setTimeout(() => {
-        const closeButton = document.querySelector('#offcanvasWithBothOptions .btn-close') 
-        closeButton?.click();
-      }, 400)
-     }
 
 
-     const handleLogOut = async () => {
-      try {
-        
-        const res = await axios.get('/api/user/logout')
-        if(res.data.success === true) {
-        dispatch(userLogOut())
+const data = [
+ 
+  {
+    title: "NHL",
+    subtitle: [
+      { sublink: "Leading Teams", url: "/NHL/Leading/Leading" },
+      { sublink: "Struggling Teams", url: "/NHL/Struggle/Struggle" },
+      { sublink: "Standings", url: "/NHL/Standings/Standings" },
+      { sublink: "Players Statistics", url: "/NHL/BestPlayers/BestPlayers" },
+      { sublink: "Schedule", url: "/NHL/Schedule/Schedule" },
+      { sublink: "Search", url: "/NHL/Search/Search" },
+    ],
+  },
+  {
+    title: "WCH",
+    subtitle: [
+      { sublink: "Groups", url: "/WCH/Groups/Groups" },
+      { sublink: "Schedule", url: "/WCH/Schedule/Schedule" },
+    ],
+  },
+  {
+    title: "Contact",
+    subtitle: [
+      { sublink: "Contact", url: "/contact" },
+    ],
+  }
+];
+
+
+
+const Navbar = () => {
+
+//const { user } = useSelector((state) => state.userAuth)
+
+
+const [selectedYear, setSelectedYear] = useState('');
+const [callBestPlayers, setCallBestPlayers] = useState(false)
+console.log(callBestPlayers)
+
+const dispatch = useDispatch()
+const router = useRouter()
+
+  useEffect(() => {
+   // console.log('useState year', selectedYear);
+    dispatch(selectYear(selectedYear))
+  }, [selectedYear, dispatch]);
+
+ // close navbar ul
+const handleNavbar = () => {
+   const navbarToggler = document.getElementById('navbarNavDropdown')
+   navbarToggler.className = 'collapse navbar-collapse'
+ }
+
+const handleChangeYear = (event) => {
+    setSelectedYear(event.target.value);
+  };
+
+  
+   // Generate years dynamically
+    const generateYears = () => {
+        const currentYear = new Date().getFullYear();
+        const currentMonth = new Date().getMonth();
+
+        let startYear = currentMonth >= 8 ? currentYear + 1 : currentYear; 
+
+        let years = [];
+
+        for (let i = 0; i < 10; i++) {
+            years.push(startYear - i);
         }
 
-        CloseRightSideBar()
-      } catch (error) {
-        console.log(error)
-      }
+        return years;
+    };
+
+
+    // automaticky generuj sezonu
+   useEffect(() => {
+
+    const thisYear = new Date().getFullYear();
+    const thisMonth = new Date().getMonth() + 1; 
+
+    if (thisMonth < 7) {
+      setSelectedYear(thisYear - 1);
+    } else {
+      setSelectedYear(thisYear);
     }
 
+  }, []); 
 
 
-
+   
 
 
   return (
-
-   <>
-
-    <nav className='m-0 p-0' style={{height: '67px'}}>
-        <NavbarTop/>
-    </nav>
-    
-    <nav className='d-flex justify-content-between border'>
-
-         <div>
-           <button className="btn btn-light border ms-3 my-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-            <GiHamburgerMenu/>
-           </button>
-
-            <div className="offcanvas offcanvas-start" data-bs-scroll="true" tabIndex={0} id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-              <div className="offcanvas-header">
-                <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
-                <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              </div>
-              <div className="offcanvas-body">
-
-                <Link href={'/'} 
-                      className='rounded-1 my-5 text-dark fs-5 ms-3' 
-                      onClick={CloseSideBar}
-                      style={{textDecoration: 'none'}}>
-                 Home
-               </Link>
-               <br />
-                <Link href={'/interviews'} 
-                      className='rounded-1 my-5 text-dark fs-5 ms-3' 
-                      onClick={CloseSideBar}
-                      style={{textDecoration: 'none'}}>
-                 In the Locker Room
-               </Link>
-                <br />
-              
-              </div>
-            </div>
-         </div>
-
-        
-
-         
-
-
-
-        {/* ***************************** */}
-
-         <div>
-          <button className="btn btn-light border me-3 my-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-            <FaRegCircleUser/>
-          </button>
-
-            <div className="offcanvas offcanvas-end" tabIndex={0} id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-              <div className="offcanvas-header">
-                <h5 className="offcanvas-title" id="offcanvasRightLabel"></h5>
-                <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              </div>
-              <div className="offcanvas-body">
-                <div className='rightSide'>
-                     {
-                      user === null ? (
-                        <>
-                          <Link href={'/auth/login'}
-                                onClick={CloseRightSideBar}
-                                className='btn btn-outline-secondary rounded-1 mt-3'
-                                style={{textDecoration: 'none'}}>
-                            Sign In
-                          </Link>
-                          <Link href={'/auth/register'}
-                                className='btn btn-outline-secondary rounded-1 mt-3'
-                                onClick={CloseRightSideBar}
-                                style={{textDecoration: 'none'}}>
-                            Sign Up
-                          </Link>
-                        </>
-                      ) : (
-                        <>
-                           <p>Email: {user?.email} </p>
-                           <Link href={'/'}
-                                className='btn btn-outline-secondary rounded-1 mt-3'
-                                onClick={() => handleLogOut() }
-                               style={{textDecoration: 'none'}}>
-                            Sign Out
-                          </Link>
-
-                        </>
-                      )
-                    }  
-
-                  {/* <img src="./foxy/foxy.jpg" style={{width: '300px'}} alt="img" />
-                  <br />
-                  <img src="./foxy/foxy6.jpg" style={{width: '300px'}} alt="img" /> */}
-
-                </div>
-              </div>
-            </div>
-         </div>
-         
-    </nav>
-
-
-    <style>{`
+    <>
 
      
+
+          <nav className='m-0 p-0' style={{height: '75px'}}>
+            <NavbarTop/>
+          </nav> 
       
-      .rightSide {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        margin-left: 30px;
-      }
-    
-    `}</style>
-   
-   </>
+          <nav className="navbar navbar-expand-lg bg-body-tertiary">
 
-  )
-}
+        
+          
+            <Link href={'/'} 
+                  onClick={handleNavbar}
 
-export default Navbar
+                  className="navbar-brand ms-3">
+               Home
+            </Link>
+
+
+            <button
+              className="navbar-toggler me-4 mt-2"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div className="collapse navbar-collapse " id="navbarNavDropdown">
+
+              <ul className="navbar-nav">
+                
+
+                {data.map((link, index) => (
+                  <li
+                    className="nav-item dropdown shadow-none fw-semibold fs-5"
+                    id='nav-link-hover'
+                    key={index} >
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {link.title}
+                    </a>
+                    <ul className="dropdown-menu" style={{width: '300px'}}>
+                      {link.subtitle.map((item, subIndex) => (
+                        <li key={subIndex} onClick={handleNavbar}>
+                          <Link className="dropdown-item" href={item.url}>
+                            {item.sublink}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+
+               <select className="form-select form-select-lg  me-3"
+                              id='select_form'
+                              value={selectedYear} onChange={handleChangeYear}
+                              style={{width: '300px', margin: '0 auto'}} 
+                              aria-label="Large select example">
+                          <option>Select Season</option>
+                          { 
+                              generateYears().map(year => (
+                                // year - 1 / lebo rocnik 2023 sa rata 23/24
+                                <option key={year} value={year - 1}>
+                                    {`${year - 1}/${year}`}
+                                </option>
+                          ))}
+              </select>
+
+
+            </div>
+
+          
+             
+
+            
+          </nav>
+
+ 
+
+
+          <style>{`
+          
+          @media (max-width: 992px) { 
+             
+           #select_form {
+            margin: 20px!important;
+           }
+
+            li {
+              position:relative;
+              padding-left: 40px;
+            }
+
+
+
+
+           }
+          
+          
+          `}</style>
+
+
+
+    </>
+  );
+};
+
+export default Navbar;

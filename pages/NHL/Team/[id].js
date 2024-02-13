@@ -374,9 +374,9 @@ const getTabClassName = (tabValue) => {
      
 
 
-       <Link href={'/'}
+       <Link href={'/NHL/Leading/Leading'}
             style={{ textDecoration: 'none', width: '200px' }}
-            className='btn btn-primary rounded-1 vstack mx-auto'>
+            className='btn btn-primary rounded-1 vstack mx-auto my-5'>
         Back
       </Link>
     </>

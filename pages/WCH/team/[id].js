@@ -27,9 +27,6 @@ const Index = () => {
   const { id } = router.query
   const year = useSelector((state) => state.year.year);
 
-  const dispatch = useDispatch()
-    
-  
 
 
   const [load, setLoad] = useState(false)
@@ -38,12 +35,10 @@ const Index = () => {
   const [schedule, setSchedule] = useState([])
   const [activeTab, setActiveTab] = useState('roster');
   const [noRoster, setNoRoster] = useState(false)
-  const [selectedYear, setSelectedYear] = useState('2023');
 
 
- useEffect(() => {
-  dispatch(selectYear(selectedYear))
-  }, [selectedYear, dispatch]);
+
+
 
 
 
@@ -56,7 +51,7 @@ const fetchGameData = useCallback(async () => {
     const res = await axios.get(`/api/WCH/findTeam?team=${queryParam}&year=${year}`);
     
     if(res.data) {
-      console.log(res.data)
+   
       setTeam(res.data)
       setRoster(res.data.data2.players)
       setSchedule(res.data.data2.games)
@@ -264,25 +259,7 @@ const table_Wins_Losts = () => {
                     <p className='text-center lead m-0'>Year {year}/{Number(year)+1}</p> */}
 
 
-                   {/* select year */}
-                    <div className="row justify-content-center">
-                       <div className="col-12 col-md-6">
-                           
-                              <select className="form-select form-select-lg  my-3"
-                                        value={selectedYear} onChange={handleChangeYear}
-                                        style={{width: '300px', margin: '0 auto'}} 
-                                        aria-label="Large select example">
-                                    <option>Select Season</option>
-                                    { 
-                                        generateYears().map(year => (
-                                          // year - 1 / lebo rocnik 2023 sa rata 23/24
-                                          <option key={year} value={year - 1}>
-                                              {`${year - 1}/${year}`}
-                                          </option>
-                                    ))}
-                              </select>
-                        </div>
-                    </div>
+              
                         
                     <div className="row justify-content-center">
                        <div className="col-10 col-md-2 mt-3">
@@ -340,9 +317,9 @@ const table_Wins_Losts = () => {
                                         <hr />
                                         
                                         {
-                                            schedule.map((item, idx) => (
+                                          schedule && schedule.map((item, idx) => (
                                               <>
-                                              <Link href={'#'} 
+                                            <Link href={`/WCH/team/gameDetail/${item.id}`}
                                                       style={{textDecoration: 'none', color: 'black'}}>
                                                     <div className='border rounded-2 pt-2 my-1 pb-1 cursor'>
                                                 
@@ -471,7 +448,7 @@ const table_Wins_Losts = () => {
      
 
 
-       <Link href={'/'}
+       <Link href={'/WCH/Groups/Groups'}
             style={{ textDecoration: 'none', width: '200px' }}
             className='btn btn-primary rounded-1 vstack mx-auto'>
         Back

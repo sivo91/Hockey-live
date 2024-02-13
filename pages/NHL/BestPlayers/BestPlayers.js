@@ -130,9 +130,10 @@ const fetchAllTeamsData = useCallback(async () => {
 
     <>
       
-       <h3 className='text-center my-5'>Players Statistics</h3>
+       <h3 className='text-center my-5'>NHL | Players Statistics</h3>
 
-       {
+      <div className="container-fluid">
+           {
         load &&   <div className='text-center my-5'>
                         <div className="spinner-grow" style={{color:'#48d1db'}} role="status">
                         </div>
@@ -357,6 +358,7 @@ const fetchAllTeamsData = useCallback(async () => {
       }
 
       <br /><br />
+      </div>
 
 
 

@@ -2,19 +2,20 @@
 import React,{useCallback, useEffect, useState} from 'react'
 import axios from 'axios';
 import { Tooltip } from '@nextui-org/react';
-import Logo from '@/utils/wchLogo'
+import Logo from '@/utils/wcGameDatail'
 import Link from 'next/link';
+import { useSelector,  } from 'react-redux';
 
 
 
 
-const Index = ({ year }) => {
+const Index = () => {
 
 
   const [load, setLoad] = useState(false)
   const [groupA, setGroupA] = useState(null)
   const [groupB, setGroupB] = useState(null)
-
+   const year = useSelector((state) => state.year.year);
 
 
   
@@ -23,6 +24,7 @@ const fetchGameData = useCallback(async () => {
     setLoad(true)
     const res = await axios.get(`/api/WCH/zoznamZapasov?year=${year}`);
     if(res.data) {
+      console.log(res.data)
       setGroupA(res.data.data.group.A)
       setGroupB(res.data.data.group.B)
     }
@@ -140,7 +142,8 @@ const standingGroupB = quickSort(allTeamsB) */
 
   return (
   <> 
-    
+      
+      <h3 className='text-center my-3'>IIHF</h3>
    
       {
         load  ? ( <>

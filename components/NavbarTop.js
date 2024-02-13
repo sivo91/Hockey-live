@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React , {useEffect, useCallback, useState } from 'react'
 import axios from 'axios';
+import { tree } from 'd3';
 
 
 
@@ -15,10 +16,13 @@ const Index = () => {
  const fetchGameData = useCallback(async () => {
   
   try {
+    setLoading(true)
     const res = await axios.get(`/api/TopNav/TopNavNHL`); 
     setData(res.data);
+    setLoading(false)
   } catch (error) {
     console.log(error);
+    setLoading(false)
   }
 }, []);
 
@@ -121,10 +125,17 @@ const flag = (param) => {
                   </>
                 ) : (
                   <>
+                      <li className='px-3 fw-semibold fs-5' 
+                          style={{position: 'relative', top: '20px'}}>
+                         U20
+                      </li>
                      {/* odohrane zapasy */}
                       {playedList.map((item, i) => (
 
-                          <li key={i} 
+                        <>
+                            
+                             
+                             <li key={i} 
                                 className='border px-3 d-flex' 
                                 style={{listStyle: 'none', width: '190px',height: '100%'}}>
 
@@ -155,6 +166,9 @@ const flag = (param) => {
                               </h6> 
 
                             </li>
+
+                        </>
+                          
                     ))}
                   </>
                 )
@@ -233,7 +247,8 @@ const flag = (param) => {
     <style>{`
 
       .nat-top {
-          width: 100%; 
+          width: 100%;
+          height: 80px; 
           overflow-x: auto; 
           overflow-y: hidden;
       }

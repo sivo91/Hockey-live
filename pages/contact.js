@@ -18,6 +18,7 @@ const [five, setFive] = useState(0)
 
 
 const data = { name, email, msg, selectSubject }
+console.log(data)
 
 
  const handleContact = async (e) => {
@@ -66,6 +67,7 @@ const data = { name, email, msg, selectSubject }
 
 
  }
+
 
 
 
@@ -123,7 +125,7 @@ const data = { name, email, msg, selectSubject }
                 <select className="form-select" id='typeAnimal' aria-label="Default select example" value={selectSubject} onChange={handleSubject}>
                   <option value="">Select Subject</option>
                   <option value="general">General Inquiry</option>
-                  <option value="support">Donation Support</option>
+                  <option value="support">Feedback</option>
                   <option value="issue">Technical Issue</option>
               </select>
           
@@ -136,7 +138,7 @@ const data = { name, email, msg, selectSubject }
                             value={msg}
                             onChange={ e => setMsg(e.target.value)}
                             placeholder="Your message"
-                            rows="3" // You can adjust the number of rows as needed
+                            rows="3" 
                   ></textarea>
 
                   <div className='mt-3'>

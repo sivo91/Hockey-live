@@ -88,7 +88,7 @@ if (schedule) {
 }
 
 allGames.sort((a, b) => new Date(a.date) - new Date(b.date));
-console.log(allGames);
+
 
 let groupedGames = [];
 let currentGroup = [];
@@ -119,7 +119,7 @@ if (currentGroup.length > 0) {
   groupedGames.push(currentGroup);
 }
 
-console.log(groupedGames);
+
 
 
   return (
@@ -148,27 +148,16 @@ console.log(groupedGames);
             
 
             <div>
-             {/*   {groupedGames.map((group, groupIndex) => (
-                  <div key={groupIndex}>
-                     {groupIndex + 1}
-                    {group.map((game, gameIndex) => (
-                      <div key={game.id}>
-                        <h4>Title: Game {gameIndex + 1}</h4>
-                        <p>Date: {game.date}</p>
-                        <p>Teams: {game.team1short} vs {game.team2short}</p>
-                      </div>
-                    ))}
-                  </div>
-                ))} */}
-
+    
 
               {groupedGames.map((group, groupIndex) => (
                  <div key={groupIndex} className='mt-4'>
-                    <div className="alert alert-primary text-center fw-semibold game-box" role="alert">
+                    <div className="alert alert-primary text-center border border-dark fw-semibold game-box" role="alert">
                       Game Day {groupIndex + 1}
                     </div>
                   {group.map((game) => ( 
-                    <Link href={`#`} key={game.id} 
+             
+                    <Link href={`/WCH/team/gameDetail/${game.id}`} key={game.id} 
                           style={{ textDecoration: 'none', color: 'black' }}>
                       <div className='border rounded-2 hover pt-2 my-1 pb-1 cursor game-box'>
                         <p className='text-center m-0'>{game.date.substring(0, 10)}</p>

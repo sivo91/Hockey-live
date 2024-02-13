@@ -13,7 +13,7 @@ const Index = () => {
 
   return (
     <>
-      <h3 className='text-center my-5'>Search Section</h3>
+      <h3 className='text-center my-5'>NHL | Search Section</h3>
 
       <div className="container-fluid">
         <div className="row justify-content-center gap-3">
@@ -23,7 +23,7 @@ const Index = () => {
                   style={{textDecoration: 'none'}}
                   className='btn btn-outline-dark rounded-2 py-3 px-3'>
               <h6>Search for Player</h6>
-              <img src="./player.png" className='w-100' alt="img" />
+              <img src="../../player.png" className='w-100' alt="img" />
             </Link>
           </div>
 
@@ -32,7 +32,7 @@ const Index = () => {
                   style={{textDecoration: 'none'}}
                   className='btn btn-outline-dark rounded-2 py-3 px-3'>
                 <h6>Search for Team</h6>
-                <img src="./team.png" className='w-100' alt="img" />
+                <img src="../../team.png" className='w-100' alt="img" />
               </Link>
           </div> 
 

@@ -116,7 +116,10 @@ const tableRowsWestern = createTableRowsWestern(west);
 
 
    <>
-                {/* first row , waster conf */}
+             <h3 className='text-center my-5'>NHL | Leading Teams</h3>
+     
+             <div className="container-fluid">
+                  {/* first row , waster conf */}
               <div className="row justify-content-evenly ">
 
                 <div className="col-12 col-md-4">
@@ -228,6 +231,7 @@ const tableRowsWestern = createTableRowsWestern(west);
 
               </div>
 
+             </div>
 
 
                  

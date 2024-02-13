@@ -1,8 +1,10 @@
+
+
 import React, {useState, useEffect, useCallback , useRef} from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import Chart from 'chart.js/auto';
-import logo from '@/utils/gameDetailsLogo'
+import logo from '@/utils/wcGameDatail'
 import Link from 'next/link';
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
@@ -16,16 +18,12 @@ const Index = () => {
 
 const router = useRouter()
 const { id } = router.query
-const chartRef = useRef(null);
-
-console.log(id)
-
+const chartRef = useRef(null)
 
 const [gameData, setGameData] = useState(null)
+const [checkDate, setCheckDate] = useState('')
 
-
-
- const fetchGameData = useCallback(async () => {
+const fetchGameData = useCallback(async () => {
   if (!id) {
     console.log("Can't find game");
     return;
@@ -33,45 +31,25 @@ const [gameData, setGameData] = useState(null)
 
   try {
     const queryParam = encodeURIComponent(id);
-    const res = await axios.get(`/api/NHL/gameDetails?id=${queryParam}`); 
-    setGameData(res.data.data);
+    const res = await axios.get(`/api/WCH/gameDetails?id=${queryParam}`); 
+
+   if(res.data) {
+
+     setGameData(res.data.data);
+     setCheckDate(res.data.data.date.date)
+
+   }
   } catch (error) {
     console.log(error);
   }
 }, [id]);
 
 useEffect(() => {
-  fetchGameData();
-}, [fetchGameData]);
+  if(id) {
+    fetchGameData();
+  }
+}, [id, fetchGameData]);
 
-/*  const fetchGameData = useCallback(async ()=> {
-  
- const options = {
-    method: 'GET',
-    url: `https://hockey-live-sk-data.p.rapidapi.com/game/${id}`,
-    params: {
-      key: process.env.NEXT_PUBLIC_API_KEY2,
-      tz: 'America/New_York'
-    },
-    headers: {
-      'X-RapidAPI-Key': process.env.NEXT_PUBLIC_API_KEY,
-      'X-RapidAPI-Host': 'hockey-live-sk-data.p.rapidapi.com'
-    }
-  };
-
-    try {
-      const res = await axios.request(options);
-      setGameData(res.data)
-    } catch (error) {
-      
-      console.log(error)
-    }
-  }, [id]);  
-
-
-  useEffect(() => {
-     fetchGameData();
-  }, [fetchGameData]); */
 
 
 
@@ -169,10 +147,8 @@ const config = {
   }, [gameData]);
 
 
- //console.log(gameData)
- 
 
-  
+
   let goalsTeam1 = [];
   let goalsTeam2 = [];
 
@@ -189,8 +165,6 @@ const config = {
     }
   }
 
-/*   console.log(goalsTeam1)
-  console.log(goalsTeam2) */
 
 
   const PIM = (x, y) => {
@@ -213,19 +187,29 @@ const config = {
     }
   }
 
-const total_goals = () => {
 
-}
+  // check if we have game result
+  const gameDate = new Date(checkDate);
+  const currentDate = new Date()
 
-
+  const isGameInFuture = gameDate > currentDate;
+ 
+  
 
 
   return (
    <>
 
-      <h3 className='text-center my-5'>Game Summaries</h3>
+      <div className='my-5'>
+        <h3 className='text-center'>Game Summaries</h3>
+        {
+          isGameInFuture &&  <h3 className='text-danger text-center'>Waiting for the game</h3>
+        }
+      </div>
+     
 
-      {
+      
+       {
         gameData === null || gameData === undefined ? (
           <>
             <div className='text-center my-5'>
@@ -240,7 +224,7 @@ const total_goals = () => {
         <div className="row justify-content-center">
           <div className="col-4 col-md-3 text-center">
              <div>
-              { logo(gameData?.team1short)}
+              { logo(gameData?.team1short, 90,60)}
                <h3>{gameData?.team1long}</h3>
              </div>
              <h1>{gameData?.score?.goals1}</h1>
@@ -250,7 +234,7 @@ const total_goals = () => {
 
           <div className="col-4 col-md-3 text-center">
               <div>
-                 { logo(gameData?.team2short)}
+                 { logo(gameData?.team2short,90,60)}
                  <h3>{gameData?.team2long}</h3>
               </div>
               <h1>{gameData?.score?.goals2}</h1>
@@ -267,7 +251,7 @@ const total_goals = () => {
 
                   <div className="timeline-container">
                     <div className="timeline">
-                        {gameData.goals.map((goal, index) => (
+                        {gameData?.goals?.map((goal, index) => (
                             <div key={index} className={`timeline-item ${goal.teamshort === `${gameData.team1short}` ? 'left' : 'right'}`}>
                                 <div className="timeline-content">
                                     <div className='d-flex justify-content-between'>
@@ -525,12 +509,10 @@ const total_goals = () => {
         )
       }
 
-     
 
 
 
-
-      <Link href={'/NHL/Schedule/CompletedGames'}
+      <Link href={'/WCH/Schedule/Schedule'}
             style={{textDecoration: 'none', width: '150px'}}
             className='btn btn-primary vstack mx-auto my-5'>
         Back

@@ -377,7 +377,7 @@ nhlTeamShortKeys.sort();
 
 
      
-      <Link href={'/'}
+      <Link href={'/NHL/Search/Search'}
             style={{ textDecoration: 'none', width: '200px' }}
             className='btn btn-primary rounded-1 vstack mx-auto'>
         Back
