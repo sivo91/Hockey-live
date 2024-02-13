@@ -21,7 +21,7 @@ const data = [
       { sublink: "Struggling Teams", url: "/NHL/Struggle/Struggle" },
       { sublink: "Standings", url: "/NHL/Standings/Standings" },
       { sublink: "Players Statistics", url: "/NHL/BestPlayers/BestPlayers" },
-      { sublink: "Schedule", url: "/NHL/Schedule/schedule" },
+      { sublink: "Schedule", url: "/NHL/Schedule/Schedule" },
       { sublink: "Search", url: "/NHL/Search/Search" },
     ],
   },
@@ -29,7 +29,7 @@ const data = [
     title: "WCH",
     subtitle: [
       { sublink: "Groups", url: "/WCH/Groups/Groups" },
-      { sublink: "Schedule", url: "/WCH/Schedule/schedule" },
+      { sublink: "Schedule", url: "/WCH/Schedule/Schedule" },
     ],
   },
   {
