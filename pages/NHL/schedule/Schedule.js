@@ -105,7 +105,7 @@ for (let i = 0; i < total_games; i++) {
                       )
                     }
                    
-                    <Link href={'/NHL/Schedule/gameDetail/CompletedGames'}
+                    <Link href={'/NHL/Schedule/CompletedGames'}
                           style={{width: '120px', textDecoration: 'none'}}
                           className='btn btn-primary vstack mx-auto'>
                         Visit

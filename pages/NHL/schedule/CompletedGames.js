@@ -138,7 +138,7 @@ const [currentPage, setCurrentPage] = useState(1);
                   <>
                       <div key={index} className="col-5 col-md-2">
                         {/* Content for each game */}
-                        <Link href={`/NHL/Schedule/gameDetail/${game?.id}`}
+                        <Link href={`/NHL/Schedule/${game?.id}`}
                               style={{textDecoration: 'none'}}>
                             <div className="card my-2 px-3 py-2">
                               <h5 className='card-title text-center'>Game # {index + 1}</h5>
