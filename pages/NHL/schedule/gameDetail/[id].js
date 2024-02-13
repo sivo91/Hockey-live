@@ -530,7 +530,7 @@ const total_goals = () => {
 
 
 
-      <Link href={'/NHL/Schedule/CompletedGames'}
+      <Link href={'/NHL/Schedule/gameDetail/CompletedGames'}
             style={{textDecoration: 'none', width: '150px'}}
             className='btn btn-primary vstack mx-auto my-5'>
         Back
