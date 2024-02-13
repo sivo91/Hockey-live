@@ -258,6 +258,13 @@ const [currentPage, setCurrentPage] = useState(1);
     <>
       <h3 className='text-center my-5'>Completed NHL Games</h3>
 
+       {
+          isLoading  && (
+                <div className="spinner-grow text-primary mx-auto mt-3" role="status">
+              </div>
+          ) 
+        }
+
      
      
       {/* select specific team */}
@@ -301,18 +308,7 @@ const [currentPage, setCurrentPage] = useState(1);
 
 
      
-        {
-          isLoading  ? (
-                <div className="spinner-grow text-primary mx-auto mt-3" role="status">
-              </div>
-          ) :
-          (
-            <>
-              <h5 className='text-center mb-5'>Total {selectedTeam} games: {teamOutput?.length}</h5>
-              {show_specific_team && teamOutput}
-            </>
-          )
-        }
+       
         
 
         
