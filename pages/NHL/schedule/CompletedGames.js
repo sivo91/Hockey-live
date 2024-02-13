@@ -29,13 +29,10 @@ const Index = () => {
   const [teamOutput, setTeamOutput] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-
- 
 const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 18;
   
 
-  
    useEffect(() => {
     if (year) {
       dispatch(fetchNHLSchedule(year))
@@ -44,10 +41,6 @@ const [currentPage, setCurrentPage] = useState(1);
 
   
   if (status === 'failed') return <div>Error: {error}</div>;
-
-
-  
-  //console.log('schedullll', nhlSchedule?.games)
 
 
   let finished_games = []
@@ -66,7 +59,6 @@ const [currentPage, setCurrentPage] = useState(1);
     } 
   }
 
-  //console.log(finished_games) 
   
 
  // all played games
@@ -75,7 +67,7 @@ const [currentPage, setCurrentPage] = useState(1);
                   <>
                       <div key={index} className="col-5 col-md-2">
                         {/* Content for each game */}
-                        <Link href={`/NHL/Schedule/${game?.id}`}
+                        <Link href={`/NHL/Schedule/gameDetail/${game?.id}`}
                               style={{textDecoration: 'none'}}>
                             <div className="card my-2 px-3 py-2">
                               <p className='text-center mb-0'> 
@@ -116,9 +108,6 @@ const [currentPage, setCurrentPage] = useState(1);
     setShowSpecificTeam(true)
     showTeams(e.target.value)
  }
-
-
-
 
 
  // filter all played teams and show only specific_team
@@ -179,21 +168,14 @@ const [currentPage, setCurrentPage] = useState(1);
         setIsLoading(false)
  }
 
-
-
  
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = finished_games.slice(indexOfFirstItem, indexOfLastItem);
 
-  console.log(currentItems)
-
-
   const totalPages = Math.ceil(finished_games.length / itemsPerPage);
 
-
-
-const renderPagination = () => {
+ const renderPagination = () => {
   let pageNumbers = [];
   const pageNeighbours = 1;
   const totalBlocks = pageNeighbours * 2 + 3;
@@ -266,7 +248,7 @@ const renderPagination = () => {
   );
 
   return pageNumbers;
-};
+ };
 
 
 
@@ -356,7 +338,7 @@ const renderPagination = () => {
 
 
       <Link href={'/NHL/Schedule/Schedule'}
-            className='btn btn-primary vstack mx-auto'
+            className='btn btn-primary vstack mx-auto my-5'
             style={{width: '200px'}}>
         back
       </Link>

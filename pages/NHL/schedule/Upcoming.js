@@ -92,7 +92,7 @@ const Index = () => {
 
 
        <Link href={'/NHL/Schedule/Schedule'}
-            className='btn btn-primary vstack mx-auto'
+            className='btn btn-primary vstack mx-auto my-5'
             style={{width: '200px'}}>
         back
       </Link>

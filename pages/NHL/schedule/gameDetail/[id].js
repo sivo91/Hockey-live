@@ -213,12 +213,6 @@ const config = {
     }
   }
 
-const total_goals = () => {
-
-}
-
-
-
 
   return (
    <>
