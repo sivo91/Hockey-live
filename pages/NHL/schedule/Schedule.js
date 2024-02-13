@@ -19,7 +19,7 @@ const Index = () => {
   const status = useSelector(state => state.nhlSchedule.status);
   const error = useSelector(state => state.nhlSchedule.error);
 
-  console.log(status)
+  
 
   
 
@@ -223,8 +223,6 @@ for (let i = 0; i < total_games; i++) {
 
      </div>
 
-
-        
 
     <style>{`
   

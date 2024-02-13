@@ -18,7 +18,7 @@ const router = useRouter()
 const { id } = router.query
 const chartRef = useRef(null);
 
-console.log(id)
+
 
 
 const [gameData, setGameData] = useState(null)
