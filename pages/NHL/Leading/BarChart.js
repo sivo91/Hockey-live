@@ -14,7 +14,7 @@ const BarChart = ({ east }) =>  {
 
 let sestka = []
 
-for(let i = 0; i < east.length;i++) {
+for(let i = 0; i < east?.length;i++) {
   if( i < 8 ) {
     sestka.push(east[i])
   } else {
@@ -25,7 +25,7 @@ for(let i = 0; i < east.length;i++) {
 let teamNames = [];
 let teamPoints = [];
 
-for (let i = 0; i < sestka.length; i++) {
+for (let i = 0; i < sestka?.length; i++) {
     teamNames.push(sestka[i].shortname); 
     teamPoints.push(parseInt(sestka[i].points)); 
 }

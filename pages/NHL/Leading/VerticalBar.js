@@ -73,7 +73,7 @@ const sortedTeams = [...nhl].sort((a, b) => b.points - a.points);
 let playOff = []
 let vacation = []
 
-for(let i = 0; i < sortedTeams.length; i++) {
+for(let i = 0; i < sortedTeams?.length; i++) {
   if(i < 16) {
     playOff.push(sortedTeams[i])
   } else {
@@ -85,7 +85,7 @@ for(let i = 0; i < sortedTeams.length; i++) {
 let teamPlayOff = []
 let teamPlayOffPoints = []
 
-for(let i = 0; i < playOff.length;i++) {
+for(let i = 0; i < playOff?.length;i++) {
   teamPlayOff.push(playOff[i].shortname)
   teamPlayOffPoints.push(playOff[i].points)
 }
@@ -93,7 +93,7 @@ for(let i = 0; i < playOff.length;i++) {
 let vacaTeam = []
 let vacaPoints = []
 
-for(let i = 0; i < playOff.length; i++) {
+for(let i = 0; i < playOff?.length; i++) {
   vacaTeam.push(playOff[i].shortname)
   vacaPoints.push(playOff[i].points)
 }
