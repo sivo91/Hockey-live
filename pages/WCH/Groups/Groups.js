@@ -143,7 +143,7 @@ const standingGroupB = quickSort(allTeamsB) */
   return (
   <> 
       
-      <h3 className='text-center my-3'>IIHF</h3>
+      <h3 className='text-center my-3'>IIHF | {year}-{Number(year) + 1}</h3>
    
       {
         load  ? ( <>
