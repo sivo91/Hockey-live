@@ -355,7 +355,7 @@ const renderPagination = () => {
 
 
 
-      <Link href={'/NHL/Schedule/Schedule'}
+      <Link href={'/NHL/Schedule'}
             className='btn btn-primary vstack mx-auto'
             style={{width: '200px'}}>
         back
