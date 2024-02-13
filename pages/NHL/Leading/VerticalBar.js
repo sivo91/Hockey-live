@@ -68,7 +68,10 @@ const VerticalBarChart = ({ nhl }) => {
 
 
 
-const sortedTeams = [...nhl].sort((a, b) => b.points - a.points);
+let sortedTeams 
+if(nhl) {
+   sortedTeams = [...nhl].sort((a, b) => b.points - a.points);
+}
 
 
 

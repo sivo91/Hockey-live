@@ -67,7 +67,11 @@ ChartJS.register(...registerables);
 const VerticalBarDown = ({ nhl }) => {
   
 
-const sortedTeams = [...nhl].sort((a, b) => a.points - b.points);
+let sortedTeams 
+
+if(nhl) {
+  sortedTeams = [...nhl].sort((a, b) => a.points - b.points);
+}
 
 
 
