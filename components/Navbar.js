@@ -143,7 +143,7 @@ const handleChangeYear = (event) => {
                   <li
                     className="nav-item dropdown shadow-none fw-semibold fs-5 li-lrg"
                     id='nav-link-hover'
-                    key={index} >
+                    key={index + 1} >
                     <a
                       className="nav-link dropdown-toggle"
                       href="#"
