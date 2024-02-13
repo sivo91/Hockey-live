@@ -90,7 +90,7 @@ for (let i = 0; i < total_games; i++) {
            </div>
 
 
-       <Link href={'/NHL/Schedule/Schedule'}
+       <Link href={'/NHL/Schedule/ScheduleTables'}
             className='btn btn-primary vstack mx-auto my-5'
             style={{width: '200px'}}>
         back

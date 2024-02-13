@@ -19,7 +19,7 @@ const data = [
       { sublink: "Struggling Teams", url: "/NHL/Struggle/Struggle" },
       { sublink: "Standings", url: "/NHL/Standings/Standings" },
       { sublink: "Players Statistics", url: "/NHL/BestPlayers/BestPlayers" },
-      { sublink: "Schedule", url: "/NHL/Schedule/Schedule" }, 
+      { sublink: "Schedule", url: "/NHL/Schedule/ScheduleTables" }, 
       { sublink: "Search", url: "/NHL/Search/Search" },
     ],
   },
