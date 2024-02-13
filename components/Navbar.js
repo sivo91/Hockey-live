@@ -29,7 +29,7 @@ const data = [
     title: "WCH",
     subtitle: [
       { sublink: "Groups", url: "/WCH/Groups/Groups" },
-      { sublink: "Schedule", url: "/WCH/Schedule/Schedule" },
+      { sublink: "Schedule", url: "/WCH/Schedule/schedule" },
     ],
   },
   {
