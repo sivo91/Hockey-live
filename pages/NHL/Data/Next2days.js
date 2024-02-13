@@ -1,4 +1,3 @@
-
 /* eslint-disable @next/next/no-img-element */
 import React, {useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
@@ -18,66 +17,41 @@ const Index = () => {
   const status = useSelector(state => state.nhlSchedule.status);
   const error = useSelector(state => state.nhlSchedule.error);
   
- 
-
-let last_2_days_games = [];
+  
+let future_games = []
+let total_games = nhlSchedule?.data?.games?.length;
 let currentTime = new Date();
+let upcomingGames = 0;
 let twoDaysAgo = new Date();
-let recentGames = 0;
 twoDaysAgo.setDate(currentTime.getDate() - 2);
-let total_games = nhlSchedule?.data?.games?.length || 0;
+let twoDaysInFuture = new Date();
+twoDaysInFuture.setDate(currentTime.getDate() + 2); 
 
-/* 
 
 for (let i = 0; i < total_games; i++) {
-  let gameDayString = nhlSchedule?.games[i]?.date?.date?.split('.')[0];
-  let game_day = new Date(gameDayString);
 
-
-  
-  let timeDiff = currentTime - game_day;
-    //console.log(timeDiff)  //-8461305229
-
-
-  let diffDays = timeDiff / (1000 * 3600 * 24)
-  console.log(diffDays)
-
- 
-  if (diffDays >= 1 && diffDays < 13) {
-     last_2_days_games.push(nhlSchedule?.games[i]);
-    }
-  }
- */
-
-  
-for (let i = 0; i < total_games; i++) {
-
-   let gameDayString = nhlSchedule?.data?.games[i]?.date?.date?.split('.')[0];
+    let gameDayString = nhlSchedule?.data?.games[i]?.date?.date?.split('.')[0];
     let game_day = new Date(gameDayString);
    // console.log(game_day)  // Thu Apr 18 2024 22:00:00 GMT-0700
 
-
-
-    //  last 2 days games
-    if (game_day >= twoDaysAgo && game_day < currentTime) {
-        recentGames++;
-         last_2_days_games.push(nhlSchedule?.data?.games[i]);
+   if (game_day > currentTime && game_day <= twoDaysInFuture) {
+        upcomingGames++;
+        future_games.push(nhlSchedule?.data?.games[i]);
     }
-  
 }
 
 
 
-  
-  return (
-    <>
-       <h3 className='text-center my-5'>NHL Games in the Last 2 Days</h3>
 
-        <div className="container-fluid my-5">
-          <h5>Total Games: {last_2_days_games.length}</h5>
+  return (
+  <>
+      <h3 className='text-center my-5'>NHL Games in the Next 2 Days</h3>
+
+       <div className="container-fluid my-5">
+          <h5>Total Games: {upcomingGames}</h5>
             <div className="row justify-content-center">
                { 
-                    last_2_days_games.map((game, index) => (
+                    future_games.map((game, index) => (
                         <>
                             <div key={index} className="col-5 col-md-2">
                             
@@ -116,12 +90,12 @@ for (let i = 0; i < total_games; i++) {
            </div>
 
 
-       <Link href={'/NHL/Schedule/ScheduleTables'}
+       <Link href={'/NHL/Data/Data'}
             className='btn btn-primary vstack mx-auto my-5'
             style={{width: '200px'}}>
         back
       </Link>
-    </>
+  </>
   )
 }
 

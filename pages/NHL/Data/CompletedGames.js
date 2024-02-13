@@ -333,7 +333,7 @@ const [currentPage, setCurrentPage] = useState(1);
 
 
 
-      <Link href={'/NHL/Schedule/ScheduleTables'}
+      <Link href={'/NHL/Data/Data'}
             className='btn btn-primary vstack mx-auto my-5'
             style={{width: '200px'}}>
         back

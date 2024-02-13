@@ -5,6 +5,10 @@
 
 
 
+
+
+
+
 /* eslint-disable @next/next/no-img-element */
 import React, {useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
@@ -109,7 +113,7 @@ for (let i = 0; i < total_games; i++) {
                       )
                     }
                    
-                    <Link href={'/NHL/Schedule/CompletedGames'}
+                    <Link href={'/NHL/Data/CompletedGames'}
                           style={{width: '120px', textDecoration: 'none'}}
                           className='btn btn-primary vstack mx-auto'>
                         Visit
@@ -136,7 +140,7 @@ for (let i = 0; i < total_games; i++) {
                           <p className="card-text fs-3 fw-semibold text-center">{waiting_for_game}</p>
                       )
                     }
-                    <Link href={'/NHL/Schedule/Upcoming'}
+                    <Link href={'/NHL/Data/Upcoming'}
                           style={{width: '120px', textDecoration: 'none'}}
                           className='btn btn-primary vstack mx-auto'>
                         Visit
@@ -169,7 +173,7 @@ for (let i = 0; i < total_games; i++) {
                           <p className="card-text fs-3 fw-semibold text-center">{recentGames}</p>
                       )
                     }
-                    <Link href={'/NHL/Schedule/Last2days'}
+                    <Link href={'/NHL/Data/Last2days'}
                           style={{width: '120px', textDecoration: 'none'}}
                           className='btn btn-primary vstack mx-auto'>
                         Visit
@@ -196,7 +200,7 @@ for (let i = 0; i < total_games; i++) {
                           <p className="card-text fs-3 fw-semibold text-center">{upcomingGames}</p>
                       )
                     }
-                    <Link href={'/NHL/Schedule/Next2days'}
+                    <Link href={'/NHL/Data/Next2days'}
                           style={{width: '120px', textDecoration: 'none'}}
                           className='btn btn-primary vstack mx-auto'>
                         Visit
