@@ -12,7 +12,6 @@ import { selectYear } from '@/reduxFile/selectYearSlice';
 
 
 const data = [
- 
   {
     title: "NHL",
     subtitle: [
@@ -20,7 +19,7 @@ const data = [
       { sublink: "Struggling Teams", url: "/NHL/Struggle/Struggle" },
       { sublink: "Standings", url: "/NHL/Standings/Standings" },
       { sublink: "Players Statistics", url: "/NHL/BestPlayers/BestPlayers" },
-     // { sublink: "Schedule", url: "/NHL/Schedule/Schedule" },
+      { sublink: "Schedule", url: "/NHL/Schedule/Schedule" }, 
       { sublink: "Search", url: "/NHL/Search/Search" },
     ],
   },
@@ -38,6 +37,7 @@ const data = [
     ],
   }
 ];
+
 
 
 
@@ -153,10 +153,10 @@ const handleChangeYear = (event) => {
                     >
                       {link.title}
                     </a>
-                    <ul className="dropdown-menu" style={{width: '300px'}}>
+                    <ul className="dropdown-menu nav-sub-menu-sm">
                       {link.subtitle.map((item, subIndex) => (
                         <li key={subIndex} onClick={handleNavbar}>
-                          <Link className="dropdown-item" href={item.url}>
+                          <Link className="dropdown-item sm-li" href={item.url}>
                             {item.sublink}
                           </Link>
                         </li>
@@ -194,21 +194,49 @@ const handleChangeYear = (event) => {
 
 
           <style>{`
+
+          .nav-sub-menu-sm {
+            position: relative;
+            width: 250px;
+          }
+
+          li {
+            position: relative;
+            padding-left : 0px;
+            left: 0px;
+          }
+
           
-          @media (max-width: 992px) { 
-             
-           #select_form {
-            margin: 20px!important;
-           }
 
-            li {
-              position:relative;
-              padding-left: 40px;
-            }
+         .dropdown-menu li {
+            border-left: 1px solid white;
+          }
 
+         .dropdown-menu li:hover {
+            border-left: 1px solid gray;
+          }
+          
 
+          @media (max-width: 992px) {         
+              #select_form {
+                margin: 20px!important;
+              }
 
+              li {
+                position:relative;
+                left: 1%;
+              }
 
+             .dropdown-menu .nav-sub-menu-sm {
+                position: relative;
+                width: 98%;
+              }
+
+              .sm-li {
+                  position: relative;
+                  padding-left : 10px;
+                  left: 0px;
+              }
            }
           
           

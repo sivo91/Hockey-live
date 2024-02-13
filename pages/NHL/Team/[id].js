@@ -159,13 +159,13 @@ const getTabClassName = (tabValue) => {
                              {logo(id,110,110 )}
                        </div>
 
-                       <div className="col-10 col-md-7 justify-content-center mt-4">
+                       <div className="col-11 col-md-7 justify-content-center mt-4">
 
                               <div className="card text-center">
                                 <div className="card-header">
-                                  <ul className="nav nav-tabs card-header-tabs">
+                                  <ul className="nav nav-tabs card-header-tabs mobile-sm-size">
 
-                                      <li className="nav-item text">
+                                      <li className="nav-item text li-sm">
                                         <a className={getTabClassName('roster')} 
                                           value='roster' 
                                           href="#" 
@@ -173,7 +173,7 @@ const getTabClassName = (tabValue) => {
                                           onClick={handleTab}>Roster</a>
                                       </li>
 
-                                      <li className="nav-item">
+                                      <li className="nav-item  li-sm">
                                         <a className={getTabClassName('schedule')} 
                                           value='schedule' 
                                           href="#" 
@@ -181,7 +181,7 @@ const getTabClassName = (tabValue) => {
                                           onClick={handleTab}>Schedule</a>
                                       </li>
 
-                                      <li className="nav-item">
+                                      <li className="nav-item  li-sm">
                                         <a className={getTabClassName('graph')} 
                                           value='graph' 
                                           href="#" 
@@ -302,6 +302,8 @@ const getTabClassName = (tabValue) => {
 
                   <style>{`
 
+
+
                    .graph-panel {
                       position: relative;
                       width: 5000px; 
@@ -329,10 +331,7 @@ const getTabClassName = (tabValue) => {
                           list-style-type: none; 
                         }
 
-                      .nav-item {
-                        flex-grow: 1; 
-                        text-align: center; 
-                      }
+                     
 
                        .cursor {
                         cursor: pointer;
@@ -364,6 +363,23 @@ const getTabClassName = (tabValue) => {
                         table tr:nth-child(odd) {
                             background-color: #ffffff;
                           }
+
+
+
+
+
+                       @media (max-width: 992px) { 
+                          .li-sm {
+                            padding: 0 !important;
+                            font-size: 14px !important;
+                          }
+
+                          .li-sm a {
+                            white-space: nowrap !important;
+                            overflow: hidden !important;
+                            text-overflow: ellipsis !important;
+                          }
+                        }
 
                   `}</style>
 
