@@ -524,7 +524,7 @@ const config = {
 
 
 
-      <Link href={'/NHL/Schedule/CompletedGames'}
+      <Link href={'/NHL/Data/CompletedGames'}
             style={{textDecoration: 'none', width: '150px'}}
             className='btn btn-primary vstack mx-auto my-5'>
         Back
