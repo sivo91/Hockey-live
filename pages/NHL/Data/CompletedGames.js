@@ -25,6 +25,7 @@ const Index = () => {
   const teams = ['ANA', 'ARI', 'BOS', 'BUF', 'CAR', 'CBJ', 'CGY', 'CHI', 'COL', 'DAL', 'DET', 'EDM', 'FLA', 'LAK', 'MIN', 'MTL', 'NJD', 'NSH', 'NYI', 'NYR', 'OTT', 'PHI', 'PIT', 'SEA', 'SJS', 'STL', 'TBL', 'TOR', 'VAN', 'VGK', 'WPG', 'WSH']
 
   const [selectedTeam, setSelectedTeam] = useState('')
+
   const [show_specific_team, setShowSpecificTeam] = useState(false)
   const [teamOutput, setTeamOutput] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -258,12 +259,7 @@ const [currentPage, setCurrentPage] = useState(1);
     <>
       <h3 className='text-center my-5'>Completed NHL Games</h3>
 
-       {
-          isLoading  && (
-                <div className="spinner-grow text-primary mx-auto mt-3" role="status">
-              </div>
-          ) 
-        }
+      
 
      
      
@@ -307,8 +303,19 @@ const [currentPage, setCurrentPage] = useState(1);
         }
 
 
-     
-       
+         {
+          isLoading  ? (
+                <div className="spinner-grow text-primary mx-auto mt-3" role="status">
+              </div>
+          ) :
+          (
+            <>
+             
+              {show_specific_team && teamOutput}
+            </>
+          )
+        }
+      
         
 
         
