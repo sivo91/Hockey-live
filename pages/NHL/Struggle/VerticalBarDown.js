@@ -65,6 +65,7 @@ ChartJS.register(...registerables);
 
 
 const VerticalBarDown = ({ nhl }) => {
+  
 
 const sortedTeams = [...nhl].sort((a, b) => a.points - b.points);
 
@@ -73,7 +74,7 @@ const sortedTeams = [...nhl].sort((a, b) => a.points - b.points);
 let noPlayOff = []
 
 
-for(let i = 0; i < sortedTeams.length; i++) {
+for(let i = 0; i < sortedTeams?.length; i++) {
   if(i < 16) {
     noPlayOff.push(sortedTeams[i])
   } else {
@@ -86,7 +87,7 @@ for(let i = 0; i < sortedTeams.length; i++) {
 let vacaTeam = []
 let vacaPoints = []
 
-for(let i = 0; i < noPlayOff.length; i++) {
+for(let i = 0; i < noPlayOff?.length; i++) {
   vacaTeam.push(noPlayOff[i].shortname)
   vacaPoints.push(-Number(noPlayOff[i].points));
 }

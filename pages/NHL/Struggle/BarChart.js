@@ -11,11 +11,11 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const BarChart = ({ east }) =>  {
 
-
+console.log(east)
 
 let sestka = []
 
-for(let i = 0; i < east.length;i++) {
+for(let i = 0; i < east?.length;i++) {
   if( i > 7 ) {
     sestka.push(east[i])
   } 
@@ -24,7 +24,7 @@ for(let i = 0; i < east.length;i++) {
 let teamNames = [];
 let teamPoints = [];
 
-for (let i = 0; i < sestka.length; i++) {
+for (let i = 0; i < sestka?.length; i++) {
     teamNames.push(sestka[i].shortname); 
     teamPoints.push(parseInt(-Number(sestka[i].points))); 
 }

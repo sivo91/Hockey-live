@@ -46,10 +46,7 @@ const Navbar = () => {
 
 //const { user } = useSelector((state) => state.userAuth)
 
-
 const [selectedYear, setSelectedYear] = useState('');
-const [callBestPlayers, setCallBestPlayers] = useState(false)
-console.log(callBestPlayers)
 
 const dispatch = useDispatch()
 const router = useRouter()

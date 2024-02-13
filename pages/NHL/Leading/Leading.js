@@ -3,8 +3,6 @@ import React, {useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchNHLStandings } from '@/reduxFile/nhlSlice'
 import Link from 'next/link';
-import { BsArrowUpSquareFill } from "react-icons/bs";
-import { FaStop } from "react-icons/fa";
 import BarChart from './BarChart';
 import BarChart2 from './BarChart2';
 import VerticalBarChart from './VerticalBar';
@@ -119,12 +117,12 @@ const tableRowsWestern = createTableRowsWestern(west);
              <h3 className='text-center my-5'>NHL | Leading Teams</h3>
      
              <div className="container-fluid">
-                  {/* first row , waster conf */}
+               
               <div className="row justify-content-evenly ">
 
                 <div className="col-12 col-md-4">
                   <h5 className='text-center mt-3'>Eastern Conference</h5>
-                 {/*  <BarChart east={east}/> */}
+                
                  <table className='w-100 border'>
                       <thead className='border'>
                        <tr className='text-center'>
@@ -158,18 +156,18 @@ const tableRowsWestern = createTableRowsWestern(west);
                       )
                     }
                   
-                 {/*  <BarChart2 west={west} /> */}
+               
                 </div>
               </div>
               <hr />
 
 
 
-              {/* sec row western conference */}
+             
               <div className="row justify-content-evenly">
                 <div className="col-12 col-md-4">
                   <h5 className='text-center mt-3'>Western Conference</h5>
-                 {/*  <BarChart east={east}/> */}
+           
                  <table className='w-100  border'>
                       <thead className='border'>
                         <tr className='text-center'>
@@ -218,16 +216,6 @@ const tableRowsWestern = createTableRowsWestern(west);
                 </div>
 
 
-
-
-               {/*  <div className="col-12 col-md-8 my-5 py-5">
-                  <h5 className='text-center'>Teams Below the Playoff Line</h5>
-                  <VerticalBarDown nhl={nhl}/>
-                </div> */}
-
-
-
-                
 
               </div>
 
