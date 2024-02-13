@@ -141,7 +141,7 @@ const handleChangeYear = (event) => {
 
                 {data.map((link, index) => (
                   <li
-                    className="nav-item dropdown shadow-none fw-semibold fs-5"
+                    className="nav-item dropdown shadow-none fw-semibold fs-5 li-lrg"
                     id='nav-link-hover'
                     key={index} >
                     <a
@@ -200,9 +200,9 @@ const handleChangeYear = (event) => {
             width: 250px;
           }
 
-          li {
+          .li-lrg {
             position: relative;
-            padding-left : 0px;
+            padding-left : 20px;
             left: 0px;
           }
 
