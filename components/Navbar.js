@@ -31,6 +31,12 @@ const data = [
     ],
   },
   {
+    title: "SLOVAKIA",
+    subtitle: [
+      { sublink: "Standings", url: "/SVK/Standings/Standings" },
+    ],
+  },
+  {
     title: "Contact",
     subtitle: [
       { sublink: "Contact", url: "/contact" },
