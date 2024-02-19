@@ -5,6 +5,9 @@ import { Tooltip } from '@nextui-org/react';
 import Logo from '@/utils/wcGameDatail'
 import Link from 'next/link';
 import { useSelector,  } from 'react-redux';
+import { TbArrowBigUpFilled } from "react-icons/tb";
+import { TbArrowBigDownFilled } from "react-icons/tb";
+import { CiStop1 } from "react-icons/ci";
 
 
 
@@ -136,6 +139,22 @@ const quickSort = (arr) => {
 const standingGroupB = quickSort(allTeamsB) */
 
 
+function clinch(param) {
+
+  if(param === 0) return 
+
+  if (param.includes('tím už má zaistenú')) {
+    return <span className='m-0'><TbArrowBigUpFilled className='text-success me-2'/> </span>;
+  } 
+  
+  if ( param.includes('tím zostupuje do I.DIV')) {
+    return <span className='m-0'><TbArrowBigDownFilled  className='text-danger me-2'/> </span>;
+  }
+
+  if ( param.includes('tím sa už nedostane')) {
+    return <span className='m-0'><CiStop1   className='me-2'/> </span>;
+  }
+}
 
 
 
@@ -155,8 +174,6 @@ const standingGroupB = quickSort(allTeamsB) */
                  </>)  :
                  (<>
 
-                
-               
                  <div className="panel mb-5">
 
 
@@ -255,7 +272,10 @@ const standingGroupB = quickSort(allTeamsB) */
                                   <tr key={idx}>
                                     
                                     <td className='py-1'>{idx + 1}</td>
-                                    <td className='py-1'>{team.shortname}</td>
+                                    <td className='py-1'>
+                                      {clinch(team.clinch)}
+                                      {team.shortname}
+                                    </td>
                                     <td className='py-1'>{team.gp}</td>
                                     <td className='py-1'>{team.points}</td>
                                   </tr>
@@ -288,7 +308,10 @@ const standingGroupB = quickSort(allTeamsB) */
                               <>
                                   <tr key={idx}>
                                     <td className='py-1'>{idx + 1}</td>
-                                    <td className='py-1'>{team.shortname}</td>
+                                    <td className='py-1'>
+                                      {clinch(team.clinch)}
+                                      {team.shortname}
+                                    </td>
                                     <td className='py-1'>{team.gp}</td>
                                     <td className='py-1'>{team.points}</td>
                                   </tr>
@@ -301,6 +324,7 @@ const standingGroupB = quickSort(allTeamsB) */
                     </div>
 
                  </div>
+
                          
                  
                  </>)

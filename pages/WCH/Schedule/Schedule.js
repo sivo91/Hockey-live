@@ -43,7 +43,23 @@ const Index = () => {
   const [load, setLoad] = useState(false)
   const [schedule, setSchedule] = useState(null)
   const [noRoster, setNoRoster] = useState(false)
-  const [selectedYear, setSelectedYear] = useState('2023');
+
+  
+   const [selectedYear, setSelectedYear] = useState('');
+   
+    // automaticky generuj sezonu
+   useEffect(() => {
+
+    const thisYear = new Date().getFullYear();
+    const thisMonth = new Date().getMonth() + 1; 
+
+    if (thisMonth < 7) {
+      setSelectedYear(thisYear - 1);
+    } else {
+      setSelectedYear(thisYear);
+    }
+
+  }, []); 
 
 
  useEffect(() => {

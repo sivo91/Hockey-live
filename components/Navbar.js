@@ -28,6 +28,7 @@ const data = [
     subtitle: [
       { sublink: "Groups", url: "/WCH/Groups/Groups" },
       { sublink: "Schedule", url: "/WCH/Schedule/Schedule" },
+      { sublink: "PlayOff", url: "/WCH/PlayOff/PlayOff" },
     ],
   },
   {
@@ -43,8 +44,6 @@ const data = [
     ],
   }
 ];
-
-
 
 
 const Navbar = () => {

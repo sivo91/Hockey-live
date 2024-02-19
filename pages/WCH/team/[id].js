@@ -450,7 +450,7 @@ const table_Wins_Losts = () => {
 
        <Link href={'/WCH/Groups/Groups'}
             style={{ textDecoration: 'none', width: '200px' }}
-            className='btn btn-primary rounded-1 vstack mx-auto'>
+            className='btn btn-primary rounded-1 vstack mx-auto my-5'>
         Back
       </Link>
     </>
