@@ -11,20 +11,13 @@ const Index = () => {
 const [name, setName] = useState('')  
 const [email, setEmail] = useState('')
 const [msg, setMsg] = useState('')
-const [selectSubject, setSelectSubject] = useState('')
 const [process, setProcess] = useState(false)
 const [five, setFive] = useState(0)
 
-
-
-const data = { name, email, msg, selectSubject }
-console.log(data)
-
+const data = { name, email, msg }
 
  const handleContact = async (e) => {
   e.preventDefault()
-
-
 
   if(name === '' &&
      email === '' &&
@@ -33,7 +26,6 @@ console.log(data)
       return
      }
 
- 
    try {
   setProcess(true);
 
@@ -43,21 +35,18 @@ console.log(data)
     },
   };
 
-  const res = await axios.post('/api/contact', data, config);
+  console.log(data)
 
-
+   const res = await axios.post('/api/contact', data, config);
   if (res.status === 201) {
     setName('');
     setEmail('');
     setMsg('');
-    setSelectSubject('');
     setFive(0)
     
     toast.success(res.data.message);
-  } else {
-    // Handle non-201 responses if necessary
-    toast.error('Form submission failed');
-  }
+  } 
+
 } catch (error) {
   console.error(error);
   toast.error('An error occurred while submitting the form');
@@ -65,18 +54,7 @@ console.log(data)
   setProcess(false);
 }
 
-
  }
-
-
-
-
-  const handleSubject = (e) => {
-      setSelectSubject(e.target.value)
-  }
-
-
-
 
   return (
     <>
@@ -84,12 +62,10 @@ console.log(data)
          Contact
       </h3>
       <p className='text-center lead mb-5'>
-         We&apos;re here to help! Reach out to us with any questions, concerns, or feedback, and we&apos;ll get back to you as soon as possible.
+        If you have any questions do not hesitate to contact me.
       </p>
 
 
-
-     
            <div className="contact-panel"> 
               <form>
 
@@ -119,16 +95,7 @@ console.log(data)
                 </div>
 
 
-                <label htmlFor="typeAnimal" className="form-label">
-                  Animal category
-                </label>
-                <select className="form-select" id='typeAnimal' aria-label="Default select example" value={selectSubject} onChange={handleSubject}>
-                  <option value="">Select Subject</option>
-                  <option value="general">General Inquiry</option>
-                  <option value="support">Feedback</option>
-                  <option value="issue">Technical Issue</option>
-              </select>
-          
+              
                 <div className="my-3">
                   <label htmlFor="msg" className="form-label">
                     Message
@@ -190,7 +157,7 @@ console.log(data)
           max-width : 500px;
           min-width: 280px;
           margin: 0 auto 50px;
-          top: -100px;
+          top: -33px;
           border: 0.3px solid lightgray;
           padding: 20px;
           border-radius: 7px;

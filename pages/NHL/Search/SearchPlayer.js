@@ -20,6 +20,7 @@ const [load, setLoad] = useState(false)
 const [activeTab, setActiveTab] = useState('bio');
 const [err, setErr] = useState()
 const [playerData, setPlayerData] = useState(null)
+console.log(playerData)
 
 
   
@@ -95,7 +96,7 @@ const handleTab = (e) => {
        }
 
        {
-         playerData && (
+         playerData &&  playerData != 'No such player in database' && (
             <>
                 <div className="container-fluid my-5">
               
