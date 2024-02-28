@@ -27,7 +27,7 @@ const Home= () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
 
-        <script
+       {/*  <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
         />
@@ -42,7 +42,7 @@ const Home= () => {
             });
           `,
           }}
-        />
+        /> */}
 
 
       </Head>
