@@ -4,19 +4,28 @@ import axios from 'axios';
 import Link from 'next/link';
 
 
-import React, { useState, useCallback, useEffect} from 'react';
 
 
 
 const Home= () => {
 
-/* 
-    const [checkedItem, setCheckedItem] = useState('NHL');
-    
-    const handleChangeA = (event) => {
-        setCheckedItem(event.target.id);
-    };
- */
+const checkAndUpdateData = async () => {
+  try {
+    const response = await fetch('/api/Update/checkUpdate');
+    const result = await response.json();
+    console.log(result.message); 
+  } catch (error) {
+    console.error('Failed to check or update data:', error);
+  }
+};
+
+
+checkAndUpdateData();
+
+
+
+
+
 
 
   return (

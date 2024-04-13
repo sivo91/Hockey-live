@@ -6,6 +6,7 @@ import MostGoals from '@/modules/MostGoals';
 import MostAssists from '@/modules/MostAssists';
 import MostPIM from '@/modules/MostPIM';
 import connectDB from "@/utils/db"
+import UpdateTime from '@/modules/UpdateTime';
 
 
 
@@ -13,6 +14,7 @@ import connectDB from "@/utils/db"
 async function handler(req, res) {
 
   await connectDB();
+
 
   const teamQuery = [
     "NSH", "TBL", "PIT", "CHI", "VGK", "MIN", "ANA",
@@ -51,6 +53,8 @@ async function handler(req, res) {
       return []
 
     }).flat()
+
+
 
 
  
@@ -128,6 +132,7 @@ async function handler(req, res) {
         { upsert: true, new: true } 
       )
     }
+
 
 
 
