@@ -30,7 +30,7 @@ export default async function handler(req, res) {
       };
 
       const response = await axios.get('/api/Update/update', config);
-      console.log('Data updated:', response.data);
+  
 
  
       updateTime.lastUpdated = new Date();

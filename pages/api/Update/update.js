@@ -6,9 +6,6 @@ import MostGoals from '@/modules/MostGoals';
 import MostAssists from '@/modules/MostAssists';
 import MostPIM from '@/modules/MostPIM';
 import connectDB from "@/utils/db"
-import UpdateTime from '@/modules/UpdateTime';
-
-
 
 
 async function handler(req, res) {

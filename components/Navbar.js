@@ -31,12 +31,12 @@ const data = [
       { sublink: "PlayOff", url: "/WCH/PlayOff/PlayOff" },
     ],
   },
-  {
+ /*  {
     title: "SLOVAKIA",
     subtitle: [
       { sublink: "Standings", url: "/SVK/Standings/Standings" },
     ],
-  },
+  }, */
   {
     title: "Contact",
     subtitle: [
